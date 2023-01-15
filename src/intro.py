@@ -5,6 +5,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 import pandas as pd
+import convertion
 
 class IntroScreen(QWidget):
     def __init__(self):
@@ -32,8 +33,9 @@ class IntroScreen(QWidget):
     def open_file(self):
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
 
-        df = pd.DataFrame(pd.read_excel(file))
-        print(df)
+        print(convertion.from_excel_to_csv(file))
+    
+
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
