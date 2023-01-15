@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1440</width>
+    <height>792</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="mecatronica_button">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>90</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Mécatronica</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="biomedica_button">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>120</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Biomedica</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_file_button_button">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>90</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ABRIR ARCHIVO</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
