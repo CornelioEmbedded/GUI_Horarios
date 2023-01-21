@@ -15,6 +15,10 @@ def get_dict_from_csv(csv_file):
     return info_list
 
 def find_class(classes):
-    found = '401'
+    class_list = []
     for items in classes.values():
-        print(items)
+        if type(items) == str:
+                if 'ESPAÑOL'in items or 'INGLES' in items:
+                    class_list.append(items)
+    return class_list
+                    
