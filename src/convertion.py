@@ -14,11 +14,21 @@ def get_dict_from_csv(csv_file):
         info_list[index] = rows[NAME_COLUMN]
     return info_list
 
-def find_class(classes):
+def find_classes(classes):
     class_list = []
     for items in classes.values():
         if type(items) == str:
                 if 'ESPAÑOL'in items or 'INGLES' in items:
                     class_list.append(items)
     return class_list
-                    
+
+def accomodate_classes(class_list):
+    separate_class_list = []
+    count = 0
+    for items in class_list:
+        count += 1
+        if '420' in items or '401' in items:
+            items_list = []
+            items_list.append(items)
+            for  
+        
