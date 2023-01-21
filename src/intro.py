@@ -33,8 +33,10 @@ class IntroScreen(QWidget):
     def open_file(self):
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
 
-        print(convertion.from_excel_to_csv(file))
-    
+        csv_file = convertion.from_excel_to_csv(file)
+        print(csv_file.shape)
+        csv_dict = convertion.get_dict_from_csv(csv_file)
+        convertion.find_class(csv_dict)
 
 
 app = QApplication(sys.argv) 
