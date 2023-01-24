@@ -35,8 +35,8 @@ class IntroScreen(QWidget):
 
         csv_file = convertion.from_excel_to_csv(file)
         csv_dict = convertion.get_dict_from_csv(csv_file)
-        class_list = convertion.find_classes(csv_dict)
-        convertion.accomodate_classes(class_list)
+        string_classes = convertion.find_classes(csv_dict)
+        # convertion.accomodate_classes(class_list)
 
 
 
