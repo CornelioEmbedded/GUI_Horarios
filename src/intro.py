@@ -1,12 +1,11 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import * 
-from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import * 
 from PyQt5.QtCore import *
 import sys
 import pandas as pd
 import convertion
-import csv
+
 
 class IntroScreen(QWidget):
     def __init__(self):
@@ -35,6 +34,7 @@ class IntroScreen(QWidget):
         self.subject = None
         self.string_classes= None
 
+        ## Initialize functions
         self.try_open_csv()
         self.show()
 
@@ -64,7 +64,6 @@ class IntroScreen(QWidget):
     def get_subject(self):
         self.subject = convertion.find_class(self.writer_subject.text(), self.string_classes)
         self.subject_info.setText(self.subject)
-
 
 
 app = QApplication(sys.argv) 
