@@ -24,6 +24,9 @@ class IntroScreen(QWidget):
         self.open_file_button = self.findChild(QPushButton, 'open_file_button_button')
         self.enter_button = self.findChild(QPushButton, 'enter_button')
 
+        ## Menu
+        self.subject_menu = self.findChild(QComboBox, 'subject_menu')
+
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
         self.biomedica_button.clicked.connect(self.biomedica_button_click)
@@ -64,6 +67,7 @@ class IntroScreen(QWidget):
     def get_subject(self):
         self.subject = convertion.find_class(self.writer_subject.text(), self.string_classes)
         self.subject_info.setText(self.subject)
+        print(convertion.get_subject_name(self.subject))
 
 
 app = QApplication(sys.argv) 

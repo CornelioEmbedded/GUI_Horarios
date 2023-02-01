@@ -104,6 +104,29 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
+  <widget class="QComboBox" name="subject_menu">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>160</y>
+     <width>191</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="subject_text_2">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>140</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ingrese Materia</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

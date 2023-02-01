@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 
 NAME_COLUMN = '        09/01/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
 
@@ -30,3 +31,11 @@ def find_class(subject, string_classes):
     for string in string_classes:
         if subject in string:
             return string
+
+def get_subject_name(subject):
+    pattern = r'(?P<suject>\D\w\D+)'
+    try:
+        subject_name = re.search(pattern, subject).group()
+    except AttributeError:
+        subject_name = re.search(pattern, subject)
+    return subject_name
