@@ -27,11 +27,6 @@ def parse_classes(classes):
     string_classes = ''.join(class_list).split('&')
     return string_classes
 
-def find_class(subject, string_classes):
-    for string in string_classes:
-        if subject in string:
-            return string
-
 def get_subject_name(subject):
     pattern = r'(?P<suject>\D\w\D+)'
     try:
@@ -39,3 +34,15 @@ def get_subject_name(subject):
     except AttributeError:
         subject_name = re.search(pattern, subject)
     return subject_name
+
+def get_subject_list(subjects):
+    subject_list = []
+    for subject in subjects:
+        subject_list.append(get_subject_name(subject))
+    return subject_list
+
+def find_class(subject, string_classes):
+    for string in string_classes:
+        if subject in string:
+            return string
+        
