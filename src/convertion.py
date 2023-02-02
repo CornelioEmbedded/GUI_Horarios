@@ -40,4 +40,9 @@ def get_subject_list(subjects):
     for subject in subjects:
         subject_list.append(get_subject_name(subject))
     return subject_list
+
+def find_class(subject, string_classes):
+    for string in string_classes:
+        if subject in string:
+            return string
         

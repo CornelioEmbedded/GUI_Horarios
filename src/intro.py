@@ -28,6 +28,7 @@ class IntroScreen(QWidget):
         ## Combo Box
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
         self.subject_menu.addItems(self.try_open_csv())
+        self.subject_menu.currentIndexChanged.connect(self.selection_change)
 
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
@@ -65,6 +66,10 @@ class IntroScreen(QWidget):
     def make_subject_items(self):
         self.subject_list = convertion.get_subject_list(self.string_classes)
         return self.subject_list
+    
+    def selection_change(self):
+        current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
+        self.subject_info.setText(current_text)
 
 
 app = QApplication(sys.argv) 
