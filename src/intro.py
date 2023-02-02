@@ -74,9 +74,9 @@ class IntroScreen(QWidget):
     
     def _selection_change(self):
         """Select from items combo box a subject and print it in GUI"""
-        current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
+        list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
         self.subject_info.setText(current_text)
-        print(convertion.get_group_and_hour(current_text))
+        clean_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
 
 
 app = QApplication(sys.argv) 

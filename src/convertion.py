@@ -44,9 +44,17 @@ def get_subject_list(subjects):
 def find_class(subject, string_classes):
     for string in string_classes:
         if subject in string:
-            ordered_string = string.split(_get_subject_name(subject))[1].replace(' ','')
-            print(ordered_string)
-            return ordered_string
+            ordered_string = string.split(_get_subject_name(subject))[1]
+            # new_ordered_str = " ".join(ordered_string.split())
+            list_of_classes = ordered_string.split('\n')
+            return list_of_classes, ordered_string
+
+def clean_list_of_classes(list_of_classes):
+    new_subject_list = []
+    for subject in list_of_classes:
+        new_subject_list.append(" ".join(subject.split()))
+    return new_subject_list
+
 
 def get_group_and_hour(ordered_string):
     pattern = r'(?P<group>0[0-9][0-9]\D\d)'
