@@ -15,7 +15,6 @@ class IntroScreen(QWidget):
         ## variables
         self.subject = None
         self.string_classes= None
-        self.subject_list = []
 
         ## Texts
         self.subject_info = self.findChild(QLabel, 'subject_response')
@@ -27,8 +26,8 @@ class IntroScreen(QWidget):
 
         ## Combo Box
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
-        self.subject_menu.addItems(self.try_open_csv())
-        self.subject_menu.currentIndexChanged.connect(self.selection_change)
+        self.subject_menu.addItems(self.get_previous_data())
+        self.subject_menu.currentIndexChanged.connect(self._selection_change)
 
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
@@ -38,11 +37,12 @@ class IntroScreen(QWidget):
         ## Initialize functions
         self.show()
 
-    def try_open_csv(self):
+    def get_previous_data(self):
+        """"Gets previous data from past csv_file"""
         try:
             csv_file_read = pd.read_csv('csv_file.csv')
-            self.parsing_csv_file(csv_file_read)
-            self.items_list = self.make_subject_items()
+            self._parsing_csv_file(csv_file_read)
+            self.items_list = self._make_subject_items()
             return self.items_list
         except FileNotFoundError:
             self.items_list = []
@@ -55,21 +55,25 @@ class IntroScreen(QWidget):
         print('biomedica')
 
     def open_file(self):
+        """Open excel file, and return a new items list from excel"""
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
         csv_file = convertion.from_excel_to_csv(file)
-        self.parsing_csv_file(csv_file)
-        self.subject_list = self.make_subject_items()
-        self.subject_menu.addItems(self.subject_list)
+        self._parsing_csv_file(csv_file)
+        self.new_item_list = self._make_subject_items()
+        self.subject_menu.addItems(self.new_item_list)
 
-    def parsing_csv_file(self, csv_file):
+    def _parsing_csv_file(self, csv_file):
+        """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
     
-    def make_subject_items(self):
+    def _make_subject_items(self):
+        """Convert string classes into a list to use in items"""
         self.subject_list = convertion.get_subject_list(self.string_classes)
         return self.subject_list
     
-    def selection_change(self):
+    def _selection_change(self):
+        """Select from items combo box a subject and print it in GUI"""
         current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
         self.subject_info.setText(current_text)
 
