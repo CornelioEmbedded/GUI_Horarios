@@ -44,4 +44,5 @@ def get_subject_list(subjects):
 def find_class(subject, string_classes):
     for string in string_classes:
         if subject in string:
-            return string
+            ordered_string = string.split(_get_subject_name(subject))[1].replace(' ','')
+            return ordered_string
