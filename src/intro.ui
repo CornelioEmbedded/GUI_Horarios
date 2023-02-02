@@ -52,42 +52,6 @@
     <string>ABRIR ARCHIVO</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="line_writer">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>160</y>
-     <width>241</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="subject_text">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>140</y>
-     <width>81</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ingrese Materia</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="enter_button">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>200</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>ENTER</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="subject_response">
    <property name="geometry">
     <rect>
@@ -107,8 +71,8 @@
   <widget class="QComboBox" name="subject_menu">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>160</y>
+     <x>440</x>
+     <y>90</y>
      <width>191</width>
      <height>21</height>
     </rect>
@@ -117,8 +81,8 @@
   <widget class="QLabel" name="subject_text_2">
    <property name="geometry">
     <rect>
-     <x>590</x>
-     <y>140</y>
+     <x>500</x>
+     <y>70</y>
      <width>81</width>
      <height>16</height>
     </rect>

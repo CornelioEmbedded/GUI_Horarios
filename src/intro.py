@@ -12,8 +12,10 @@ class IntroScreen(QWidget):
         super(IntroScreen, self).__init__()
         uic.loadUi('intro.ui', self)
 
-        ## Line Edit
-        self.writer_subject = self.findChild(QLineEdit, 'line_writer')
+        ## variables
+        self.subject = None
+        self.string_classes= None
+        self.subject_list = None
 
         ## Texts
         self.subject_info = self.findChild(QLabel, 'subject_response')
@@ -22,20 +24,15 @@ class IntroScreen(QWidget):
         self.mecatronica_button = self.findChild(QPushButton, 'mecatronica_button')
         self.biomedica_button = self.findChild(QPushButton, 'biomedica_button')
         self.open_file_button = self.findChild(QPushButton, 'open_file_button_button')
-        self.enter_button = self.findChild(QPushButton, 'enter_button')
 
-        ## Menu
+        ## Combo Box
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
+        self.subject_menu.addItems(self.try_open_csv())
 
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
         self.biomedica_button.clicked.connect(self.biomedica_button_click)
         self.open_file_button.clicked.connect(self.open_file)
-        self.enter_button.clicked.connect(self.try_open_csv)
-
-        ## variables
-        self.subject = None
-        self.string_classes= None
 
         ## Initialize functions
         self.try_open_csv()
@@ -45,7 +42,8 @@ class IntroScreen(QWidget):
         try:
             csv_file_read = pd.read_csv('csv_file.csv')
             self.parsing_csv_file(csv_file_read)
-            self.get_subject()
+            self.items_list = self.make_subject_items()
+            return self.items_list
         except FileNotFoundError:
             print('Archivo no encontrado')
 
@@ -63,11 +61,10 @@ class IntroScreen(QWidget):
     def parsing_csv_file(self, csv_file):
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
-
-    def get_subject(self):
-        self.subject = convertion.find_class(self.writer_subject.text(), self.string_classes)
-        self.subject_info.setText(self.subject)
-        print(convertion.get_subject_name(self.subject))
+    
+    def make_subject_items(self):
+        self.subject_list = convertion.get_subject_list(self.string_classes)
+        return self.subject_list
 
 
 app = QApplication(sys.argv) 
