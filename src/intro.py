@@ -15,7 +15,7 @@ class IntroScreen(QWidget):
         ## variables
         self.subject = None
         self.string_classes= None
-        self.subject_list = None
+        self.subject_list = []
 
         ## Texts
         self.subject_info = self.findChild(QLabel, 'subject_response')
@@ -36,7 +36,6 @@ class IntroScreen(QWidget):
         self.open_file_button.clicked.connect(self.open_file)
 
         ## Initialize functions
-        self.try_open_csv()
         self.show()
 
     def try_open_csv(self):
@@ -46,7 +45,8 @@ class IntroScreen(QWidget):
             self.items_list = self.make_subject_items()
             return self.items_list
         except FileNotFoundError:
-            print('Archivo no encontrado')
+            self.items_list = []
+            return self.items_list
 
     def mecatronica_button_click(self):
         print('mecatronica')
@@ -58,6 +58,8 @@ class IntroScreen(QWidget):
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
         csv_file = convertion.from_excel_to_csv(file)
         self.parsing_csv_file(csv_file)
+        self.subject_list = self.make_subject_items()
+        self.subject_menu.addItems(self.subject_list)
 
     def parsing_csv_file(self, csv_file):
         csv_dict = convertion.get_dict_from_csv(csv_file)
