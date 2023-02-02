@@ -45,4 +45,13 @@ def find_class(subject, string_classes):
     for string in string_classes:
         if subject in string:
             ordered_string = string.split(_get_subject_name(subject))[1].replace(' ','')
+            print(ordered_string)
             return ordered_string
+
+def get_group_and_hour(ordered_string):
+    pattern = r'(?P<group>0[0-9][0-9]\D\d)'
+    try:
+        subject_name = re.findall(pattern, ordered_string).groups()
+    except AttributeError:
+        subject_name = re.findall(pattern, ordered_string)
+    return subject_name
