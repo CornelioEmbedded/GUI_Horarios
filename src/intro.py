@@ -77,10 +77,11 @@ class IntroScreen(QWidget):
         try:
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.subject_info.setText(current_text)
-            clean_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
+            self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
+            class_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
         except IndexError:
             pass
-        
+
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 

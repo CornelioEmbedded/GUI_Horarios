@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+from unidecode import unidecode
 
 NAME_COLUMN = '        09/01/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
 
@@ -55,11 +56,19 @@ def clean_list_of_classes(list_of_classes):
         new_subject_list.append(" ".join(subject.split()))
     return new_subject_list
 
-
-def get_group_and_hour(ordered_string):
-    pattern = r'(?P<group>0[0-9][0-9]\D\d)'
+def get_classes_data(class_items):
+    pattern = r'(?P<group>[0-9]+) (?P<hour>[0-9A-Za-z]+),(?P<amount_time>\d) (?P<day_number>[0-9]+) (?P<room>[0-9]+) (?P<id>[0-9]+) (?P<professor>[A-Za-z]+( [A-Za-z]+)+) (?P<limit_students>[0-9]+) (?P<current_students>[0-9]+) (?P<modality>[A-Za-z]+) (?P<language>[A-Za-z]+)'
+    class_data = ('Group', 'Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor', 'Professor First Name', 'Limit of students', 'Current students', 'Modality', 'Language')
+    
     try:
-        subject_name = re.findall(pattern, ordered_string).groups()
-    except AttributeError:
-        subject_name = re.findall(pattern, ordered_string)
-    return subject_name
+        for class_item in class_items:
+            subject = unidecode(class_item)
+            try:
+                parsed_class_data = list(re.search(pattern, subject).groups())
+            except AttributeError:
+                parsed_class_data = list(re.search(pattern,  subject))        
+            class_dict = dict(zip(class_data, parsed_class_data))
+            return class_dict
+    except TypeError:
+        pass
+
