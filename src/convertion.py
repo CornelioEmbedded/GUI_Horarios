@@ -57,9 +57,9 @@ def clean_list_of_classes(list_of_classes):
     return new_subject_list
 
 def get_classes_data(class_items):
-    pattern = r'(?P<group>[0-9]+) (?P<hour>[0-9A-Za-z]+),(?P<amount_time>\d) (?P<day_number>[0-9]+) (?P<room>[0-9]+) (?P<id>[0-9]+) (?P<professor>[A-Za-z]+( [A-Za-z]+)+) (?P<limit_students>[0-9]+) (?P<current_students>[0-9]+) (?P<modality>[A-Za-z]+) (?P<language>[A-Za-z]+)'
-    class_data = ('Group', 'Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor', 'Professor First Name', 'Limit of students', 'Current students', 'Modality', 'Language')
-    
+    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
+    list_dict = []
     try:
         for class_item in class_items:
             subject = unidecode(class_item)
@@ -68,7 +68,9 @@ def get_classes_data(class_items):
             except AttributeError:
                 parsed_class_data = list(re.search(pattern,  subject))        
             class_dict = dict(zip(class_data, parsed_class_data))
-            return class_dict
+            list_dict.append(class_dict)
     except TypeError:
         pass
+
+    return list_dict
 
