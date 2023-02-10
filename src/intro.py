@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 import sys
 import pandas as pd
 import convertion
+from time import sleep
 
 
 class IntroScreen(QWidget):
@@ -110,10 +111,10 @@ class IntroScreen(QWidget):
             self.get_hour_and_day(self.list_dict)
         except IndexError:
             pass
-    
+
     def get_hour_and_day(self, list_dict):
-        label = QLabel("Hola")
         for dict in list_dict:
+            label = QLabel("Hola")
             self.schedule_grid.addWidget(label, self.rows[dict['Hour']], self.columns[dict['Day']])
 
 app = QApplication(sys.argv) 
