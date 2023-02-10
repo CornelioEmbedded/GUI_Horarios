@@ -34,6 +34,34 @@ class IntroScreen(QWidget):
         self.biomedica_button.clicked.connect(self.biomedica_button_click)
         self.open_file_button.clicked.connect(self.open_file)
 
+        ## Schedule grid
+        self.schedule_grid = self.findChild(QGridLayout, 'grid_schedule')
+        self.rows = {'M1': 1,
+                     'M2': 2,
+                     'M3': 3,
+                     'M4': 4,
+                     'M5': 5,
+                     'M6': 6,
+                     'V1': 7,
+                     'V2': 8,
+                     'V3': 9,
+                     'V4': 10,
+                     'V5': 11,
+                     'V6': 12,
+                     'N1': 13,
+                     'N2': 14,
+                     'N3': 15,
+                     'N4': 16,
+                     'N5': 17,
+                     'N6': 18}
+        
+        self.columns = {'1': 1,
+                        '2': 2,
+                        '3': 3,
+                        '4': 4,
+                        '5': 5,
+                        '6': 6}
+
         ## Initialize functions
         self.show()
 
@@ -84,10 +112,9 @@ class IntroScreen(QWidget):
             pass
     
     def get_hour_and_day(self, list_dict):
+        label = QLabel("Hola")
         for dict in list_dict:
-            print(dict['Hour'])
-            print(dict['Day'])
-            print(dict['Amount of hours'])
+            self.schedule_grid.addWidget(label, self.rows[dict['Hour']], self.columns[dict['Day']])
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
