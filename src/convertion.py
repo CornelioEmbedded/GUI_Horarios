@@ -71,6 +71,5 @@ def get_classes_data(class_items):
             list_dict.append(class_dict)
     except TypeError:
         pass
-
     return list_dict
 

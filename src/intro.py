@@ -78,10 +78,16 @@ class IntroScreen(QWidget):
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.subject_info.setText(current_text)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
-            class_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
+            self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
+            self.get_hour_and_day(self.list_dict)
         except IndexError:
             pass
-
+    
+    def get_hour_and_day(self, list_dict):
+        for dict in list_dict:
+            print(dict['Hour'])
+            print(dict['Day'])
+            print(dict['Amount of hours'])
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
