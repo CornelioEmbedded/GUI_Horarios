@@ -6,7 +6,6 @@ import sys
 import pandas as pd
 import convertion
 from time import sleep
-from random import choice
 
 
 class IntroScreen(QWidget):
@@ -64,7 +63,7 @@ class IntroScreen(QWidget):
                         '5': 5,
                         '6': 6}
 
-        self.colors = ['red','blue','green','yellow','purple','pink','orange']
+        self.colors = ['red','blue','green','yellow','purple','pink','orange', 'brown', 'white']
 
         ## Initialize functions
         self.show()
@@ -116,30 +115,32 @@ class IntroScreen(QWidget):
         except IndexError:
             pass
     
-    def set_label_in_schedule(self):
-        self.label = QLabel("Hola")
-        self.get_random_color()
+    def set_label_in_schedule(self, index):
+        self.label = QLabel(self.dict['Professor'])
+        self.set_color_class(index)
         return self.label
 
-    def get_random_color(self):
-        color = choice(self.colors)
-        return self.label.setStyleSheet(f"background-color: red;")
+    def set_color_class(self, index):
+        return self.label.setStyleSheet(f"background-color: {self.colors[index]};")
 
     def get_hour_and_day(self, list_dict):
-        for dict in list_dict:
-            self.set_label_in_schedule()
-            if dict['Day'] == '135':
-                days = str(dict['Day'])
+        count_LMV = 0
+        count_MJ = 0
+        for self.dict in list_dict:
+            if self.dict['Day'] == '135':
+                days = str(self.dict['Day'])
                 days_list = [int(days[0]), int(days[1]), int(days[2])]
                 for day in days_list:
-                    self.set_label_in_schedule()
-                    self.schedule_grid.addWidget(self.label, self.rows[dict['Hour']], day)
+                    self.set_label_in_schedule(count_LMV)
+                    self.schedule_grid.addWidget(self.label, self.rows[self.dict['Hour']], day)
+                count_LMV += 1
             else:
-                start_hour = self.rows[dict['Hour']]
+                start_hour = self.rows[self.dict['Hour']]
                 three_hour = [start_hour, start_hour + 1, start_hour + 2]
                 for hour in three_hour:
-                    self.set_label_in_schedule()
-                    self.schedule_grid.addWidget(self.label, hour, self.columns[dict['Day']])
+                    self.set_label_in_schedule(count_MJ)
+                    self.schedule_grid.addWidget(self.label, hour, self.columns[self.dict['Day']])
+                count_MJ += 1
 
     def clean_data_from_schedule(self):
         for i in range(self.schedule_grid.count()):
