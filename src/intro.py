@@ -104,6 +104,7 @@ class IntroScreen(QWidget):
     def _selection_change(self):
         """Select from items combo box a subject and print it in GUI"""
         try:
+            self.clean_data_from_schedule()
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.subject_info.setText(current_text)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
@@ -111,19 +112,36 @@ class IntroScreen(QWidget):
             self.get_hour_and_day(self.list_dict)
         except IndexError:
             pass
+    
+    def set_label_in_schedule(self):
+        self.label = QLabel("Hola")
+        return self.label
 
     def get_hour_and_day(self, list_dict):
         for dict in list_dict:
-            label = QLabel("Hola")
+            self.set_label_in_schedule()
             days_list = [dict['Day']]
             if dict['Day'] == '135':
                 days = str(dict['Day'])
                 days_list = [int(days[0]), int(days[1]), int(days[2])]
                 for day in days_list:
-                    label = QLabel("Hola")
-                    self.schedule_grid.addWidget(label, self.rows[dict['Hour']], day)
+                    self.set_label_in_schedule()
+                    self.schedule_grid.addWidget(self.label, self.rows[dict['Hour']], day)
             else:
-                self.schedule_grid.addWidget(label, self.rows[dict['Hour']], self.columns[dict['Day']])
+                self.schedule_grid.addWidget(self.label, self.rows[dict['Hour']], self.columns[dict['Day']])
+
+    def clean_data_from_schedule(self):
+        for i in range(self.schedule_grid.count()):
+            item = self.schedule_grid.itemAt(i)
+            widget = item.widget()
+            if isinstance(widget, QLabel):
+                row, column, rowSpan, columnSpan = self.schedule_grid.getItemPosition(i)
+                if row != 0 and column != 0:
+                    widget.setText("")
+
+
+
+
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
