@@ -108,39 +108,51 @@ class IntroScreen(QWidget):
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
-            self.get_hour_and_day(self.list_dict)
+            self.display_classes(self.list_dict)
         except IndexError:
             pass
     
     def set_label_in_schedule(self, index):
+        """"Set Professor name in schedule"""
         self.label = QLabel(self.dict['Professor'])
         self.set_color_class(index)
         return self.label
 
     def set_color_class(self, index):
+        """Set a color in label"""
         return self.label.setStyleSheet(f"background-color: {self.colors[index]};")
 
-    def get_hour_and_day(self, list_dict):
-        count_LMV = 0
+    def display_classes(self, list_dict):
+        """Display classes in schedule"""
         count_MJ = 0
+        count_LMV = 0
         for self.dict in list_dict:
             print(self.dict)
             if self.dict['Day'] == '135':
-                days = str(self.dict['Day'])
-                days_list = [int(days[0]), int(days[1]), int(days[2])]
-                for day in days_list:
-                    self.set_label_in_schedule(count_LMV)
-                    self.schedule_grid.addWidget(self.label, self.rows[self.dict['Hour']], day)
+                self.set_LMV_classes(count_LMV)
                 count_LMV += 1
             else:
-                start_hour = self.rows[self.dict['Hour']]
-                three_hour = [start_hour, start_hour + 1, start_hour + 2]
-                for hour in three_hour:
-                    self.set_label_in_schedule(count_MJ)
-                    self.schedule_grid.addWidget(self.label, hour, self.columns[self.dict['Day']])
+                self.set_MJ_classes(count_MJ)
                 count_MJ += 1
 
+    def set_LMV_classes(self, color):
+        """Set Monday, Wednesday and Friday classes"""
+        days = str(self.dict['Day'])
+        days_list = [int(days[0]), int(days[1]), int(days[2])]
+        for day in days_list:
+            self.set_label_in_schedule(color)
+            self.schedule_grid.addWidget(self.label, self.rows[self.dict['Hour']], day)
+
+    def set_MJ_classes(self, color):
+        """Set Tuesday and Thursday classes"""
+        start_hour = self.rows[self.dict['Hour']]
+        three_hour = [start_hour, start_hour + 1, start_hour + 2]
+        for hour in three_hour:
+            self.set_label_in_schedule(color)
+            self.schedule_grid.addWidget(self.label, hour, self.columns[self.dict['Day']])
+
     def clean_data_from_schedule(self):
+        """Clean data from schedule"""
         for i in range(self.schedule_grid.count()):
             item = self.schedule_grid.itemAt(i)
             widget = item.widget()
@@ -149,9 +161,6 @@ class IntroScreen(QWidget):
                 if row != 0 and column != 0:
                     widget.setStyleSheet("")
                     widget.setText("")
-
-
-
 
 
 app = QApplication(sys.argv) 
