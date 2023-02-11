@@ -115,6 +115,7 @@ class IntroScreen(QWidget):
     
     def set_label_in_schedule(self):
         self.label = QLabel("Hola")
+        self.label.setStyleSheet("background-color: red;")
         return self.label
 
     def get_hour_and_day(self, list_dict):
@@ -137,6 +138,7 @@ class IntroScreen(QWidget):
             if isinstance(widget, QLabel):
                 row, column, rowSpan, columnSpan = self.schedule_grid.getItemPosition(i)
                 if row != 0 and column != 0:
+                    widget.setStyleSheet("")
                     widget.setText("")
 
 
