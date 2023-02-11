@@ -60,6 +60,7 @@ class IntroScreen(QWidget):
                         '5': 5,
                         '6': 6}
 
+        ## Schedule colors
         self.colors = ['#98F5FF','#8EE5EE','#7AC5CD','#ADD8E6','#B2DFEE','#97FFFF','#8DEEEE', '#79CDCD', '#7FFF00', ]
 
         ## Initialize functions
@@ -123,6 +124,7 @@ class IntroScreen(QWidget):
         count_LMV = 0
         count_MJ = 0
         for self.dict in list_dict:
+            print(self.dict)
             if self.dict['Day'] == '135':
                 days = str(self.dict['Day'])
                 days_list = [int(days[0]), int(days[1]), int(days[2])]
