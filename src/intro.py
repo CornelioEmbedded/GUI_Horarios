@@ -6,6 +6,7 @@ import sys
 import pandas as pd
 import convertion
 from time import sleep
+from random import choice
 
 
 class IntroScreen(QWidget):
@@ -63,6 +64,8 @@ class IntroScreen(QWidget):
                         '5': 5,
                         '6': 6}
 
+        self.colors = ['red','blue','green','yellow','purple','pink','orange']
+
         ## Initialize functions
         self.show()
 
@@ -115,13 +118,16 @@ class IntroScreen(QWidget):
     
     def set_label_in_schedule(self):
         self.label = QLabel("Hola")
-        self.label.setStyleSheet("background-color: red;")
+        self.get_random_color()
         return self.label
+
+    def get_random_color(self):
+        color = choice(self.colors)
+        return self.label.setStyleSheet(f"background-color: red;")
 
     def get_hour_and_day(self, list_dict):
         for dict in list_dict:
             self.set_label_in_schedule()
-            days_list = [dict['Day']]
             if dict['Day'] == '135':
                 days = str(dict['Day'])
                 days_list = [int(days[0]), int(days[1]), int(days[2])]
@@ -129,7 +135,11 @@ class IntroScreen(QWidget):
                     self.set_label_in_schedule()
                     self.schedule_grid.addWidget(self.label, self.rows[dict['Hour']], day)
             else:
-                self.schedule_grid.addWidget(self.label, self.rows[dict['Hour']], self.columns[dict['Day']])
+                start_hour = self.rows[dict['Hour']]
+                three_hour = [start_hour, start_hour + 1, start_hour + 2]
+                for hour in three_hour:
+                    self.set_label_in_schedule()
+                    self.schedule_grid.addWidget(self.label, hour, self.columns[dict['Day']])
 
     def clean_data_from_schedule(self):
         for i in range(self.schedule_grid.count()):
