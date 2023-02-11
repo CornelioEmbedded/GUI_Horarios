@@ -17,9 +17,6 @@ class IntroScreen(QWidget):
         self.subject = None
         self.string_classes= None
 
-        ## Texts
-        self.subject_info = self.findChild(QLabel, 'subject_response')
-
         ## Buttons
         self.mecatronica_button = self.findChild(QPushButton, 'mecatronica_button')
         self.biomedica_button = self.findChild(QPushButton, 'biomedica_button')
@@ -63,7 +60,7 @@ class IntroScreen(QWidget):
                         '5': 5,
                         '6': 6}
 
-        self.colors = ['red','blue','green','yellow','purple','pink','orange', 'brown', 'white']
+        self.colors = ['#98F5FF','#8EE5EE','#7AC5CD','#ADD8E6','#B2DFEE','#97FFFF','#8DEEEE', '#79CDCD', '#7FFF00', ]
 
         ## Initialize functions
         self.show()
@@ -108,7 +105,6 @@ class IntroScreen(QWidget):
         try:
             self.clean_data_from_schedule()
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
-            self.subject_info.setText(current_text)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
             self.get_hour_and_day(self.list_dict)
