@@ -115,7 +115,15 @@ class IntroScreen(QWidget):
     def get_hour_and_day(self, list_dict):
         for dict in list_dict:
             label = QLabel("Hola")
-            self.schedule_grid.addWidget(label, self.rows[dict['Hour']], self.columns[dict['Day']])
+            days_list = [dict['Day']]
+            if dict['Day'] == '135':
+                days = str(dict['Day'])
+                days_list = [int(days[0]), int(days[1]), int(days[2])]
+                for day in days_list:
+                    label = QLabel("Hola")
+                    self.schedule_grid.addWidget(label, self.rows[dict['Hour']], day)
+            else:
+                self.schedule_grid.addWidget(label, self.rows[dict['Hour']], self.columns[dict['Day']])
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
