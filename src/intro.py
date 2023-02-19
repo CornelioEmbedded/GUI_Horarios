@@ -108,8 +108,8 @@ class IntroScreen(QWidget):
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
-            orderd_list = self.order_classes_by_hour(self.list_dict)
-            self.display_classes(orderd_list)
+            new_ordered_list = self.order_classes(self.list_dict)
+            self.display_classes(new_ordered_list)
         except IndexError:
             pass
     
@@ -168,6 +168,23 @@ class IntroScreen(QWidget):
     def order_classes_by_hour(self, list_dict):
         sorted_list = sorted(list_dict, key=lambda dict: self._order_key(self.rows, dict))
         return sorted_list
+
+    def order_classes_by_day(self, list_dict):
+        list_135 = []
+        list_24 = []
+
+        for dict in list_dict:
+            if '135' in dict['Day']:
+                list_135.append(dict)
+            elif '2' in dict['Day'] or '4' in dict['Day']:
+                list_24.append(dict)
+        new_order = list_135 + list_24
+        return new_order
+
+    def order_classes(self, list_dict):
+        list_by_hour = self.order_classes_by_hour(list_dict)
+        list_by_day = self.order_classes_by_day(list_by_hour)
+        return list_by_day
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
