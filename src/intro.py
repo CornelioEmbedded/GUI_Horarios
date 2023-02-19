@@ -162,31 +162,13 @@ class IntroScreen(QWidget):
                     widget.setStyleSheet("")
                     widget.setText("")
 
-    def order_classes(self, list_dict):
-        expected_ordered = list(self.rows.keys())
-        list_135 = [] #135 means Monday=1, Wednesday=3, Friday=5
-        list_24 = [] #24 means Tuesday=2, Thursday=4
-        new_order_135 = []
-        new_order_24 = []
-        for dict in list_dict:
-            if '135' in dict.values():
-                new_order_135.append(expected_ordered.index(dict['Hour']))
-                list_135.append(dict)
-            elif '2' in dict.values() or '4' in dict.values():
-                new_order_24.append(expected_ordered.index(dict['Hour']))
-                list_24.append(dict)
-        print(f'List 135: {sorted(new_order_135)}')
-        print(f'List 24: {sorted(new_order_24)}')
-        order_by_day = list_135 + list_24
-        for item in order_by_day:
-            print(item)
-        #     hour = dict['Hour']
-        #     day = dict['Day']
-        #     new_order.append(expected_ordered.index(hour))
-        #     print(f'hora: {hour}, dia: {day}, index: {expected_ordered.index(hour)}')
-        # sorted_order = sorted(new_order)
-        # print(sorted_order)
+    def _order_key(self, order_dict, dict):
+        return order_dict[dict['Hour']]
 
+    def order_classes(self, list_dict):
+        sorted_list = sorted(list_dict, key=lambda dict: self._order_key(self.rows, dict))
+        for item in sorted_list:
+            print(item)
 
 
 app = QApplication(sys.argv) 
