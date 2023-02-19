@@ -127,7 +127,6 @@ class IntroScreen(QWidget):
         count_MJ = 0
         count_LMV = 0
         for self.dict in list_dict:
-            print(self.dict)
             if self.dict['Day'] == '135':
                 self.set_LMV_classes(count_LMV)
                 count_LMV += 1
