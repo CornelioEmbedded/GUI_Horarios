@@ -131,7 +131,6 @@ class IntroScreen(QWidget):
         for index in range(len(list_dict)):
             count += 1
             self.dict = list_dict[index]
-            print(self.dict)
             if self.dict['Day'] == '135':
                 self.set_LMV_classes(count_LMV)
                 self.check_repeated_hour_classes(index, list_dict)
@@ -146,6 +145,11 @@ class IntroScreen(QWidget):
         first_hour = self.dict['Hour']
         next_hour = list_dict[next]['Hour']
         if first_hour == next_hour:
+            if self.dict['Day'] == list_dict[next]['Day']:
+                print('**********')
+                print(self.dict)
+                print(list_dict[next])
+                print('**********')
             pass #TODO Logic to add label into grid hour
 
     def set_LMV_classes(self, color):
