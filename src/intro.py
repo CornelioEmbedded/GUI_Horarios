@@ -127,13 +127,26 @@ class IntroScreen(QWidget):
         """Display classes in schedule"""
         count_MJ = 0
         count_LMV = 0
-        for self.dict in list_dict:
+        count = 0
+        for index in range(len(list_dict)):
+            count += 1
+            self.dict = list_dict[index]
+            print(self.dict)
             if self.dict['Day'] == '135':
                 self.set_LMV_classes(count_LMV)
+                self.check_repeated_hour_classes(index, list_dict)
                 count_LMV += 1
             else:
                 self.set_MJ_classes(count_MJ)
+                self.check_repeated_hour_classes(index, list_dict)
                 count_MJ += 1
+
+    def check_repeated_hour_classes(self, index, list_dict):
+        next = index + 1
+        first_hour = self.dict['Hour']
+        next_hour = list_dict[next]['Hour']
+        if first_hour == next_hour:
+            pass #TODO Logic to add label into grid hour
 
     def set_LMV_classes(self, color):
         """Set Monday, Wednesday and Friday classes"""
