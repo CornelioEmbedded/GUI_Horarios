@@ -160,9 +160,11 @@ class IntroScreen(QWidget):
         hour = str(self.dict['Hour'])
         days_list = [int(days[0]), int(days[1]), int(days[2])]
         for day in days_list:
+            old_label = self.findChild(QLabel, f'{str(hour.lower())}_{day}')
             label = self.set_label_in_schedule(color)
-            self.spot = self.findChild(QHBoxLayout, f'{str(hour)}_{str(day)}')
-            self.spot.addWidget(label)
+            spot = self.findChild(QHBoxLayout, f'{str(hour)}_{day}')
+            spot.removeWidget(old_label)
+            spot.addWidget(label)
 
     def set_MJ_classes(self, color):
         """Set Tuesday and Thursday classes"""
