@@ -178,6 +178,18 @@ files = [
 ]
 
 [[package]]
+name = "pyqt5designer"
+version = "5.14.1"
+description = "PyQt5 Designer"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "PyQt5Designer-5.14.1-py3-none-win32.whl", hash = "sha256:9d22b4f0f47d81859f253850f2a2d66e29011b4a380541b6a891e035a0914769"},
+    {file = "PyQt5Designer-5.14.1-py3-none-win_amd64.whl", hash = "sha256:af4356b77412807d0fe4013737a9025fec3d5cd765bea4eff9a48071c25313ea"},
+]
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
@@ -231,4 +243,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "de7507a1122a8b4696f79d8762df1606af287f282942cffc07ee9f5056d9d8a0"
+content-hash = "efdc36e748e20e28047641b4c6a0c2519234b4211b41fe545233f53614c2abf7"
