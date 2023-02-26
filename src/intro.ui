@@ -711,7 +711,7 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="M1_1">
       <item>
        <widget class="QLabel" name="label_2">
         <property name="frameShape">
@@ -728,7 +728,7 @@
      </layout>
     </item>
     <item row="2" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="M2_1">
       <item>
        <widget class="QLabel" name="label">
         <property name="frameShape">
@@ -745,7 +745,7 @@
      </layout>
     </item>
     <item row="3" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <layout class="QHBoxLayout" name="M3_1">
       <item>
        <widget class="QLabel" name="label_3">
         <property name="frameShape">
@@ -762,7 +762,7 @@
      </layout>
     </item>
     <item row="4" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <layout class="QHBoxLayout" name="M4_1">
       <item>
        <widget class="QLabel" name="label_4">
         <property name="frameShape">
@@ -779,7 +779,7 @@
      </layout>
     </item>
     <item row="5" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <layout class="QHBoxLayout" name="M5_1">
       <item>
        <widget class="QLabel" name="label_5">
         <property name="frameShape">
@@ -796,7 +796,7 @@
      </layout>
     </item>
     <item row="6" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <layout class="QHBoxLayout" name="M6_1">
       <item>
        <widget class="QLabel" name="label_6">
         <property name="frameShape">
@@ -813,7 +813,7 @@
      </layout>
     </item>
     <item row="7" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <layout class="QHBoxLayout" name="V1_1">
       <item>
        <widget class="QLabel" name="label_7">
         <property name="frameShape">
@@ -847,7 +847,7 @@
      </layout>
     </item>
     <item row="9" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_10">
+     <layout class="QHBoxLayout" name="V3_1">
       <item>
        <widget class="QLabel" name="label_10">
         <property name="frameShape">
@@ -864,7 +864,7 @@
      </layout>
     </item>
     <item row="10" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_11">
+     <layout class="QHBoxLayout" name="V4_1">
       <item>
        <widget class="QLabel" name="label_9">
         <property name="frameShape">
@@ -881,7 +881,7 @@
      </layout>
     </item>
     <item row="11" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_12">
+     <layout class="QHBoxLayout" name="V5_1">
       <item>
        <widget class="QLabel" name="label_11">
         <property name="frameShape">
@@ -898,7 +898,7 @@
      </layout>
     </item>
     <item row="12" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_13">
+     <layout class="QHBoxLayout" name="V6_1">
       <item>
        <widget class="QLabel" name="label_12">
         <property name="frameShape">
@@ -915,7 +915,7 @@
      </layout>
     </item>
     <item row="13" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_14">
+     <layout class="QHBoxLayout" name="N1_1">
       <item>
        <widget class="QLabel" name="label_13">
         <property name="frameShape">
@@ -932,7 +932,7 @@
      </layout>
     </item>
     <item row="14" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_15">
+     <layout class="QHBoxLayout" name="N2_1">
       <item>
        <widget class="QLabel" name="label_14">
         <property name="frameShape">
@@ -949,7 +949,7 @@
      </layout>
     </item>
     <item row="15" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_16">
+     <layout class="QHBoxLayout" name="N3_1">
       <item>
        <widget class="QLabel" name="label_15">
         <property name="frameShape">
@@ -966,7 +966,7 @@
      </layout>
     </item>
     <item row="16" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_17">
+     <layout class="QHBoxLayout" name="N4_1">
       <item>
        <widget class="QLabel" name="label_16">
         <property name="frameShape">
@@ -983,7 +983,7 @@
      </layout>
     </item>
     <item row="17" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_18">
+     <layout class="QHBoxLayout" name="N5_1">
       <item>
        <widget class="QLabel" name="label_17">
         <property name="frameShape">
@@ -1000,7 +1000,7 @@
      </layout>
     </item>
     <item row="18" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_19">
+     <layout class="QHBoxLayout" name="N6_1">
       <item>
        <widget class="QLabel" name="label_18">
         <property name="frameShape">
@@ -1017,7 +1017,7 @@
      </layout>
     </item>
     <item row="1" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_20">
+     <layout class="QHBoxLayout" name="M1_2">
       <item>
        <widget class="QLabel" name="label_19">
         <property name="frameShape">
@@ -1034,7 +1034,7 @@
      </layout>
     </item>
     <item row="2" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_21">
+     <layout class="QHBoxLayout" name="M2_2">
       <item>
        <widget class="QLabel" name="label_20">
         <property name="frameShape">
@@ -1051,7 +1051,7 @@
      </layout>
     </item>
     <item row="3" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_22">
+     <layout class="QHBoxLayout" name="M3_2">
       <item>
        <widget class="QLabel" name="label_21">
         <property name="frameShape">
@@ -1068,7 +1068,7 @@
      </layout>
     </item>
     <item row="4" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_23">
+     <layout class="QHBoxLayout" name="M4_2">
       <item>
        <widget class="QLabel" name="label_22">
         <property name="frameShape">
@@ -1085,7 +1085,7 @@
      </layout>
     </item>
     <item row="5" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_24">
+     <layout class="QHBoxLayout" name="M5_2">
       <item>
        <widget class="QLabel" name="label_23">
         <property name="frameShape">
@@ -1102,7 +1102,7 @@
      </layout>
     </item>
     <item row="6" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_25">
+     <layout class="QHBoxLayout" name="M6_2">
       <item>
        <widget class="QLabel" name="label_24">
         <property name="frameShape">
@@ -1119,7 +1119,7 @@
      </layout>
     </item>
     <item row="7" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_26">
+     <layout class="QHBoxLayout" name="V1_2">
       <item>
        <widget class="QLabel" name="label_25">
         <property name="frameShape">
@@ -1136,7 +1136,7 @@
      </layout>
     </item>
     <item row="8" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_27">
+     <layout class="QHBoxLayout" name="V2_2">
       <item>
        <widget class="QLabel" name="label_26">
         <property name="frameShape">
@@ -1153,7 +1153,7 @@
      </layout>
     </item>
     <item row="9" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_28">
+     <layout class="QHBoxLayout" name="V3_2">
       <item>
        <widget class="QLabel" name="label_27">
         <property name="frameShape">
@@ -1170,7 +1170,7 @@
      </layout>
     </item>
     <item row="10" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_29">
+     <layout class="QHBoxLayout" name="V4_2">
       <item>
        <widget class="QLabel" name="label_28">
         <property name="frameShape">
@@ -1187,7 +1187,7 @@
      </layout>
     </item>
     <item row="11" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_30">
+     <layout class="QHBoxLayout" name="V5_2">
       <item>
        <widget class="QLabel" name="label_29">
         <property name="frameShape">
@@ -1204,7 +1204,7 @@
      </layout>
     </item>
     <item row="12" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_31">
+     <layout class="QHBoxLayout" name="V6_2">
       <item>
        <widget class="QLabel" name="label_30">
         <property name="frameShape">
@@ -1221,7 +1221,7 @@
      </layout>
     </item>
     <item row="13" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_32">
+     <layout class="QHBoxLayout" name="N1_2">
       <item>
        <widget class="QLabel" name="label_31">
         <property name="frameShape">
@@ -1238,7 +1238,7 @@
      </layout>
     </item>
     <item row="14" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_33">
+     <layout class="QHBoxLayout" name="N2_2">
       <item>
        <widget class="QLabel" name="label_32">
         <property name="frameShape">
@@ -1255,7 +1255,7 @@
      </layout>
     </item>
     <item row="15" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_34">
+     <layout class="QHBoxLayout" name="N3_2">
       <item>
        <widget class="QLabel" name="label_33">
         <property name="frameShape">
@@ -1272,7 +1272,7 @@
      </layout>
     </item>
     <item row="16" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_35">
+     <layout class="QHBoxLayout" name="N4_2">
       <item>
        <widget class="QLabel" name="label_34">
         <property name="frameShape">
@@ -1289,7 +1289,7 @@
      </layout>
     </item>
     <item row="17" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_36">
+     <layout class="QHBoxLayout" name="N5_2">
       <item>
        <widget class="QLabel" name="label_35">
         <property name="frameShape">
@@ -1306,7 +1306,7 @@
      </layout>
     </item>
     <item row="18" column="2">
-     <layout class="QHBoxLayout" name="horizontalLayout_37">
+     <layout class="QHBoxLayout" name="N6_2">
       <item>
        <widget class="QLabel" name="label_36">
         <property name="frameShape">
@@ -1323,7 +1323,7 @@
      </layout>
     </item>
     <item row="1" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_38">
+     <layout class="QHBoxLayout" name="M1_3">
       <item>
        <widget class="QLabel" name="label_37">
         <property name="frameShape">
@@ -1340,7 +1340,7 @@
      </layout>
     </item>
     <item row="2" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_39">
+     <layout class="QHBoxLayout" name="M2_3">
       <item>
        <widget class="QLabel" name="label_38">
         <property name="frameShape">
@@ -1357,7 +1357,7 @@
      </layout>
     </item>
     <item row="3" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_40">
+     <layout class="QHBoxLayout" name="M3_3">
       <item>
        <widget class="QLabel" name="label_39">
         <property name="frameShape">
@@ -1374,7 +1374,7 @@
      </layout>
     </item>
     <item row="4" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_41">
+     <layout class="QHBoxLayout" name="M4_3">
       <item>
        <widget class="QLabel" name="label_40">
         <property name="frameShape">
@@ -1391,7 +1391,7 @@
      </layout>
     </item>
     <item row="5" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_42">
+     <layout class="QHBoxLayout" name="M5_3">
       <item>
        <widget class="QLabel" name="label_41">
         <property name="frameShape">
@@ -1408,7 +1408,7 @@
      </layout>
     </item>
     <item row="6" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_43">
+     <layout class="QHBoxLayout" name="M6_3">
       <item>
        <widget class="QLabel" name="label_42">
         <property name="frameShape">
@@ -1425,7 +1425,7 @@
      </layout>
     </item>
     <item row="7" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_44">
+     <layout class="QHBoxLayout" name="V1_3">
       <item>
        <widget class="QLabel" name="label_43">
         <property name="frameShape">
@@ -1442,7 +1442,7 @@
      </layout>
     </item>
     <item row="8" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_45">
+     <layout class="QHBoxLayout" name="V2_3">
       <item>
        <widget class="QLabel" name="label_44">
         <property name="frameShape">
@@ -1459,7 +1459,7 @@
      </layout>
     </item>
     <item row="9" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_46">
+     <layout class="QHBoxLayout" name="V3_3">
       <item>
        <widget class="QLabel" name="label_45">
         <property name="frameShape">
@@ -1476,7 +1476,7 @@
      </layout>
     </item>
     <item row="10" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_47">
+     <layout class="QHBoxLayout" name="V4_3">
       <item>
        <widget class="QLabel" name="label_46">
         <property name="frameShape">
@@ -1493,7 +1493,7 @@
      </layout>
     </item>
     <item row="11" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_48">
+     <layout class="QHBoxLayout" name="V5_3">
       <item>
        <widget class="QLabel" name="label_47">
         <property name="frameShape">
@@ -1510,7 +1510,7 @@
      </layout>
     </item>
     <item row="12" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_49">
+     <layout class="QHBoxLayout" name="V6_3">
       <item>
        <widget class="QLabel" name="label_48">
         <property name="frameShape">
@@ -1527,7 +1527,7 @@
      </layout>
     </item>
     <item row="13" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_50">
+     <layout class="QHBoxLayout" name="N1_3">
       <item>
        <widget class="QLabel" name="label_49">
         <property name="frameShape">
@@ -1544,7 +1544,7 @@
      </layout>
     </item>
     <item row="14" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_51">
+     <layout class="QHBoxLayout" name="N2_3">
       <item>
        <widget class="QLabel" name="label_50">
         <property name="frameShape">
@@ -1561,7 +1561,7 @@
      </layout>
     </item>
     <item row="15" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_52">
+     <layout class="QHBoxLayout" name="N3_3">
       <item>
        <widget class="QLabel" name="label_51">
         <property name="frameShape">
@@ -1578,7 +1578,7 @@
      </layout>
     </item>
     <item row="16" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_53">
+     <layout class="QHBoxLayout" name="N4_3">
       <item>
        <widget class="QLabel" name="label_52">
         <property name="frameShape">
@@ -1595,7 +1595,7 @@
      </layout>
     </item>
     <item row="17" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_54">
+     <layout class="QHBoxLayout" name="N5_3">
       <item>
        <widget class="QLabel" name="label_53">
         <property name="frameShape">
@@ -1612,7 +1612,7 @@
      </layout>
     </item>
     <item row="18" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_55">
+     <layout class="QHBoxLayout" name="N6_3">
       <item>
        <widget class="QLabel" name="label_54">
         <property name="frameShape">
@@ -1629,7 +1629,7 @@
      </layout>
     </item>
     <item row="1" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_56">
+     <layout class="QHBoxLayout" name="M1_4">
       <item>
        <widget class="QLabel" name="label_55">
         <property name="frameShape">
@@ -1646,7 +1646,7 @@
      </layout>
     </item>
     <item row="2" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_57">
+     <layout class="QHBoxLayout" name="M2_4">
       <item>
        <widget class="QLabel" name="label_56">
         <property name="frameShape">
@@ -1663,7 +1663,7 @@
      </layout>
     </item>
     <item row="3" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_58">
+     <layout class="QHBoxLayout" name="M3_4">
       <item>
        <widget class="QLabel" name="label_57">
         <property name="frameShape">
@@ -1680,7 +1680,7 @@
      </layout>
     </item>
     <item row="4" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_59">
+     <layout class="QHBoxLayout" name="M4_4">
       <item>
        <widget class="QLabel" name="label_58">
         <property name="frameShape">
@@ -1697,7 +1697,7 @@
      </layout>
     </item>
     <item row="5" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_60">
+     <layout class="QHBoxLayout" name="M5_4">
       <item>
        <widget class="QLabel" name="label_59">
         <property name="frameShape">
@@ -1714,7 +1714,7 @@
      </layout>
     </item>
     <item row="6" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_61">
+     <layout class="QHBoxLayout" name="M6_4">
       <item>
        <widget class="QLabel" name="label_60">
         <property name="frameShape">
@@ -1731,7 +1731,7 @@
      </layout>
     </item>
     <item row="7" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_62">
+     <layout class="QHBoxLayout" name="V1_4">
       <item>
        <widget class="QLabel" name="label_61">
         <property name="frameShape">
@@ -1748,7 +1748,7 @@
      </layout>
     </item>
     <item row="8" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_63">
+     <layout class="QHBoxLayout" name="V2_4">
       <item>
        <widget class="QLabel" name="label_62">
         <property name="frameShape">
@@ -1765,7 +1765,7 @@
      </layout>
     </item>
     <item row="9" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_64">
+     <layout class="QHBoxLayout" name="V3_4">
       <item>
        <widget class="QLabel" name="label_63">
         <property name="frameShape">
@@ -1782,7 +1782,7 @@
      </layout>
     </item>
     <item row="10" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_65">
+     <layout class="QHBoxLayout" name="V4_4">
       <item>
        <widget class="QLabel" name="label_64">
         <property name="frameShape">
@@ -1799,7 +1799,7 @@
      </layout>
     </item>
     <item row="11" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_66">
+     <layout class="QHBoxLayout" name="V5_4">
       <item>
        <widget class="QLabel" name="label_65">
         <property name="frameShape">
@@ -1816,7 +1816,7 @@
      </layout>
     </item>
     <item row="12" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_67">
+     <layout class="QHBoxLayout" name="V6_4">
       <item>
        <widget class="QLabel" name="label_66">
         <property name="frameShape">
@@ -1833,7 +1833,7 @@
      </layout>
     </item>
     <item row="13" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_68">
+     <layout class="QHBoxLayout" name="N1_4">
       <item>
        <widget class="QLabel" name="label_67">
         <property name="frameShape">
@@ -1850,7 +1850,7 @@
      </layout>
     </item>
     <item row="14" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_69">
+     <layout class="QHBoxLayout" name="N2_4">
       <item>
        <widget class="QLabel" name="label_68">
         <property name="frameShape">
@@ -1867,7 +1867,7 @@
      </layout>
     </item>
     <item row="15" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_70">
+     <layout class="QHBoxLayout" name="N3_4">
       <item>
        <widget class="QLabel" name="label_69">
         <property name="frameShape">
@@ -1884,7 +1884,7 @@
      </layout>
     </item>
     <item row="16" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_71">
+     <layout class="QHBoxLayout" name="N4_4">
       <item>
        <widget class="QLabel" name="label_70">
         <property name="frameShape">
@@ -1901,7 +1901,7 @@
      </layout>
     </item>
     <item row="17" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_72">
+     <layout class="QHBoxLayout" name="N5_4">
       <item>
        <widget class="QLabel" name="label_71">
         <property name="frameShape">
@@ -1918,7 +1918,7 @@
      </layout>
     </item>
     <item row="18" column="4">
-     <layout class="QHBoxLayout" name="horizontalLayout_73">
+     <layout class="QHBoxLayout" name="N6_4">
       <item>
        <widget class="QLabel" name="label_72">
         <property name="frameShape">
@@ -1935,7 +1935,7 @@
      </layout>
     </item>
     <item row="1" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_74">
+     <layout class="QHBoxLayout" name="M1_5">
       <item>
        <widget class="QLabel" name="label_73">
         <property name="frameShape">
@@ -1952,7 +1952,7 @@
      </layout>
     </item>
     <item row="2" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_75">
+     <layout class="QHBoxLayout" name="M2_5">
       <item>
        <widget class="QLabel" name="label_74">
         <property name="frameShape">
@@ -1969,7 +1969,7 @@
      </layout>
     </item>
     <item row="3" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_76">
+     <layout class="QHBoxLayout" name="M3_5">
       <item>
        <widget class="QLabel" name="label_75">
         <property name="frameShape">
@@ -1986,7 +1986,7 @@
      </layout>
     </item>
     <item row="4" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_77">
+     <layout class="QHBoxLayout" name="M4_5">
       <item>
        <widget class="QLabel" name="label_76">
         <property name="frameShape">
@@ -2003,7 +2003,7 @@
      </layout>
     </item>
     <item row="5" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_78">
+     <layout class="QHBoxLayout" name="M5_5">
       <item>
        <widget class="QLabel" name="label_77">
         <property name="frameShape">
@@ -2020,7 +2020,7 @@
      </layout>
     </item>
     <item row="6" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_79">
+     <layout class="QHBoxLayout" name="M6_5">
       <item>
        <widget class="QLabel" name="label_78">
         <property name="frameShape">
@@ -2037,7 +2037,7 @@
      </layout>
     </item>
     <item row="7" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_80">
+     <layout class="QHBoxLayout" name="V1_5">
       <item>
        <widget class="QLabel" name="label_79">
         <property name="frameShape">
@@ -2054,7 +2054,7 @@
      </layout>
     </item>
     <item row="8" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_81">
+     <layout class="QHBoxLayout" name="V2_5">
       <item>
        <widget class="QLabel" name="label_80">
         <property name="frameShape">
@@ -2071,7 +2071,7 @@
      </layout>
     </item>
     <item row="9" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_82">
+     <layout class="QHBoxLayout" name="V3_5">
       <item>
        <widget class="QLabel" name="label_81">
         <property name="frameShape">
@@ -2088,7 +2088,7 @@
      </layout>
     </item>
     <item row="10" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_83">
+     <layout class="QHBoxLayout" name="V4_5">
       <item>
        <widget class="QLabel" name="label_82">
         <property name="frameShape">
@@ -2105,7 +2105,7 @@
      </layout>
     </item>
     <item row="11" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_84">
+     <layout class="QHBoxLayout" name="V5_5">
       <item>
        <widget class="QLabel" name="label_83">
         <property name="frameShape">
@@ -2122,7 +2122,7 @@
      </layout>
     </item>
     <item row="12" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_85">
+     <layout class="QHBoxLayout" name="V6_5">
       <item>
        <widget class="QLabel" name="label_84">
         <property name="frameShape">
@@ -2139,7 +2139,7 @@
      </layout>
     </item>
     <item row="13" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_86">
+     <layout class="QHBoxLayout" name="N1_5">
       <item>
        <widget class="QLabel" name="label_85">
         <property name="frameShape">
@@ -2156,7 +2156,7 @@
      </layout>
     </item>
     <item row="14" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_87">
+     <layout class="QHBoxLayout" name="N2_5">
       <item>
        <widget class="QLabel" name="label_86">
         <property name="frameShape">
@@ -2173,7 +2173,7 @@
      </layout>
     </item>
     <item row="15" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_88">
+     <layout class="QHBoxLayout" name="N3_5">
       <item>
        <widget class="QLabel" name="label_87">
         <property name="frameShape">
@@ -2190,7 +2190,7 @@
      </layout>
     </item>
     <item row="16" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_89">
+     <layout class="QHBoxLayout" name="N4_5">
       <item>
        <widget class="QLabel" name="label_88">
         <property name="frameShape">
@@ -2207,7 +2207,7 @@
      </layout>
     </item>
     <item row="17" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_90">
+     <layout class="QHBoxLayout" name="N5_5">
       <item>
        <widget class="QLabel" name="label_89">
         <property name="frameShape">
@@ -2224,7 +2224,7 @@
      </layout>
     </item>
     <item row="18" column="5">
-     <layout class="QHBoxLayout" name="horizontalLayout_91">
+     <layout class="QHBoxLayout" name="N6_5">
       <item>
        <widget class="QLabel" name="label_90">
         <property name="frameShape">
@@ -2241,7 +2241,7 @@
      </layout>
     </item>
     <item row="1" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_92">
+     <layout class="QHBoxLayout" name="M1_6">
       <item>
        <widget class="QLabel" name="label_115">
         <property name="frameShape">
@@ -2258,7 +2258,7 @@
      </layout>
     </item>
     <item row="2" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_93">
+     <layout class="QHBoxLayout" name="M2_6">
       <item>
        <widget class="QLabel" name="label_116">
         <property name="frameShape">
@@ -2275,7 +2275,7 @@
      </layout>
     </item>
     <item row="3" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_94">
+     <layout class="QHBoxLayout" name="M3_6">
       <item>
        <widget class="QLabel" name="label_117">
         <property name="frameShape">
@@ -2292,7 +2292,7 @@
      </layout>
     </item>
     <item row="4" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_95">
+     <layout class="QHBoxLayout" name="M4_6">
       <item>
        <widget class="QLabel" name="label_118">
         <property name="frameShape">
@@ -2309,7 +2309,7 @@
      </layout>
     </item>
     <item row="5" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_96">
+     <layout class="QHBoxLayout" name="M5_6">
       <item>
        <widget class="QLabel" name="label_119">
         <property name="frameShape">
@@ -2326,7 +2326,7 @@
      </layout>
     </item>
     <item row="6" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_97">
+     <layout class="QHBoxLayout" name="M6_6">
       <item>
        <widget class="QLabel" name="label_120">
         <property name="frameShape">
@@ -2343,7 +2343,7 @@
      </layout>
     </item>
     <item row="7" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_98">
+     <layout class="QHBoxLayout" name="V1_6">
       <item>
        <widget class="QLabel" name="label_121">
         <property name="frameShape">
@@ -2360,7 +2360,7 @@
      </layout>
     </item>
     <item row="8" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_99">
+     <layout class="QHBoxLayout" name="V2_6">
       <item>
        <widget class="QLabel" name="label_122">
         <property name="frameShape">
@@ -2377,7 +2377,7 @@
      </layout>
     </item>
     <item row="9" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_100">
+     <layout class="QHBoxLayout" name="V3_6">
       <item>
        <widget class="QLabel" name="label_123">
         <property name="frameShape">
@@ -2394,7 +2394,7 @@
      </layout>
     </item>
     <item row="10" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_101">
+     <layout class="QHBoxLayout" name="V4_6">
       <item>
        <widget class="QLabel" name="label_124">
         <property name="frameShape">
@@ -2411,7 +2411,7 @@
      </layout>
     </item>
     <item row="11" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_102">
+     <layout class="QHBoxLayout" name="V5_6">
       <item>
        <widget class="QLabel" name="label_125">
         <property name="frameShape">
@@ -2428,7 +2428,7 @@
      </layout>
     </item>
     <item row="12" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_103">
+     <layout class="QHBoxLayout" name="V6_6">
       <item>
        <widget class="QLabel" name="label_126">
         <property name="frameShape">
@@ -2445,7 +2445,7 @@
      </layout>
     </item>
     <item row="13" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_104">
+     <layout class="QHBoxLayout" name="N1_6">
       <item>
        <widget class="QLabel" name="label_127">
         <property name="frameShape">
@@ -2462,7 +2462,7 @@
      </layout>
     </item>
     <item row="14" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_105">
+     <layout class="QHBoxLayout" name="N2_6">
       <item>
        <widget class="QLabel" name="label_128">
         <property name="frameShape">
@@ -2479,7 +2479,7 @@
      </layout>
     </item>
     <item row="15" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_106">
+     <layout class="QHBoxLayout" name="N3_6">
       <item>
        <widget class="QLabel" name="label_129">
         <property name="frameShape">
@@ -2496,7 +2496,7 @@
      </layout>
     </item>
     <item row="16" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_107">
+     <layout class="QHBoxLayout" name="N4_6">
       <item>
        <widget class="QLabel" name="label_130">
         <property name="frameShape">
@@ -2513,7 +2513,7 @@
      </layout>
     </item>
     <item row="17" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_108">
+     <layout class="QHBoxLayout" name="N5_6">
       <item>
        <widget class="QLabel" name="label_131">
         <property name="frameShape">
@@ -2530,7 +2530,7 @@
      </layout>
     </item>
     <item row="18" column="6">
-     <layout class="QHBoxLayout" name="horizontalLayout_109">
+     <layout class="QHBoxLayout" name="N6_6">
       <item>
        <widget class="QLabel" name="label_132">
         <property name="frameShape">
