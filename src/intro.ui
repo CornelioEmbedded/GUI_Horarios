@@ -712,8 +712,11 @@
     </item>
     <item row="1" column="1">
      <layout class="QHBoxLayout" name="M1_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="m1_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -729,8 +732,11 @@
     </item>
     <item row="2" column="1">
      <layout class="QHBoxLayout" name="M2_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="m2_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -746,8 +752,11 @@
     </item>
     <item row="3" column="1">
      <layout class="QHBoxLayout" name="M3_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="m3_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -763,8 +772,11 @@
     </item>
     <item row="4" column="1">
      <layout class="QHBoxLayout" name="M4_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="m4_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -780,8 +792,11 @@
     </item>
     <item row="5" column="1">
      <layout class="QHBoxLayout" name="M5_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="m5_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -797,8 +812,11 @@
     </item>
     <item row="6" column="1">
      <layout class="QHBoxLayout" name="M6_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="m6_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -814,8 +832,11 @@
     </item>
     <item row="7" column="1">
      <layout class="QHBoxLayout" name="V1_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="v1_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -830,7 +851,10 @@
      </layout>
     </item>
     <item row="8" column="1">
-     <layout class="QHBoxLayout" name="horizontalLayout_9">
+     <layout class="QHBoxLayout" name="V2_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
        <widget class="QLabel" name="label_8">
         <property name="frameShape">
@@ -848,8 +872,11 @@
     </item>
     <item row="9" column="1">
      <layout class="QHBoxLayout" name="V3_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_10">
+       <widget class="QLabel" name="v3_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -865,8 +892,11 @@
     </item>
     <item row="10" column="1">
      <layout class="QHBoxLayout" name="V4_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_9">
+       <widget class="QLabel" name="v4_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -882,8 +912,11 @@
     </item>
     <item row="11" column="1">
      <layout class="QHBoxLayout" name="V5_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_11">
+       <widget class="QLabel" name="v5_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -899,8 +932,11 @@
     </item>
     <item row="12" column="1">
      <layout class="QHBoxLayout" name="V6_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_12">
+       <widget class="QLabel" name="v6_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -916,8 +952,11 @@
     </item>
     <item row="13" column="1">
      <layout class="QHBoxLayout" name="N1_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_13">
+       <widget class="QLabel" name="n1_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -933,8 +972,11 @@
     </item>
     <item row="14" column="1">
      <layout class="QHBoxLayout" name="N2_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_14">
+       <widget class="QLabel" name="n2_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -950,8 +992,11 @@
     </item>
     <item row="15" column="1">
      <layout class="QHBoxLayout" name="N3_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_15">
+       <widget class="QLabel" name="n3_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -967,8 +1012,11 @@
     </item>
     <item row="16" column="1">
      <layout class="QHBoxLayout" name="N4_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_16">
+       <widget class="QLabel" name="n4_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -984,8 +1032,11 @@
     </item>
     <item row="17" column="1">
      <layout class="QHBoxLayout" name="N5_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_17">
+       <widget class="QLabel" name="n5_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1001,8 +1052,11 @@
     </item>
     <item row="18" column="1">
      <layout class="QHBoxLayout" name="N6_1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_18">
+       <widget class="QLabel" name="n6_1">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1018,8 +1072,11 @@
     </item>
     <item row="1" column="2">
      <layout class="QHBoxLayout" name="M1_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_19">
+       <widget class="QLabel" name="m1_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1035,8 +1092,11 @@
     </item>
     <item row="2" column="2">
      <layout class="QHBoxLayout" name="M2_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_20">
+       <widget class="QLabel" name="m2_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1052,8 +1112,11 @@
     </item>
     <item row="3" column="2">
      <layout class="QHBoxLayout" name="M3_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_21">
+       <widget class="QLabel" name="m3_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1069,8 +1132,11 @@
     </item>
     <item row="4" column="2">
      <layout class="QHBoxLayout" name="M4_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_22">
+       <widget class="QLabel" name="m4_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1086,8 +1152,11 @@
     </item>
     <item row="5" column="2">
      <layout class="QHBoxLayout" name="M5_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_23">
+       <widget class="QLabel" name="m5_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1103,8 +1172,11 @@
     </item>
     <item row="6" column="2">
      <layout class="QHBoxLayout" name="M6_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_24">
+       <widget class="QLabel" name="m6_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1120,8 +1192,11 @@
     </item>
     <item row="7" column="2">
      <layout class="QHBoxLayout" name="V1_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_25">
+       <widget class="QLabel" name="v1_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1137,8 +1212,11 @@
     </item>
     <item row="8" column="2">
      <layout class="QHBoxLayout" name="V2_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_26">
+       <widget class="QLabel" name="v2_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1154,8 +1232,11 @@
     </item>
     <item row="9" column="2">
      <layout class="QHBoxLayout" name="V3_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_27">
+       <widget class="QLabel" name="v3_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1171,8 +1252,11 @@
     </item>
     <item row="10" column="2">
      <layout class="QHBoxLayout" name="V4_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_28">
+       <widget class="QLabel" name="v4_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1188,8 +1272,11 @@
     </item>
     <item row="11" column="2">
      <layout class="QHBoxLayout" name="V5_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_29">
+       <widget class="QLabel" name="v5_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1205,8 +1292,11 @@
     </item>
     <item row="12" column="2">
      <layout class="QHBoxLayout" name="V6_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_30">
+       <widget class="QLabel" name="v6_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1222,8 +1312,11 @@
     </item>
     <item row="13" column="2">
      <layout class="QHBoxLayout" name="N1_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_31">
+       <widget class="QLabel" name="n1_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1239,8 +1332,11 @@
     </item>
     <item row="14" column="2">
      <layout class="QHBoxLayout" name="N2_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_32">
+       <widget class="QLabel" name="n2_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1256,8 +1352,11 @@
     </item>
     <item row="15" column="2">
      <layout class="QHBoxLayout" name="N3_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_33">
+       <widget class="QLabel" name="n3_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1273,8 +1372,11 @@
     </item>
     <item row="16" column="2">
      <layout class="QHBoxLayout" name="N4_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_34">
+       <widget class="QLabel" name="n4_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1290,8 +1392,11 @@
     </item>
     <item row="17" column="2">
      <layout class="QHBoxLayout" name="N5_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_35">
+       <widget class="QLabel" name="n5_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1307,8 +1412,11 @@
     </item>
     <item row="18" column="2">
      <layout class="QHBoxLayout" name="N6_2">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_36">
+       <widget class="QLabel" name="n6_2">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1324,8 +1432,11 @@
     </item>
     <item row="1" column="3">
      <layout class="QHBoxLayout" name="M1_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_37">
+       <widget class="QLabel" name="m1_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1341,8 +1452,11 @@
     </item>
     <item row="2" column="3">
      <layout class="QHBoxLayout" name="M2_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_38">
+       <widget class="QLabel" name="m2_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1358,8 +1472,11 @@
     </item>
     <item row="3" column="3">
      <layout class="QHBoxLayout" name="M3_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_39">
+       <widget class="QLabel" name="m3_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1375,8 +1492,11 @@
     </item>
     <item row="4" column="3">
      <layout class="QHBoxLayout" name="M4_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_40">
+       <widget class="QLabel" name="m4_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1392,8 +1512,11 @@
     </item>
     <item row="5" column="3">
      <layout class="QHBoxLayout" name="M5_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_41">
+       <widget class="QLabel" name="m5_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1409,8 +1532,11 @@
     </item>
     <item row="6" column="3">
      <layout class="QHBoxLayout" name="M6_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_42">
+       <widget class="QLabel" name="m6_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1426,8 +1552,11 @@
     </item>
     <item row="7" column="3">
      <layout class="QHBoxLayout" name="V1_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_43">
+       <widget class="QLabel" name="v1_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1443,8 +1572,11 @@
     </item>
     <item row="8" column="3">
      <layout class="QHBoxLayout" name="V2_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_44">
+       <widget class="QLabel" name="v2_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1460,8 +1592,11 @@
     </item>
     <item row="9" column="3">
      <layout class="QHBoxLayout" name="V3_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_45">
+       <widget class="QLabel" name="v3_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1477,8 +1612,11 @@
     </item>
     <item row="10" column="3">
      <layout class="QHBoxLayout" name="V4_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_46">
+       <widget class="QLabel" name="v4_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1494,8 +1632,11 @@
     </item>
     <item row="11" column="3">
      <layout class="QHBoxLayout" name="V5_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_47">
+       <widget class="QLabel" name="v5_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1511,8 +1652,11 @@
     </item>
     <item row="12" column="3">
      <layout class="QHBoxLayout" name="V6_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_48">
+       <widget class="QLabel" name="v6_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1528,8 +1672,11 @@
     </item>
     <item row="13" column="3">
      <layout class="QHBoxLayout" name="N1_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_49">
+       <widget class="QLabel" name="n1_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1545,8 +1692,11 @@
     </item>
     <item row="14" column="3">
      <layout class="QHBoxLayout" name="N2_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_50">
+       <widget class="QLabel" name="n2_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1562,8 +1712,11 @@
     </item>
     <item row="15" column="3">
      <layout class="QHBoxLayout" name="N3_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_51">
+       <widget class="QLabel" name="n3_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1579,8 +1732,11 @@
     </item>
     <item row="16" column="3">
      <layout class="QHBoxLayout" name="N4_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_52">
+       <widget class="QLabel" name="n4_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1596,8 +1752,11 @@
     </item>
     <item row="17" column="3">
      <layout class="QHBoxLayout" name="N5_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_53">
+       <widget class="QLabel" name="n5_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1613,8 +1772,11 @@
     </item>
     <item row="18" column="3">
      <layout class="QHBoxLayout" name="N6_3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_54">
+       <widget class="QLabel" name="n6_3">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1630,8 +1792,11 @@
     </item>
     <item row="1" column="4">
      <layout class="QHBoxLayout" name="M1_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_55">
+       <widget class="QLabel" name="m1_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1647,8 +1812,11 @@
     </item>
     <item row="2" column="4">
      <layout class="QHBoxLayout" name="M2_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_56">
+       <widget class="QLabel" name="m2_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1664,8 +1832,11 @@
     </item>
     <item row="3" column="4">
      <layout class="QHBoxLayout" name="M3_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_57">
+       <widget class="QLabel" name="m3_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1681,8 +1852,11 @@
     </item>
     <item row="4" column="4">
      <layout class="QHBoxLayout" name="M4_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_58">
+       <widget class="QLabel" name="m4_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1698,8 +1872,11 @@
     </item>
     <item row="5" column="4">
      <layout class="QHBoxLayout" name="M5_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_59">
+       <widget class="QLabel" name="m5_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1715,8 +1892,11 @@
     </item>
     <item row="6" column="4">
      <layout class="QHBoxLayout" name="M6_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_60">
+       <widget class="QLabel" name="m6_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1732,8 +1912,11 @@
     </item>
     <item row="7" column="4">
      <layout class="QHBoxLayout" name="V1_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_61">
+       <widget class="QLabel" name="v1_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1749,8 +1932,11 @@
     </item>
     <item row="8" column="4">
      <layout class="QHBoxLayout" name="V2_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_62">
+       <widget class="QLabel" name="v2_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1766,8 +1952,11 @@
     </item>
     <item row="9" column="4">
      <layout class="QHBoxLayout" name="V3_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_63">
+       <widget class="QLabel" name="v3_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1783,8 +1972,11 @@
     </item>
     <item row="10" column="4">
      <layout class="QHBoxLayout" name="V4_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_64">
+       <widget class="QLabel" name="v4_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1800,8 +1992,11 @@
     </item>
     <item row="11" column="4">
      <layout class="QHBoxLayout" name="V5_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_65">
+       <widget class="QLabel" name="v5_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1817,8 +2012,11 @@
     </item>
     <item row="12" column="4">
      <layout class="QHBoxLayout" name="V6_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_66">
+       <widget class="QLabel" name="v6_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1834,8 +2032,11 @@
     </item>
     <item row="13" column="4">
      <layout class="QHBoxLayout" name="N1_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_67">
+       <widget class="QLabel" name="n1_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1851,8 +2052,11 @@
     </item>
     <item row="14" column="4">
      <layout class="QHBoxLayout" name="N2_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_68">
+       <widget class="QLabel" name="n2_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1868,8 +2072,11 @@
     </item>
     <item row="15" column="4">
      <layout class="QHBoxLayout" name="N3_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_69">
+       <widget class="QLabel" name="n3_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1885,8 +2092,11 @@
     </item>
     <item row="16" column="4">
      <layout class="QHBoxLayout" name="N4_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_70">
+       <widget class="QLabel" name="n4_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1902,8 +2112,11 @@
     </item>
     <item row="17" column="4">
      <layout class="QHBoxLayout" name="N5_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_71">
+       <widget class="QLabel" name="n5_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1919,8 +2132,11 @@
     </item>
     <item row="18" column="4">
      <layout class="QHBoxLayout" name="N6_4">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_72">
+       <widget class="QLabel" name="n6_4">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1936,8 +2152,11 @@
     </item>
     <item row="1" column="5">
      <layout class="QHBoxLayout" name="M1_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_73">
+       <widget class="QLabel" name="m1_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1953,8 +2172,11 @@
     </item>
     <item row="2" column="5">
      <layout class="QHBoxLayout" name="M2_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_74">
+       <widget class="QLabel" name="m2_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1970,8 +2192,11 @@
     </item>
     <item row="3" column="5">
      <layout class="QHBoxLayout" name="M3_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_75">
+       <widget class="QLabel" name="m3_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -1987,8 +2212,11 @@
     </item>
     <item row="4" column="5">
      <layout class="QHBoxLayout" name="M4_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_76">
+       <widget class="QLabel" name="m4_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2004,8 +2232,11 @@
     </item>
     <item row="5" column="5">
      <layout class="QHBoxLayout" name="M5_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_77">
+       <widget class="QLabel" name="m5_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2021,8 +2252,11 @@
     </item>
     <item row="6" column="5">
      <layout class="QHBoxLayout" name="M6_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_78">
+       <widget class="QLabel" name="m6_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2038,8 +2272,11 @@
     </item>
     <item row="7" column="5">
      <layout class="QHBoxLayout" name="V1_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_79">
+       <widget class="QLabel" name="v1_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2055,8 +2292,11 @@
     </item>
     <item row="8" column="5">
      <layout class="QHBoxLayout" name="V2_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_80">
+       <widget class="QLabel" name="v2_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2072,8 +2312,11 @@
     </item>
     <item row="9" column="5">
      <layout class="QHBoxLayout" name="V3_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_81">
+       <widget class="QLabel" name="v3_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2089,8 +2332,11 @@
     </item>
     <item row="10" column="5">
      <layout class="QHBoxLayout" name="V4_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_82">
+       <widget class="QLabel" name="v4_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2106,8 +2352,11 @@
     </item>
     <item row="11" column="5">
      <layout class="QHBoxLayout" name="V5_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_83">
+       <widget class="QLabel" name="v5_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2123,8 +2372,11 @@
     </item>
     <item row="12" column="5">
      <layout class="QHBoxLayout" name="V6_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_84">
+       <widget class="QLabel" name="v6_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2140,8 +2392,11 @@
     </item>
     <item row="13" column="5">
      <layout class="QHBoxLayout" name="N1_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_85">
+       <widget class="QLabel" name="n1_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2157,8 +2412,11 @@
     </item>
     <item row="14" column="5">
      <layout class="QHBoxLayout" name="N2_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_86">
+       <widget class="QLabel" name="n2_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2174,8 +2432,11 @@
     </item>
     <item row="15" column="5">
      <layout class="QHBoxLayout" name="N3_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_87">
+       <widget class="QLabel" name="n3_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2191,8 +2452,11 @@
     </item>
     <item row="16" column="5">
      <layout class="QHBoxLayout" name="N4_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_88">
+       <widget class="QLabel" name="n4_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2208,8 +2472,11 @@
     </item>
     <item row="17" column="5">
      <layout class="QHBoxLayout" name="N5_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_89">
+       <widget class="QLabel" name="n5_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2225,8 +2492,11 @@
     </item>
     <item row="18" column="5">
      <layout class="QHBoxLayout" name="N6_5">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_90">
+       <widget class="QLabel" name="n6_5">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2242,8 +2512,11 @@
     </item>
     <item row="1" column="6">
      <layout class="QHBoxLayout" name="M1_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_115">
+       <widget class="QLabel" name="m1_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2259,8 +2532,11 @@
     </item>
     <item row="2" column="6">
      <layout class="QHBoxLayout" name="M2_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_116">
+       <widget class="QLabel" name="m2_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2276,8 +2552,11 @@
     </item>
     <item row="3" column="6">
      <layout class="QHBoxLayout" name="M3_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_117">
+       <widget class="QLabel" name="m3_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2293,8 +2572,11 @@
     </item>
     <item row="4" column="6">
      <layout class="QHBoxLayout" name="M4_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_118">
+       <widget class="QLabel" name="m4_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2310,8 +2592,11 @@
     </item>
     <item row="5" column="6">
      <layout class="QHBoxLayout" name="M5_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_119">
+       <widget class="QLabel" name="m5_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2327,8 +2612,11 @@
     </item>
     <item row="6" column="6">
      <layout class="QHBoxLayout" name="M6_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_120">
+       <widget class="QLabel" name="m6_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2344,8 +2632,11 @@
     </item>
     <item row="7" column="6">
      <layout class="QHBoxLayout" name="V1_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_121">
+       <widget class="QLabel" name="v1_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2361,8 +2652,11 @@
     </item>
     <item row="8" column="6">
      <layout class="QHBoxLayout" name="V2_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_122">
+       <widget class="QLabel" name="v2_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2378,8 +2672,11 @@
     </item>
     <item row="9" column="6">
      <layout class="QHBoxLayout" name="V3_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_123">
+       <widget class="QLabel" name="v3_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2395,8 +2692,11 @@
     </item>
     <item row="10" column="6">
      <layout class="QHBoxLayout" name="V4_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_124">
+       <widget class="QLabel" name="v4_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2412,8 +2712,11 @@
     </item>
     <item row="11" column="6">
      <layout class="QHBoxLayout" name="V5_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_125">
+       <widget class="QLabel" name="v5_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2429,8 +2732,11 @@
     </item>
     <item row="12" column="6">
      <layout class="QHBoxLayout" name="V6_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_126">
+       <widget class="QLabel" name="v6_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2446,8 +2752,11 @@
     </item>
     <item row="13" column="6">
      <layout class="QHBoxLayout" name="N1_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_127">
+       <widget class="QLabel" name="n1_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2463,8 +2772,11 @@
     </item>
     <item row="14" column="6">
      <layout class="QHBoxLayout" name="N2_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_128">
+       <widget class="QLabel" name="n2_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2480,8 +2792,11 @@
     </item>
     <item row="15" column="6">
      <layout class="QHBoxLayout" name="N3_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_129">
+       <widget class="QLabel" name="n3_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2497,8 +2812,11 @@
     </item>
     <item row="16" column="6">
      <layout class="QHBoxLayout" name="N4_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_130">
+       <widget class="QLabel" name="n4_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2514,8 +2832,11 @@
     </item>
     <item row="17" column="6">
      <layout class="QHBoxLayout" name="N5_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_131">
+       <widget class="QLabel" name="n5_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -2531,8 +2852,11 @@
     </item>
     <item row="18" column="6">
      <layout class="QHBoxLayout" name="N6_6">
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="label_132">
+       <widget class="QLabel" name="n6_6">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
