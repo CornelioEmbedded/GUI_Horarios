@@ -133,40 +133,52 @@ class IntroScreen(QWidget):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
                 self.set_LMV_classes(count_LMV)
-                self.check_repeated_hour_classes(index, list_dict)
                 count_LMV += 1
             else:
                 self.set_MJ_classes(count_MJ)
-                self.check_repeated_hour_classes(index, list_dict)
                 count_MJ += 1
+            # self.check_repeated_hour_classes(index, list_dict)
 
-    def check_repeated_hour_classes(self, index, list_dict):
-        next = index + 1
-        first_hour = self.dict['Hour']
-        next_hour = list_dict[next]['Hour']
-        if first_hour == next_hour:
-            if self.dict['Day'] == list_dict[next]['Day']:
-                print('**********')
-                print(self.dict)
-                print(list_dict[next])
-                print('**********')
-            pass #TODO Logic to add label into grid hour
+    # def check_repeated_hour_classes(self, index, list_dict):
+    #     next = index + 1
+    #     first_hour = self.dict['Hour']
+    #     next_hour = list_dict[next]['Hour']
+    #     day = self.dict['Day']
+    #     if first_hour == next_hour and self.dict['Day'] == list_dict[next]['Day']:
+    #         if day == '2' or day == '4':
+    #             layout = self.findChild(QHBoxLayout, f'{first_hour}_{day}')
+    #             label = self.set_label_in_schedule(index)
+    #             layout.addWidget(label)
+    #         else:
+    #             layout = self.findChild(QHBoxLayout, f'{first_hour}_{day}')
+    #             label = self.set_label_in_schedule(index)
+    #             layout.addWidget(label)
 
     def set_LMV_classes(self, color):
         """Set Monday, Wednesday and Friday classes"""
         days = str(self.dict['Day'])
+        hour = str(self.dict['Hour'])
         days_list = [int(days[0]), int(days[1]), int(days[2])]
         for day in days_list:
-            self.set_label_in_schedule(color)
-            self.schedule_grid.addWidget(self.label, self.rows[self.dict['Hour']], day)
+            label = self.set_label_in_schedule(color)
+            self.spot = self.findChild(QHBoxLayout, f'{str(hour)}_{str(day)}')
+            self.spot.addWidget(label)
 
     def set_MJ_classes(self, color):
         """Set Tuesday and Thursday classes"""
-        start_hour = self.rows[self.dict['Hour']]
-        three_hour = [start_hour, start_hour + 1, start_hour + 2]
+        day = str(self.dict['Day'])
+        real_hour = self.dict['Hour']
+        numeric_part = int(real_hour[1:])
+        letter_part = str(real_hour[:1])
+        next_numbers = [numeric_part, numeric_part+1, numeric_part+2]
+        three_hour = [letter_part + str(num) for num in next_numbers]
         for hour in three_hour:
-            self.set_label_in_schedule(color)
-            self.schedule_grid.addWidget(self.label, hour, self.columns[self.dict['Day']])
+            old_label = self.findChild(QLabel, f'{str(hour.lower())}_{day}')
+            label = self.set_label_in_schedule(color)
+            spot = self.findChild(QHBoxLayout, f'{str(hour)}_{day}')
+            spot.removeWidget(old_label)
+            spot.addWidget(label)
+
 
     def clean_data_from_schedule(self):
         """Clean data from schedule"""
