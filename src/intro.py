@@ -137,47 +137,31 @@ class IntroScreen(QWidget):
             else:
                 self.set_MJ_classes(count_MJ)
                 count_MJ += 1
-            # self.check_repeated_hour_classes(index, list_dict)
-
-    # def check_repeated_hour_classes(self, index, list_dict):
-    #     next = index + 1
-    #     first_hour = self.dict['Hour']
-    #     next_hour = list_dict[next]['Hour']
-    #     day = self.dict['Day']
-    #     if first_hour == next_hour and self.dict['Day'] == list_dict[next]['Day']:
-    #         if day == '2' or day == '4':
-    #             layout = self.findChild(QHBoxLayout, f'{first_hour}_{day}')
-    #             label = self.set_label_in_schedule(index)
-    #             layout.addWidget(label)
-    #         else:
-    #             layout = self.findChild(QHBoxLayout, f'{first_hour}_{day}')
-    #             label = self.set_label_in_schedule(index)
-    #             layout.addWidget(label)
 
     def set_LMV_classes(self, color):
         """Set Monday, Wednesday and Friday classes"""
-        days = str(self.dict['Day'])
-        hour = str(self.dict['Hour'])
+        days = self.dict['Day']
+        hour = self.dict['Hour']
         days_list = [int(days[0]), int(days[1]), int(days[2])]
         for day in days_list:
-            old_label = self.findChild(QLabel, f'{str(hour.lower())}_{day}')
+            old_label = self.findChild(QLabel, f'{hour.lower()}_{day}')
             label = self.set_label_in_schedule(color)
-            spot = self.findChild(QHBoxLayout, f'{str(hour)}_{day}')
+            spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
             spot.removeWidget(old_label)
             spot.addWidget(label)
 
     def set_MJ_classes(self, color):
         """Set Tuesday and Thursday classes"""
-        day = str(self.dict['Day'])
+        day = self.dict['Day']
         real_hour = self.dict['Hour']
         numeric_part = int(real_hour[1:])
         letter_part = str(real_hour[:1])
         next_numbers = [numeric_part, numeric_part+1, numeric_part+2]
         three_hour = [letter_part + str(num) for num in next_numbers]
         for hour in three_hour:
-            old_label = self.findChild(QLabel, f'{str(hour.lower())}_{day}')
+            old_label = self.findChild(QLabel, f'{hour.lower()}_{day}')
             label = self.set_label_in_schedule(color)
-            spot = self.findChild(QHBoxLayout, f'{str(hour)}_{day}')
+            spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
             spot.removeWidget(old_label)
             spot.addWidget(label)
 
@@ -186,12 +170,14 @@ class IntroScreen(QWidget):
         """Clean data from schedule"""
         for i in range(self.schedule_grid.count()):
             item = self.schedule_grid.itemAt(i)
-            widget = item.widget()
-            if isinstance(widget, QLabel):
-                row, column, rowSpan, columnSpan = self.schedule_grid.getItemPosition(i)
-                if row != 0 and column != 0:
-                    widget.setStyleSheet("")
-                    widget.setText("")
+            if item is not None:
+                layout = item.layout()
+                if layout is not None:
+                    for j in range(layout.count()):
+                        widget = layout.itemAt(j).widget()
+                        if isinstance(widget, QLabel):
+                            widget.setStyleSheet("")
+                            widget.setText("")
 
     def _order_key(self, order_dict, dict):
         return order_dict[dict['Hour']]
