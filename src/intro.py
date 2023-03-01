@@ -158,10 +158,11 @@ class IntroScreen(QWidget):
             self.find_hour_replace_data(hour, day, color)
 
     def find_hour_replace_data(self, hour:str, day:str, color):
-            old_label = self.findChild(QLabel, f'{hour.lower()}_{day}')
+            # old_label = self.findChild(QLabel, f'{hour.lower()}_{day}')
             label = self.set_label_in_schedule(color)
             spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-            spot.removeWidget(old_label)
+            spot.setStretchFactor(label, 1)
+            # spot.removeWidget(old_label)
             spot.addWidget(label)
 
     def clean_data_from_schedule(self):
