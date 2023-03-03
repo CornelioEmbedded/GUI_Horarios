@@ -60,6 +60,8 @@ class IntroScreen(QWidget):
                         '5': 5,
                         '6': 6}
 
+        self.set_grid_dimmensions()
+
         ## Schedule colors
         self.colors = ['#98F5FF','#8EE5EE','#7AC5CD','#ADD8E6','#B2DFEE','#97FFFF','#8DEEEE', '#79CDCD', '#7FFF00', ]
 
@@ -201,6 +203,15 @@ class IntroScreen(QWidget):
         list_by_hour = self.order_classes_by_hour(list_dict)
         list_by_day = self.order_classes_by_day(list_by_hour)
         return list_by_day
+
+    def set_grid_dimmensions(self):
+        factor = 1
+        for column in self.columns.values():
+            self.schedule_grid.setColumnStretch(column, factor)
+        for row in self.rows.values():
+            self.schedule_grid.setRowStretch(row, factor)
+
+
 
 app = QApplication(sys.argv) 
 window = IntroScreen() 
