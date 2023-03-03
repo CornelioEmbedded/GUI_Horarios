@@ -129,9 +129,7 @@ class IntroScreen(QWidget):
         """Display classes in schedule"""
         count_MJ = 0
         count_LMV = 0
-        count = 0
         for index in range(len(list_dict)):
-            count += 1
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
                 self.set_LMV_classes(count_LMV)
@@ -139,6 +137,19 @@ class IntroScreen(QWidget):
             else:
                 self.set_MJ_classes(count_MJ)
                 count_MJ += 1
+            self.check_repeated_hour_classes(index, list_dict)
+
+    def check_repeated_hour_classes(self, index, list_dict):
+            next = index + 1
+            first_hour = self.dict['Hour']
+            next_hour = list_dict[next]['Hour']
+            if first_hour == next_hour:
+                if self.dict['Day'] == list_dict[next]['Day']:
+                    print('**********')
+                    print(self.dict)
+                    print(list_dict[next])
+                    print('**********')
+                pass #TODO Logic to add label into grid hour
 
     def set_LMV_classes(self, color):
         """Set Monday, Wednesday and Friday classes"""
@@ -160,10 +171,10 @@ class IntroScreen(QWidget):
             self.find_hour_replace_data(hour, day, color)
 
     def find_hour_replace_data(self, hour:str, day:str, color):
-            old_label = self.findChild(QLabel, f'{hour.lower()}_{day}')
-            label = self.set_label_in_schedule(color)
             spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
+            old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
+            label = self.set_label_in_schedule(color)
             spot.addWidget(label)
 
     def clean_data_from_schedule(self):
