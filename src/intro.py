@@ -132,24 +132,30 @@ class IntroScreen(QWidget):
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
-                self.set_LMV_classes(count_LMV)
+                list_days = self.set_LMV_classes(count_LMV)
                 count_LMV += 1
             else:
+                list_days = None
                 self.set_MJ_classes(count_MJ)
                 count_MJ += 1
-            self.check_repeated_hour_classes(index, list_dict)
+            self.check_repeated_hour_classes(index, list_dict, list_days)
 
-    def check_repeated_hour_classes(self, index, list_dict):
+    def check_repeated_hour_classes(self, index, list_dict, list_days):
             next = index + 1
             first_hour = self.dict['Hour']
             next_hour = list_dict[next]['Hour']
+            day = self.dict['Day']
             if first_hour == next_hour:
-                if self.dict['Day'] == list_dict[next]['Day']:
-                    print('**********')
-                    print(self.dict)
-                    print(list_dict[next])
-                    print('**********')
-                pass #TODO Logic to add label into grid hour
+                if day == list_dict[next]['Day']:
+                    if list_days is not None:
+                        for day in list_days:
+                            spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
+                            label = self.set_label_in_schedule(index)
+                            spot.addWidget(label)
+                    spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
+                    label = self.set_label_in_schedule(index)
+                    spot.addWidget(label)
+
 
     def set_LMV_classes(self, color):
         """Set Monday, Wednesday and Friday classes"""
@@ -158,6 +164,7 @@ class IntroScreen(QWidget):
         days_list = [int(days[0]), int(days[1]), int(days[2])]
         for day in days_list:
             self.find_hour_replace_data(hour, day, color)
+        return days_list
 
     def set_MJ_classes(self, color):
         """Set Tuesday and Thursday classes"""
