@@ -154,10 +154,11 @@ class IntroScreen(QWidget):
                         label = self.set_label_in_schedule(index)
                         spot.addWidget(label)
                 else:
-                    spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
-                    label = self.set_label_in_schedule(index)
-                    spot.addWidget(label)
-
+                    three_hour = self.separate_hour_from_class(next_hour)
+                    for hour in three_hour:
+                        spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
+                        label = self.set_label_in_schedule(index)
+                        spot.addWidget(label)
 
     def set_LMV_classes(self, color):
         """Set Monday, Wednesday and Friday classes"""
@@ -172,12 +173,16 @@ class IntroScreen(QWidget):
         """Set Tuesday and Thursday classes"""
         day = self.dict['Day']
         real_hour = self.dict['Hour']
-        numeric_part = int(real_hour[1:])
-        letter_part = str(real_hour[:1])
-        next_numbers = [numeric_part, numeric_part+1, numeric_part+2]
-        three_hour = [letter_part + str(num) for num in next_numbers]
+        three_hour = self.separate_hour_from_class(real_hour)
         for hour in three_hour:
             self.find_hour_replace_data(hour, day, color)
+
+    def separate_hour_from_class(self, hour):
+        numeric_part = int(hour[1:])
+        letter_part = str(hour[:1])
+        next_numbers = [numeric_part, numeric_part+1, numeric_part+2]
+        three_hour = [letter_part + str(num) for num in next_numbers]
+        return three_hour
 
     def find_hour_replace_data(self, hour:str, day:str, color):
             spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
