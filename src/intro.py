@@ -117,7 +117,9 @@ class IntroScreen(QWidget):
     
     def set_label_in_schedule(self, index):
         """"Set Professor name in schedule"""
-        self.label = QLabel(self.dict['Professor'])
+        professor_list = self.dict['Professor'].split(' ')
+        short_name = ' '.join(professor_list[0:3:2])
+        self.label = QLabel(short_name)
         self.set_color_class(index)
         return self.label
 
