@@ -147,13 +147,13 @@ class IntroScreen(QWidget):
             first_hour = self.dict['Hour']
             next_hour = list_dict[next]['Hour']
             day = self.dict['Day']
-            if first_hour == next_hour:
-                if day == list_dict[next]['Day']:
-                    if list_days is not None:
-                        for day in list_days:
-                            spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
-                            label = self.set_label_in_schedule(index)
-                            spot.addWidget(label)
+            if first_hour == next_hour and day == list_dict[next]['Day']:
+                if list_days is not None:
+                    for day in list_days:
+                        spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
+                        label = self.set_label_in_schedule(index)
+                        spot.addWidget(label)
+                else:
                     spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
                     label = self.set_label_in_schedule(index)
                     spot.addWidget(label)
