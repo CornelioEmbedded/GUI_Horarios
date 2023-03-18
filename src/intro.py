@@ -131,16 +131,26 @@ class IntroScreen(QWidget):
         """Display classes in schedule"""
         count_MJ = 0
         count_LMV = 0
+        list_days = None
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
                 list_days = self.set_LMV_classes(count_LMV)
                 count_LMV += 1
-            else:
-                list_days = None
-                self.set_MJ_classes(count_MJ)
+            elif self.dict['Day'] == '2' or self.dict['Day'] == '4':
+                list_days = self.set_MJ_classes(count_MJ)
                 count_MJ += 1
-            self.check_repeated_hour_classes(index, list_dict, list_days)
+            if self.not_repeated_hour(index, list_dict) is not True:
+                self.check_repeated_hour_classes(index, list_dict, list_days)
+
+    def not_repeated_hour(self, index, list_dict):
+        next = index + 1
+        first_hour = self.dict['Hour']
+        next_hour = list_dict[next]['Hour']
+        state = False
+        if first_hour != next_hour:
+            state = True
+        return state
 
     def check_repeated_hour_classes(self, index, list_dict, list_days):
             next = index + 1
@@ -148,15 +158,19 @@ class IntroScreen(QWidget):
             next_hour = list_dict[next]['Hour']
             day = self.dict['Day']
             if first_hour == next_hour and day == list_dict[next]['Day']:
-                if list_days is not None:
-                    for day in list_days:
-                        spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
-                        label = self.set_label_in_schedule(index)
-                        spot.addWidget(label)
-                else:
+                if list_days == 'Class of three hours':
                     three_hour = self.separate_hour_from_class(next_hour)
                     for hour in three_hour:
                         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
+                        # old_label = spot.itemAt().widget()
+                        # spot.removeWidget(old_label)
+                        label = self.set_label_in_schedule(index)
+                        spot.addWidget(label)
+                elif type(list_days) == list:
+                    for day in list_days:
+                        spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
+                        # old_label = spot.itemAt().widget()
+                        # spot.removeWidget(old_label)
                         label = self.set_label_in_schedule(index)
                         spot.addWidget(label)
 
@@ -176,6 +190,7 @@ class IntroScreen(QWidget):
         three_hour = self.separate_hour_from_class(real_hour)
         for hour in three_hour:
             self.find_hour_replace_data(hour, day, color)
+        return 'Class of three hours'
 
     def separate_hour_from_class(self, hour):
         numeric_part = int(hour[1:])
@@ -185,11 +200,11 @@ class IntroScreen(QWidget):
         return three_hour
 
     def find_hour_replace_data(self, hour:str, day:str, color):
-            spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-            old_label = spot.itemAt(0).widget()
-            spot.removeWidget(old_label)
-            label = self.set_label_in_schedule(color)
-            spot.addWidget(label)
+        spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
+        old_label = spot.itemAt(0).widget()
+        spot.removeWidget(old_label)
+        label = self.set_label_in_schedule(color)
+        spot.addWidget(label)
 
     def clean_data_from_schedule(self):
         """Clean data from schedule"""
