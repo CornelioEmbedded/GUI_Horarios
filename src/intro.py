@@ -146,20 +146,12 @@ class IntroScreen(QWidget):
         """Display classes in schedule"""
         count_MJ = 0
         count_LMV = 0
-        list_days = None
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
                 count_LMV = self.LMV_label_process(list_dict, count_LMV, index)
             else:
                 count_MJ = self.MJ_label_process(list_dict, count_MJ, index)
-            #     print(f'Hora no repetida {self.dict}')
-            # elif self.dict['Day'] == '2' or self.dict['Day'] == '4':
-                # list_days = self.set_MJ_classes(count_MJ)
-                # count_MJ += 1
-            # if self.not_repeated_hour(index, list_dict) is not True:
-            #     self.check_repeated_hour_classes(index, list_dict, list_days)
-            # print(index)
 
     def LMV_label_process(self, list_dict, count, index):
         if self.not_repeated_hour(index, list_dict) is not True:
@@ -199,28 +191,17 @@ class IntroScreen(QWidget):
                 if list_days == 'Class of three hours':
                     three_hour = self.separate_hour_from_class(next_hour)
                     for hour in three_hour:
-                        spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-                        label = self.set_label_in_schedule(index)
-                        spot.addWidget(label)
-                        if self.changes_classes_in_comboBox > 1:
-                            self.find_replace_repeated_data(hour, day, index)
+                        self.find_replace_repeated_data(hour, day, index)
                 elif type(list_days) == list:
                     for day in list_days:
-                        spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
-                        print(self.changes_classes_in_comboBox)
-                        if self.changes_classes_in_comboBox > 1:
-                            label_spot = 0
-                            old_label = spot.itemAt(label_spot).widget()
-                            spot.removeWidget(old_label)
-                        label = self.set_label_in_schedule(index)
-                        spot.addWidget(label)
+                        self.find_replace_repeated_data(next_hour, day, index)
 
     def find_replace_repeated_data(self, hour, day, index):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-        old_label_one = spot.itemAt(1).widget()
-        old_label_cero = spot.itemAt(0).widget()
-        spot.removeWidget(old_label_one)
-        spot.removeWidget(old_label_cero)
+        if self.changes_classes_in_comboBox > 1:
+            label_spot = 0
+            old_label = spot.itemAt(label_spot).widget()
+            spot.removeWidget(old_label)
         label = self.set_label_in_schedule(index)
         spot.addWidget(label)
 
