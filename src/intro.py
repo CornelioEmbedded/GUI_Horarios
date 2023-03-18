@@ -164,13 +164,17 @@ class IntroScreen(QWidget):
         return count
 
     def MJ_label_process(self, list_dict, count, index):
-        if self.not_repeated_hour(index, list_dict) is not True:
+        if list_dict[index] == list_dict[-1]:
             list_days = self.set_MJ_classes(count)
             count += 1
-            self.check_repeated_hour_classes(index, list_dict, list_days)
-        else:
-            list_days = self.set_MJ_classes(count)
-            count += 1
+        else:   
+            if self.not_repeated_hour(index, list_dict) is not True:
+                list_days = self.set_MJ_classes(count)
+                count += 1
+                self.check_repeated_hour_classes(index, list_dict, list_days)
+            else:
+                list_days = self.set_MJ_classes(count)
+                count += 1
         return count
 
     def not_repeated_hour(self, index, list_dict):
