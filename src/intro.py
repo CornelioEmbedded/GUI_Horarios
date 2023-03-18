@@ -70,6 +70,8 @@ class IntroScreen(QWidget):
         ## Initialize functions
         self.show()
 
+################# SETUP METHODS ##########################
+
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
         try:
@@ -119,6 +121,8 @@ class IntroScreen(QWidget):
         # self.changes_classes_in_comboBox += 1
         self.changes_classes_in_comboBox = self.times_selection_changed(index)
 
+################# DISPLAY CLASSES METHODS ##########################
+
     def times_selection_changed(self, index):
         selectedOption = self.subject_menu.itemText(index)
         self.count_selections_classes[index] += 1
@@ -144,18 +148,32 @@ class IntroScreen(QWidget):
         list_days = None
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
-            if self.dict['Day'] == '135' and self.not_repeated_hour(index, list_dict) is not True:
-                list_days = self.set_LMV_classes(count_LMV)
-                count_LMV += 1
-                self.check_repeated_hour_classes(index, list_dict, list_days)
-            else:
-                list_days = self.set_LMV_classes(count_LMV)
-                count_LMV += 1
+            if self.dict['Day'] == '135':
+                # list_days = self.set_LMV_classes(count_LMV)
+                # count_LMV += 1
+                # print(f'Hora no repetida {self.dict}')
+                if self.not_repeated_hour(index, list_dict) is not True:
+                    list_days = self.set_LMV_classes(count_LMV)
+                    count_LMV += 1
+                    self.check_repeated_hour_classes(index, list_dict, list_days)
+                    print(f'Hora repetida {self.dict}')
+                else:
+                    # if self.dict['Hour'] == list_dict[index - 1]['Hour']:
+                    #     continue
+                    list_days = self.set_LMV_classes(count_LMV)
+                    count_LMV += 1
+                    print(f'Hora no repetida {self.dict}')
+
+            # else:
+            #     list_days = self.set_LMV_classes(count_LMV)
+            #     count_LMV += 1
+            #     print(f'Hora no repetida {self.dict}')
             # elif self.dict['Day'] == '2' or self.dict['Day'] == '4':
             #     list_days = self.set_MJ_classes(count_MJ)
             #     count_MJ += 1
             # if self.not_repeated_hour(index, list_dict) is not True:
             #     self.check_repeated_hour_classes(index, list_dict, list_days)
+            # print(index)
 
     def not_repeated_hour(self, index, list_dict):
         next = index + 1
@@ -183,9 +201,12 @@ class IntroScreen(QWidget):
 
                 elif type(list_days) == list:
                     for day in list_days:
-                        if self.changes_classes_in_comboBox > 0:
-                            self.find_replace_repeated_data(next_hour, day, index)
+                        # if self.changes_classes_in_comboBox > 0:
+                        # self.find_replace_repeated_data(next_hour, day, index)
                         spot = self.findChild(QHBoxLayout, f'{next_hour}_{day}')
+                        if self.changes_classes_in_comboBox > 0:
+                            old_label_cero = spot.itemAt(0).widget()
+                            spot.removeWidget(old_label_cero)
                         label = self.set_label_in_schedule(index)
                         spot.addWidget(label)
 
@@ -224,6 +245,7 @@ class IntroScreen(QWidget):
         return three_hour
 
     def find_hour_replace_data(self, hour:str, day:str, color):
+        print(f'{hour}_{day}')
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
         old_label = spot.itemAt(0).widget()
         spot.removeWidget(old_label)
@@ -242,6 +264,9 @@ class IntroScreen(QWidget):
                         if isinstance(widget, QLabel):
                             widget.setStyleSheet("")
                             widget.setText("")
+
+
+################# ORDER CLASSES METHODS ##########################
 
     def _order_key(self, order_dict, dict):
         return order_dict[dict['Hour']]
@@ -266,6 +291,8 @@ class IntroScreen(QWidget):
         list_by_hour = self.order_classes_by_hour(list_dict)
         list_by_day = self.order_classes_by_day(list_by_hour)
         return list_by_day
+
+################# GRID METHODS ##########################
 
     def set_grid_dimmensions(self):
         factor = 1
