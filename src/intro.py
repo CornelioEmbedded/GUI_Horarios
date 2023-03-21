@@ -141,6 +141,13 @@ class IntroScreen(QWidget):
         """Set a color in label"""
         return self.label.setStyleSheet(f"background-color: {self.colors[index]};")
 
+    def times_class_appears(self, list_dict, hour):
+        count = 0
+        for item in list_dict:
+            if item.get('Hour') == hour:
+                count += 1
+        return f'{hour} appears {count} times'
+
     def display_classes(self, list_dict):
         """Display classes in schedule"""
         count_MJ = 0
