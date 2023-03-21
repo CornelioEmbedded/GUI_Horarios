@@ -148,19 +148,24 @@ class IntroScreen(QWidget):
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
-                count_LMV = self.LMV_label_process(list_dict, count_LMV, index)
+                if self.not_repeated_hour(index, list_dict) is True:
+                    continue
+                else:
+                    list_days = self.set_LMV_classes(count_LMV)
+                    count_LMV += 1
+                    self.check_repeated_hour_classes(index, list_dict, list_days)
             else:
                 count_MJ = self.MJ_label_process(list_dict, count_MJ, index)
 
-    def LMV_label_process(self, list_dict, count, index):
-        if self.not_repeated_hour(index, list_dict) is not True:
-            list_days = self.set_LMV_classes(count)
-            count += 1
-            self.check_repeated_hour_classes(index, list_dict, list_days)
-        else:
-            list_days = self.set_LMV_classes(count)
-            count += 1
-        return count
+    # def LMV_label_process(self, list_dict, count, index):
+    #     # if self.not_repeated_hour(index, list_dict) is not True:
+    #     list_days = self.set_LMV_classes(count)
+    #     count += 1
+    #     self.check_repeated_hour_classes(index, list_dict, list_days)
+    #     # else:
+    #     #     list_days = self.set_LMV_classes(count)
+    #     #     count += 1
+    #     return count
 
     def MJ_label_process(self, list_dict, count, index):
         if list_dict[index] == list_dict[-1]:
@@ -238,7 +243,7 @@ class IntroScreen(QWidget):
 
     def find_hour_replace_data(self, hour:str, day:str, color):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-        if spot.count() >= 2 :
+        if spot.count() >= 2:
             print(f'{hour}_{day} tiene {spot.count()} labels')
             oldest_label = spot.itemAt(spot.count() - 1).widget()
             spot.removeWidget(oldest_label)
