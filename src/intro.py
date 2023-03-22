@@ -152,17 +152,37 @@ class IntroScreen(QWidget):
         """Display classes in schedule"""
         count_MJ = 0
         count_LMV = 0
+        repeated = None
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
-                if self.not_repeated_hour(index, list_dict) is True:
-                    continue
-                else:
-                    list_days = self.set_LMV_classes(count_LMV)
+                if self.not_repeated_hour(index, list_dict) is not True:
+                    repeated = True
+                    list_days = self.set_LMV_classes(count_LMV, repeated)
                     count_LMV += 1
                     self.check_repeated_hour_classes(index, list_dict, list_days)
+                elif self.not_in_previous_hour(index, list_dict) is not True:
+                    continue
+                else:
+                    repeated = False
+                    list_days = self.set_LMV_classes(count_LMV, repeated)
+                    count_LMV += 1
             else:
-                count_MJ = self.MJ_label_process(list_dict, count_MJ, index)
+                if list_dict[index] == list_dict[-1]:
+                    list_days = self.set_MJ_classes(count_MJ, repeated)
+                    count_MJ += 1
+                else:
+                    if self.not_repeated_hour(index, list_dict) is not True:
+                        repeated = True
+                        list_days = self.set_MJ_classes(count_MJ, repeated)
+                        count_MJ += 1
+                        self.check_repeated_hour_classes(index, list_dict, list_days)
+                    elif self.not_in_previous_hour(index, list_dict) is not True:
+                        continue
+                    else:
+                        repeated = False
+                        list_days = self.set_MJ_classes(count_MJ, repeated)
+                        count_MJ += 1
 
     # def LMV_label_process(self, list_dict, count, index):
     #     # if self.not_repeated_hour(index, list_dict) is not True:
@@ -197,6 +217,15 @@ class IntroScreen(QWidget):
             state = True
         return state
 
+    def not_in_previous_hour(self, index, list_dict):
+        previous = index - 1
+        actual_hour = self.dict['Hour']
+        previous_hour = list_dict[previous]['Hour']
+        state = False
+        if actual_hour != previous_hour:
+            state = True
+        return state
+
     def check_repeated_hour_classes(self, index, list_dict, list_days):
         next = index + 1
         first_hour = self.dict['Hour']
@@ -223,22 +252,22 @@ class IntroScreen(QWidget):
         self.set_color_class(index)
         spot.addWidget(self.label)
 
-    def set_LMV_classes(self, color):
+    def set_LMV_classes(self, color, state):
         """Set Monday, Wednesday and Friday classes"""
         days = self.dict['Day']
         hour = self.dict['Hour']
         days_list = [int(days[0]), int(days[1]), int(days[2])]
         for day in days_list:
-            self.find_hour_replace_data(hour, day, color)
+            self.find_hour_replace_data(hour, day, color, state)
         return days_list
 
-    def set_MJ_classes(self, color):
+    def set_MJ_classes(self, color, status):
         """Set Tuesday and Thursday classes"""
         day = self.dict['Day']
         real_hour = self.dict['Hour']
         three_hour = self.separate_hour_from_class(real_hour)
         for hour in three_hour:
-            self.find_hour_replace_data(hour, day, color)
+            self.find_hour_replace_data(hour, day, color, status)
         return 'Class of three hours'
 
     def separate_hour_from_class(self, hour):
@@ -248,12 +277,14 @@ class IntroScreen(QWidget):
         three_hour = [letter_part + str(num) for num in next_numbers]
         return three_hour
 
-    def find_hour_replace_data(self, hour:str, day:str, color):
+    def find_hour_replace_data(self, hour:str, day:str, color, state):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-        if spot.count() >= 2:
+        if spot.count() >= 2 and state is False:
             print(f'{hour}_{day} tiene {spot.count()} labels')
-            oldest_label = spot.itemAt(spot.count() - 1).widget()
-            spot.removeWidget(oldest_label)
+            oldest_label_1 = spot.itemAt(1).widget()
+            oldest_label_2 = spot.itemAt(0).widget()
+            spot.removeWidget(oldest_label_1)
+            spot.removeWidget(oldest_label_2)
         else:
             old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
