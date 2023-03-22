@@ -118,8 +118,6 @@ class IntroScreen(QWidget):
             self.display_classes(new_ordered_list)
         except IndexError:
             pass
-        # self.changes_classes_in_comboBox += 1
-        # self.changes_classes_in_comboBox = self.times_selection_changed(index)
 
     def times_selection_changed(self, index):
         selectedOption = self.subject_menu.itemText(index)
@@ -183,30 +181,6 @@ class IntroScreen(QWidget):
                         repeated = False
                         list_days = self.set_MJ_classes(count_MJ, repeated)
                         count_MJ += 1
-
-    # def LMV_label_process(self, list_dict, count, index):
-    #     # if self.not_repeated_hour(index, list_dict) is not True:
-    #     list_days = self.set_LMV_classes(count)
-    #     count += 1
-    #     self.check_repeated_hour_classes(index, list_dict, list_days)
-    #     # else:
-    #     #     list_days = self.set_LMV_classes(count)
-    #     #     count += 1
-    #     return count
-
-    def MJ_label_process(self, list_dict, count, index):
-        if list_dict[index] == list_dict[-1]:
-            list_days = self.set_MJ_classes(count)
-            count += 1
-        else:   
-            if self.not_repeated_hour(index, list_dict) is not True:
-                list_days = self.set_MJ_classes(count)
-                count += 1
-                self.check_repeated_hour_classes(index, list_dict, list_days)
-            else:
-                list_days = self.set_MJ_classes(count)
-                count += 1
-        return count
 
     def not_repeated_hour(self, index, list_dict):
         next = index + 1
@@ -280,9 +254,8 @@ class IntroScreen(QWidget):
     def find_hour_replace_data(self, hour:str, day:str, color, state):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
         if spot.count() >= 2 and state is False:
-            print(f'{hour}_{day} tiene {spot.count()} labels')
-            oldest_label_1 = spot.itemAt(1).widget()
-            oldest_label_2 = spot.itemAt(0).widget()
+            oldest_label_1 = spot.itemAt(spot.count() - 1).widget()
+            oldest_label_2 = spot.itemAt(spot.count() - 2).widget()
             spot.removeWidget(oldest_label_1)
             spot.removeWidget(oldest_label_2)
         else:
