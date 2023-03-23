@@ -165,6 +165,10 @@ class IntroScreen(QWidget):
                 else:
                     count_LMV = self.LMV_display_labels(index, list_dict, count_LMV)
             else:
+                if list_dict[index] == list_dict[-1]:
+                    repeated = None
+                    list_days = self.set_MJ_classes(count_MJ, repeated)
+                    count_MJ += 1
                 if self.not_in_previous_hour(index, list_dict) is not True:
                     continue
                 else:
@@ -183,20 +187,15 @@ class IntroScreen(QWidget):
         return count
 
     def MJ_display_labels(self, index, list_dict, count):
-        if list_dict[index] == list_dict[-1]:
-            repeated = None
+        if self.not_repeated_hour(index, list_dict) is not True:
+            repeated = True
             list_days = self.set_MJ_classes(count, repeated)
             count += 1
+            self.check_repeated_hour_classes(index, list_dict, list_days)
         else:
-            if self.not_repeated_hour(index, list_dict) is not True:
-                repeated = True
-                list_days = self.set_MJ_classes(count, repeated)
-                count += 1
-                self.check_repeated_hour_classes(index, list_dict, list_days)
-            else:
-                repeated = False
-                list_days = self.set_MJ_classes(count, repeated)
-                count += 1
+            repeated = False
+            list_days = self.set_MJ_classes(count, repeated)
+            count += 1
         return count
 
     def not_repeated_hour(self, index, list_dict):
