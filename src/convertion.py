@@ -25,7 +25,7 @@ def parse_classes(classes):
             if 'ESPAÑOL'in items or 'INGLES' in items:
                 class_list.append(items)
                 class_list.append('\n')
-    string_classes = ''.join(class_list).split('&')
+    string_classes = ''.join(class_list).replace('_','').split('&')
     return string_classes
 
 def _get_subject_name(subject):

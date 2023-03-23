@@ -26,6 +26,7 @@ class IntroScreen(QWidget):
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
         self.subject_menu.addItems(self.get_previous_data())
         self.subject_menu.currentIndexChanged.connect(self._selection_change)
+        self.count_selections_classes = [0] * self.subject_menu.count()
 
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
@@ -60,11 +61,15 @@ class IntroScreen(QWidget):
                         '5': 5,
                         '6': 6}
 
+        self.set_grid_dimmensions()
+
         ## Schedule colors
         self.colors = ['#98F5FF','#8EE5EE','#7AC5CD','#ADD8E6','#B2DFEE','#97FFFF','#8DEEEE', '#79CDCD', '#7FFF00', ]
 
         ## Initialize functions
         self.show()
+
+################# SETUP METHODS ##########################
 
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
@@ -101,20 +106,39 @@ class IntroScreen(QWidget):
         self.subject_list = convertion.get_subject_list(self.string_classes)
         return self.subject_list
     
-    def _selection_change(self):
+    def _selection_change(self, index):
         """Select from items combo box a subject and print it in GUI"""
+        self.changes_classes_in_comboBox = self.times_selection_changed(index)
         try:
             self.clean_data_from_schedule()
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
-            self.display_classes(self.list_dict)
+            new_ordered_list = self.order_classes(self.list_dict)
+            self.display_classes(new_ordered_list)
         except IndexError:
             pass
-    
+
+    def times_selection_changed(self, index):
+        selectedOption = self.subject_menu.itemText(index)
+        self.count_selections_classes[index] += 1
+        changed_class =  self.count_selections_classes[index]
+        return changed_class
+
+################# DISPLAY CLASSES METHODS ##########################
+
     def set_label_in_schedule(self, index):
         """"Set Professor name in schedule"""
-        self.label = QLabel(self.dict['Professor'])
+        professor_list = self.dict['Professor'].split(' ')
+        short_name = ' '.join(professor_list[0:3:2])
+        self.label = QLabel(short_name)
+        self.set_color_class(index)
+        return self.label
+
+    def set_repeated_label_in_schedule(self, index, list_dict):
+        professor_list = list_dict[index]['Professor'].split(' ')
+        short_name = ' '.join(professor_list[0:3:2])
+        self.label = QLabel(short_name)
         self.set_color_class(index)
         return self.label
 
@@ -122,45 +146,187 @@ class IntroScreen(QWidget):
         """Set a color in label"""
         return self.label.setStyleSheet(f"background-color: {self.colors[index]};")
 
+    def times_class_appears(self, list_dict, hour):
+        count = 0
+        for item in list_dict:
+            if item.get('Hour') == hour:
+                count += 1
+        return f'{hour} appears {count} times'
+
     def display_classes(self, list_dict):
         """Display classes in schedule"""
         count_MJ = 0
         count_LMV = 0
-        for self.dict in list_dict:
-            print(self.dict)
+        for index in range(len(list_dict)):
+            self.dict = list_dict[index]
             if self.dict['Day'] == '135':
-                self.set_LMV_classes(count_LMV)
-                count_LMV += 1
+                if self.not_in_previous_hour(index, list_dict) is not True:
+                    continue
+                else:
+                    count_LMV = self.LMV_display_labels(index, list_dict, count_LMV)
             else:
-                self.set_MJ_classes(count_MJ)
-                count_MJ += 1
+                if list_dict[index] == list_dict[-1]:
+                    repeated = None
+                    list_days = self.set_MJ_classes(count_MJ, repeated)
+                    count_MJ += 1
+                if self.not_in_previous_hour(index, list_dict) is not True:
+                    continue
+                else:
+                    count_MJ = self.MJ_display_labels(index, list_dict, count_MJ)
 
-    def set_LMV_classes(self, color):
+    def LMV_display_labels(self, index, list_dict, count):
+        if self.not_repeated_hour(index, list_dict) is not True:
+            repeated = True
+            list_days = self.set_LMV_classes(count, repeated)
+            count += 1
+            self.check_repeated_hour_classes(index, list_dict, list_days)
+        else:
+            repeated = False
+            list_days = self.set_LMV_classes(count, repeated)
+            count += 1
+        return count
+
+    def MJ_display_labels(self, index, list_dict, count):
+        if self.not_repeated_hour(index, list_dict) is not True:
+            repeated = True
+            list_days = self.set_MJ_classes(count, repeated)
+            count += 1
+            self.check_repeated_hour_classes(index, list_dict, list_days)
+        else:
+            repeated = False
+            list_days = self.set_MJ_classes(count, repeated)
+            count += 1
+        return count
+
+    def not_repeated_hour(self, index, list_dict):
+        next = index + 1
+        first_hour = self.dict['Hour']
+        next_hour = list_dict[next]['Hour']
+        state = False
+        if first_hour != next_hour:
+            state = True
+        return state
+
+    def not_in_previous_hour(self, index, list_dict):
+        previous = index - 1
+        actual_hour = self.dict['Hour']
+        previous_hour = list_dict[previous]['Hour']
+        state = False
+        if actual_hour != previous_hour:
+            state = True
+        return state
+
+    def check_repeated_hour_classes(self, index, list_dict, list_days):
+        next = index + 1
+        first_hour = self.dict['Hour']
+        next_hour = list_dict[next]['Hour']
+        day = self.dict['Day']
+        if first_hour == next_hour and day == list_dict[next]['Day']:
+            if list_days == 'Class of three hours':
+                three_hour = self.separate_hour_from_class(next_hour)
+                for hour in three_hour:
+                    self.find_replace_repeated_data(hour, day, next, list_dict)
+            elif type(list_days) == list:
+                for day in list_days:
+                    self.find_replace_repeated_data(next_hour, day, next, list_dict)
+
+    def find_replace_repeated_data(self, hour, day, index, list_dict):
+        spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
+        if self.changes_classes_in_comboBox > 1 and spot.count() >= 2:
+            old_label = spot.itemAt(0).widget()
+            spot.removeWidget(old_label)
+        label = self.set_repeated_label_in_schedule(index, list_dict)
+        spot.addWidget(label)
+
+    def set_LMV_classes(self, color, state):
         """Set Monday, Wednesday and Friday classes"""
-        days = str(self.dict['Day'])
+        days = self.dict['Day']
+        hour = self.dict['Hour']
         days_list = [int(days[0]), int(days[1]), int(days[2])]
         for day in days_list:
-            self.set_label_in_schedule(color)
-            self.schedule_grid.addWidget(self.label, self.rows[self.dict['Hour']], day)
+            self.find_hour_replace_data(hour, day, color, state)
+        return days_list
 
-    def set_MJ_classes(self, color):
+    def set_MJ_classes(self, color, status):
         """Set Tuesday and Thursday classes"""
-        start_hour = self.rows[self.dict['Hour']]
-        three_hour = [start_hour, start_hour + 1, start_hour + 2]
+        day = self.dict['Day']
+        real_hour = self.dict['Hour']
+        three_hour = self.separate_hour_from_class(real_hour)
         for hour in three_hour:
-            self.set_label_in_schedule(color)
-            self.schedule_grid.addWidget(self.label, hour, self.columns[self.dict['Day']])
+            self.find_hour_replace_data(hour, day, color, status)
+        return 'Class of three hours'
+
+    def separate_hour_from_class(self, hour):
+        numeric_part = int(hour[1:])
+        letter_part = str(hour[:1])
+        next_numbers = [numeric_part, numeric_part+1, numeric_part+2]
+        three_hour = [letter_part + str(num) for num in next_numbers]
+        return three_hour
+
+    def clean_labels_from_no_repeated_class(self, spot):
+        oldest_label_1 = spot.itemAt(spot.count() - 1).widget()
+        oldest_label_2 = spot.itemAt(spot.count() - 2).widget()
+        spot.removeWidget(oldest_label_1)
+        spot.removeWidget(oldest_label_2)
+
+    def find_hour_replace_data(self, hour:str, day:str, color, state):
+        spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
+        if spot.count() >= 2 and state is False:
+            self.clean_labels_from_no_repeated_class(spot)
+        else:
+            old_label = spot.itemAt(0).widget()
+            spot.removeWidget(old_label)
+        label = self.set_label_in_schedule(color)
+        spot.addWidget(label)
 
     def clean_data_from_schedule(self):
         """Clean data from schedule"""
         for i in range(self.schedule_grid.count()):
             item = self.schedule_grid.itemAt(i)
-            widget = item.widget()
-            if isinstance(widget, QLabel):
-                row, column, rowSpan, columnSpan = self.schedule_grid.getItemPosition(i)
-                if row != 0 and column != 0:
-                    widget.setStyleSheet("")
-                    widget.setText("")
+            if item is not None:
+                layout = item.layout()
+                if layout is not None:
+                    for j in range(layout.count()):
+                        widget = layout.itemAt(j).widget()
+                        if isinstance(widget, QLabel):
+                            widget.setStyleSheet("")
+                            widget.setText("")
+
+################# ORDER CLASSES METHODS ##########################
+
+    def _order_key(self, order_dict, dict):
+        return order_dict[dict['Hour']]
+
+    def order_classes_by_hour(self, list_dict):
+        sorted_list = sorted(list_dict, key=lambda dict: self._order_key(self.rows, dict))
+        return sorted_list
+
+    def order_classes_by_day(self, list_dict):
+        list_135 = []
+        list_24 = []
+
+        for dict in list_dict:
+            if '135' in dict['Day']:
+                list_135.append(dict)
+            elif '2' in dict['Day'] or '4' in dict['Day']:
+                list_24.append(dict)
+        new_order = list_135 + list_24
+        return new_order
+
+    def order_classes(self, list_dict):
+        list_by_hour = self.order_classes_by_hour(list_dict)
+        list_by_day = self.order_classes_by_day(list_by_hour)
+        return list_by_day
+
+################# GRID METHODS ##########################
+
+    def set_grid_dimmensions(self):
+        factor = 1
+        for column in self.columns.values():
+            self.schedule_grid.setColumnStretch(column, factor)
+        for row in self.rows.values():
+            self.schedule_grid.setRowStretch(row, factor)
+
 
 
 app = QApplication(sys.argv) 
