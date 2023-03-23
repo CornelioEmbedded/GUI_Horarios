@@ -217,7 +217,7 @@ class IntroScreen(QWidget):
 
     def find_replace_repeated_data(self, hour, day, index, list_dict):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
-        if self.changes_classes_in_comboBox > 1:
+        if self.changes_classes_in_comboBox > 1 and spot.count() >= 2:
             old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
         professor_list = list_dict[index]['Professor'].split(' ')
