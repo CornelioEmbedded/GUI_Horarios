@@ -145,7 +145,20 @@ class IntroScreen(QWidget):
 
     def set_color_class(self, index):
         """Set a color in label"""
-        return self.label.setStyleSheet(f"background-color: {self.colors[index]};")
+        return self.label.setStyleSheet(f"background-color: {index};")
+
+    def get_professor_color_list(self):
+        professor_color = {}
+        for index in range(len(self.professors_list)):
+            professor_color[self.professors_list[index]] = self.colors[index]
+        return professor_color
+
+    def get_professor_color(self):
+        professor = self.dict['Professor']
+        color_dict = self.get_professor_color_list()
+        if professor in color_dict:
+            real_color = color_dict.get(professor)
+        return real_color
 
     def times_class_appears(self, list_dict, hour):
         count = 0
@@ -251,8 +264,9 @@ class IntroScreen(QWidget):
         days = self.dict['Day']
         hour = self.dict['Hour']
         days_list = [int(days[0]), int(days[1]), int(days[2])]
+        real_color = self.get_professor_color()
         for day in days_list:
-            self.find_hour_replace_data(hour, day, color, state)
+            self.find_hour_replace_data(hour, day, real_color, state)
         return days_list
 
     def set_MJ_classes(self, color, status):
@@ -260,8 +274,9 @@ class IntroScreen(QWidget):
         day = self.dict['Day']
         real_hour = self.dict['Hour']
         three_hour = self.separate_hour_from_class(real_hour)
+        real_color = self.get_professor_color()
         for hour in three_hour:
-            self.find_hour_replace_data(hour, day, color, status)
+            self.find_hour_replace_data(hour, day, real_color, status)
         return 'Class of three hours'
 
     def separate_hour_from_class(self, hour):
