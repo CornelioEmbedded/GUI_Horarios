@@ -115,6 +115,7 @@ class IntroScreen(QWidget):
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
             new_ordered_list = self.order_classes(self.list_dict)
+            self.professors_list = self.get_professor_list(new_ordered_list)
             self.display_classes(new_ordered_list)
         except IndexError:
             pass
@@ -152,6 +153,13 @@ class IntroScreen(QWidget):
             if item.get('Hour') == hour:
                 count += 1
         return f'{hour} appears {count} times'
+
+    def get_professor_list(self, list_dict):
+        professor_list = []
+        for item in list_dict:
+            professor_list.append(item['Professor'])
+        not_repeating_professor = list(set(professor_list))
+        return not_repeating_professor
 
     def display_classes(self, list_dict):
         """Display classes in schedule"""
