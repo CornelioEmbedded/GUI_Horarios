@@ -64,7 +64,7 @@ class IntroScreen(QWidget):
         self.set_grid_dimmensions()
 
         ## Schedule colors
-        self.colors = ['#98F5FF','#8EE5EE','#7AC5CD','#ADD8E6','#B2DFEE','#97FFFF','#8DEEEE', '#79CDCD', '#7FFF00', ]
+        self.colors = ['#98F5FF','#EEC591','#7AC5CD','#FFF8DC','#B2DFEE','#BCEE68','#8DEEEE', '#C1FFC1', '#ADFF2F']
 
         ## Initialize functions
         self.show()
