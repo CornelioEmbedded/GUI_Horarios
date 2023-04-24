@@ -136,16 +136,16 @@ class IntroScreen(QWidget):
         self.set_color_class(index)
         return self.label
 
-    def set_repeated_label_in_schedule(self, index, list_dict):
+    def set_repeated_label_in_schedule(self, index, color, list_dict):
         professor_list = list_dict[index]['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
-        self.set_color_class(index)
+        self.set_color_class(color)
         return self.label
 
-    def set_color_class(self, index):
+    def set_color_class(self, color):
         """Set a color in label"""
-        return self.label.setStyleSheet(f"background-color: {index};")
+        return self.label.setStyleSheet(f"background-color: {color};")
 
     def get_professor_color_list(self):
         professor_color = {}
@@ -245,18 +245,20 @@ class IntroScreen(QWidget):
         if first_hour == next_hour and day == list_dict[next]['Day']:
             if list_days == 'Class of three hours':
                 three_hour = self.separate_hour_from_class(next_hour)
+                real_color = self.get_professor_color()
                 for hour in three_hour:
-                    self.find_replace_repeated_data(hour, day, next, list_dict)
+                    self.find_replace_repeated_data(hour, day, next, real_color, list_dict)
             elif type(list_days) == list:
+                real_color = self.get_professor_color()
                 for day in list_days:
-                    self.find_replace_repeated_data(next_hour, day, next, list_dict)
+                    self.find_replace_repeated_data(next_hour, day, next, real_color, list_dict)
 
-    def find_replace_repeated_data(self, hour, day, index, list_dict):
+    def find_replace_repeated_data(self, hour, day, index, color, list_dict):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
         if self.changes_classes_in_comboBox > 1 and spot.count() >= 2:
             old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
-        label = self.set_repeated_label_in_schedule(index, list_dict)
+        label = self.set_repeated_label_in_schedule(index, color, list_dict)
         spot.addWidget(label)
 
     def set_LMV_classes(self, color, state):
