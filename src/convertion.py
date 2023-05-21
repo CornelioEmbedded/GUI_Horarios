@@ -28,6 +28,16 @@ def parse_classes(classes):
     string_classes = ''.join(class_list).replace('_','').split('&')
     return string_classes
 
+def get_professors_list(subject):
+    new_subject_str = ''.join(subject)
+    pattern = r'(?P<professor>\d\d\d\d\d\d\D\w\D+)'
+    try:
+        professor_names = re.findall(pattern, new_subject_str)
+    except AttributeError:
+        professor_names = re.findall(pattern, new_subject_str)
+    og_professor_names = list(set(professor_names))
+    return og_professor_names
+
 def _get_subject_name(subject):
     pattern = r'(?P<suject>\D\w\D+)'
     try:

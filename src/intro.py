@@ -100,10 +100,15 @@ class IntroScreen(QWidget):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
+
+    def _get_professors_list(self):
+        professor_list = convertion.get_professors_list(self.string_classes)
+        return professor_list
     
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
         self.subject_list = convertion.get_subject_list(self.string_classes)
+        self._get_professors_list()
         return self.subject_list
     
     def _selection_change(self, index):
