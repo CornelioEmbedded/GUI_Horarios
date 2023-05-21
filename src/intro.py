@@ -22,11 +22,17 @@ class IntroScreen(QWidget):
         self.biomedica_button = self.findChild(QPushButton, 'biomedica_button')
         self.open_file_button = self.findChild(QPushButton, 'open_file_button_button')
 
-        ## Combo Box
+        ## Combo Box Subjects
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
-        self.subject_menu.addItems(self.get_previous_data())
+        self.subject_menu.addItems(self.get_previous_data()[0])
         self.subject_menu.currentIndexChanged.connect(self._selection_change)
         self.count_selections_classes = [0] * self.subject_menu.count()
+
+        ## Combo Box Professors
+        self.subject_menu_prof = self.findChild(QComboBox, 'subject_menu_2')
+        self.subject_menu_prof.addItems(self.get_previous_data()[1])
+        self.subject_menu_prof.currentIndexChanged.connect(self._selection_change)
+        self.count_selections_classes_prof = [0] * self.subject_menu_prof.count()
 
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
@@ -77,7 +83,8 @@ class IntroScreen(QWidget):
             csv_file_read = pd.read_csv('csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             self.items_list = self._make_subject_items()
-            return self.items_list
+            self.items_list_prof = self._make_professor_items()
+            return self.items_list, self.items_list_prof
         except FileNotFoundError:
             self.items_list = []
             return self.items_list
@@ -94,21 +101,22 @@ class IntroScreen(QWidget):
         csv_file = convertion.from_excel_to_csv(file)
         self._parsing_csv_file(csv_file)
         self.new_item_list = self._make_subject_items()
+        self.new_item_list_prof = self._make_professor_items()
         self.subject_menu.addItems(self.new_item_list)
+        self.subject_menu_prof.addItems(self.new_item_list_prof)
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
 
-    def _get_professors_list(self):
+    def _make_professor_items(self):
         professor_list = convertion.get_professors_list(self.string_classes)
         return professor_list
     
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
         self.subject_list = convertion.get_subject_list(self.string_classes)
-        self._get_professors_list()
         return self.subject_list
     
     def _selection_change(self, index):
