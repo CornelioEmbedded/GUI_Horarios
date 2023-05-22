@@ -35,18 +35,24 @@ def get_professors_list(subject):
         professor_names = re.findall(pattern, new_subject_str)
     except AttributeError:
         professor_names = re.findall(pattern, new_subject_str)
-    new_professor_names = _make_professor_list_readable(professor_names)
-    og_professor_names = list(set(professor_names))
-    og_professor_names_ini = list(set(new_professor_names))
+    professor_names_ini, professor_names_gui = _make_professor_list_readable(professor_names)
+    og_professor_names = list(set(professor_names_gui))
+    og_professor_names_ini = list(set(professor_names_ini))
     return og_professor_names, og_professor_names_ini
 
 def _make_professor_list_readable(professor_list):
-    new_list = []
+    new_list_underscore = []
+    new_list_normal = []
     for item in professor_list:
         new_item = unidecode(item)
         cleaned_string = ' '.join(new_item.split())
-        new_list.append(cleaned_string.replace(' ', '_'))
-    return new_list
+        cleaned_list = cleaned_string.split(' ')
+        del cleaned_list[0]
+        recleaned_string = ' '.join(cleaned_list)
+        recleaned_string_underscore = '_'.join(cleaned_list)
+        new_list_normal.append(recleaned_string)
+        new_list_underscore.append(recleaned_string_underscore)
+    return new_list_underscore, new_list_normal
 
 def _get_subject_name(subject):
     pattern = r'(?P<suject>\D\w\D+)'

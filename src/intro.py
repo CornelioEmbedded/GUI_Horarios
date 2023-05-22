@@ -72,9 +72,6 @@ class IntroScreen(QWidget):
 
         ## Schedule colors
         self.colors = ['#98F5FF','#EEC591','#7AC5CD','#FFF8DC','#B2DFEE','#BCEE68','#8DEEEE', '#C1FFC1', '#ADFF2F']
-
-        self.set_default_colors()
-
         ## Initialize functions
         self.show()
 
@@ -116,6 +113,7 @@ class IntroScreen(QWidget):
         self._parsing_csv_file(csv_file)
         self.new_item_list = self._make_subject_items()
         self.new_item_list_prof, _ = self._make_professor_items()
+        self.set_default_colors()
         self.subject_menu.addItems(self.new_item_list)
         self.subject_menu_prof.addItems(self.new_item_list_prof)
 
@@ -125,8 +123,8 @@ class IntroScreen(QWidget):
         self.string_classes = convertion.parse_classes(csv_dict)
 
     def _make_professor_items(self):
-        professor_list, professor_list_ini = convertion.get_professors_list(self.string_classes)
-        return professor_list, professor_list_ini
+        self.professor_list, professor_list_ini = convertion.get_professors_list(self.string_classes)
+        return self.professor_list, professor_list_ini
     
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
@@ -160,18 +158,23 @@ class IntroScreen(QWidget):
         professor_list = self.dict['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
-        self.set_color_class(index)
+        self.set_color_class(professor_list)
         return self.label
 
     def set_repeated_label_in_schedule(self, index, color, list_dict):
         professor_list = list_dict[index]['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
-        self.set_color_class(color)
+        self.set_color_class(professor_list)
         return self.label
 
-    def set_color_class(self, color):
+    def set_color_class(self, name):
         """Set a color in label"""
+        config = configparser.ConfigParser()
+        config.read(r'parameters\config.ini')
+        new_name = ' '.join(name)
+        lower_new_name = new_name.replace(' ', '_').lower()
+        color = config.get('professors_colors', f'{lower_new_name}')
         return self.label.setStyleSheet(f"background-color: {color};")
 
     def get_professor_color_list(self):
