@@ -6,6 +6,7 @@ import sys
 import pandas as pd
 import convertion
 import random
+import configparser
 
 
 class IntroScreen(QWidget):
@@ -72,12 +73,22 @@ class IntroScreen(QWidget):
         ## Schedule colors
         self.colors = ['#98F5FF','#EEC591','#7AC5CD','#FFF8DC','#B2DFEE','#BCEE68','#8DEEEE', '#C1FFC1', '#ADFF2F']
 
-        self.give_professor_color()
+        self.set_default_colors()
 
         ## Initialize functions
         self.show()
 
 ################# SETUP METHODS ##########################
+
+    def set_default_colors(self):
+        config = configparser.ConfigParser()
+        config.add_section('professors_colors')
+        for item in self._make_professor_items():
+            color = f'#{random.randint(0, 0xFFFFFF):06x}'  # Assigning random colors
+            config.set('professors_colors',  item, color)
+
+            with open(r'parameters\config.ini', 'w') as configfile:
+                config.write(configfile)
 
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
