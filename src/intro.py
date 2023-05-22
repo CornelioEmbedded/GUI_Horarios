@@ -5,7 +5,7 @@ from PyQt5.QtCore import *
 import sys
 import pandas as pd
 import convertion
-from time import sleep
+import random
 
 
 class IntroScreen(QWidget):
@@ -71,6 +71,8 @@ class IntroScreen(QWidget):
 
         ## Schedule colors
         self.colors = ['#98F5FF','#EEC591','#7AC5CD','#FFF8DC','#B2DFEE','#BCEE68','#8DEEEE', '#C1FFC1', '#ADFF2F']
+
+        self.give_professor_color()
 
         ## Initialize functions
         self.show()
@@ -172,6 +174,13 @@ class IntroScreen(QWidget):
         if professor in color_dict:
             real_color = color_dict.get(professor)
         return real_color
+
+    def give_professor_color(self):
+        colors = {}
+        for item in self._make_professor_items():
+            random_colors = f'#{random.randint(0, 0xFFFFFF):06x}'
+            colors[item] = random_colors
+            print(f'Profesor: {item} Color: {colors[item]}')
 
     def times_class_appears(self, list_dict, hour):
         count = 0
