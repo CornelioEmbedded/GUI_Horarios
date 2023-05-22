@@ -83,7 +83,8 @@ class IntroScreen(QWidget):
     def set_default_colors(self):
         config = configparser.ConfigParser()
         config.add_section('professors_colors')
-        for item in self._make_professor_items():
+        _, professors_names = self._make_professor_items()
+        for item in professors_names:
             color = f'#{random.randint(0, 0xFFFFFF):06x}'  # Assigning random colors
             config.set('professors_colors',  item, color)
 
@@ -96,7 +97,7 @@ class IntroScreen(QWidget):
             csv_file_read = pd.read_csv('csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             self.items_list = self._make_subject_items()
-            self.items_list_prof = self._make_professor_items()
+            self.items_list_prof, _ = self._make_professor_items()
             return self.items_list, self.items_list_prof
         except FileNotFoundError:
             self.items_list = []
@@ -114,7 +115,7 @@ class IntroScreen(QWidget):
         csv_file = convertion.from_excel_to_csv(file)
         self._parsing_csv_file(csv_file)
         self.new_item_list = self._make_subject_items()
-        self.new_item_list_prof = self._make_professor_items()
+        self.new_item_list_prof, _ = self._make_professor_items()
         self.subject_menu.addItems(self.new_item_list)
         self.subject_menu_prof.addItems(self.new_item_list_prof)
 
@@ -124,8 +125,8 @@ class IntroScreen(QWidget):
         self.string_classes = convertion.parse_classes(csv_dict)
 
     def _make_professor_items(self):
-        professor_list = convertion.get_professors_list(self.string_classes)
-        return professor_list
+        professor_list, professor_list_ini = convertion.get_professors_list(self.string_classes)
+        return professor_list, professor_list_ini
     
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
