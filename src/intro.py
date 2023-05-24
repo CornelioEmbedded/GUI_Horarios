@@ -153,7 +153,7 @@ class IntroScreen(QWidget):
 
 ################# DISPLAY CLASSES METHODS ##########################
 
-    def set_label_in_schedule(self, index):
+    def set_label_in_schedule(self):
         """"Set Professor name in schedule"""
         professor_list = self.dict['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
@@ -161,7 +161,7 @@ class IntroScreen(QWidget):
         self.set_color_class(professor_list)
         return self.label
 
-    def set_repeated_label_in_schedule(self, index, color, list_dict):
+    def set_repeated_label_in_schedule(self, index, list_dict):
         professor_list = list_dict[index]['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
@@ -176,26 +176,6 @@ class IntroScreen(QWidget):
         lower_new_name = new_name.replace(' ', '_').lower()
         color = config.get('professors_colors', f'{lower_new_name}')
         return self.label.setStyleSheet(f"background-color: {color};")
-
-    def get_professor_color_list(self):
-        professor_color = {}
-        for index in range(len(self.professors_list)):
-            professor_color[self.professors_list[index]] = self.colors[index]
-        return professor_color
-
-    def get_professor_color(self):
-        professor = self.dict['Professor']
-        color_dict = self.get_professor_color_list()
-        if professor in color_dict:
-            real_color = color_dict.get(professor)
-        return real_color
-
-    def give_professor_color(self):
-        colors = {}
-        for item in self._make_professor_items():
-            random_colors = f'#{random.randint(0, 0xFFFFFF):06x}'
-            colors[item] = random_colors
-            print(f'Profesor: {item} Color: {colors[item]}')
 
     def times_class_appears(self, list_dict, hour):
         count = 0
@@ -213,48 +193,39 @@ class IntroScreen(QWidget):
 
     def display_classes(self, list_dict):
         """Display classes in schedule"""
-        count_MJ = 0
-        count_LMV = 0
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
                 if self.not_in_previous_hour(index, list_dict) is not True:
                     continue
                 else:
-                    count_LMV = self.LMV_display_labels(index, list_dict, count_LMV)
+                    self.LMV_display_labels(index, list_dict)
             else:
                 if list_dict[index] == list_dict[-1]:
                     repeated = None
-                    list_days = self.set_MJ_classes(count_MJ, repeated)
-                    count_MJ += 1
+                    self.set_MJ_classes(repeated)
                 if self.not_in_previous_hour(index, list_dict) is not True:
                     continue
                 else:
-                    count_MJ = self.MJ_display_labels(index, list_dict, count_MJ)
+                    self.MJ_display_labels(index, list_dict)
 
-    def LMV_display_labels(self, index, list_dict, count):
+    def LMV_display_labels(self, index, list_dict):
         if self.not_repeated_hour(index, list_dict) is not True:
             repeated = True
-            list_days = self.set_LMV_classes(count, repeated)
-            count += 1
+            list_days = self.set_LMV_classes(repeated)
             self.check_repeated_hour_classes(index, list_dict, list_days)
         else:
             repeated = False
-            list_days = self.set_LMV_classes(count, repeated)
-            count += 1
-        return count
+            list_days = self.set_LMV_classes(repeated)
 
-    def MJ_display_labels(self, index, list_dict, count):
+    def MJ_display_labels(self, index, list_dict):
         if self.not_repeated_hour(index, list_dict) is not True:
             repeated = True
-            list_days = self.set_MJ_classes(count, repeated)
-            count += 1
+            list_days = self.set_MJ_classes(repeated)
             self.check_repeated_hour_classes(index, list_dict, list_days)
         else:
             repeated = False
-            list_days = self.set_MJ_classes(count, repeated)
-            count += 1
-        return count
+            list_days = self.set_MJ_classes(repeated)
 
     def not_repeated_hour(self, index, list_dict):
         next = index + 1
@@ -282,40 +253,38 @@ class IntroScreen(QWidget):
         if first_hour == next_hour and day == list_dict[next]['Day']:
             if list_days == 'Class of three hours':
                 three_hour = self.separate_hour_from_class(next_hour)
-                real_color = self.get_professor_color()
                 for hour in three_hour:
-                    self.find_replace_repeated_data(hour, day, next, real_color, list_dict)
+                    self.find_replace_repeated_data(hour, day, next, list_dict)
             elif type(list_days) == list:
-                real_color = self.get_professor_color()
                 for day in list_days:
-                    self.find_replace_repeated_data(next_hour, day, next, real_color, list_dict)
+                    self.find_replace_repeated_data(next_hour, day, next, list_dict)
 
-    def find_replace_repeated_data(self, hour, day, index, color, list_dict):
+    def find_replace_repeated_data(self, hour, day, index, list_dict):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
         if self.changes_classes_in_comboBox > 1 and spot.count() >= 2:
             old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
-        label = self.set_repeated_label_in_schedule(index, color, list_dict)
+        label = self.set_repeated_label_in_schedule(index, list_dict)
         spot.addWidget(label)
 
-    def set_LMV_classes(self, color, state):
+    def set_LMV_classes(self, state):
         """Set Monday, Wednesday and Friday classes"""
         days = self.dict['Day']
         hour = self.dict['Hour']
         days_list = [int(days[0]), int(days[1]), int(days[2])]
-        real_color = self.get_professor_color()
+        # real_color = self.get_professor_color()
         for day in days_list:
-            self.find_hour_replace_data(hour, day, real_color, state)
+            self.find_hour_replace_data(hour, day, state)
         return days_list
 
-    def set_MJ_classes(self, color, status):
+    def set_MJ_classes(self, status):
         """Set Tuesday and Thursday classes"""
         day = self.dict['Day']
         real_hour = self.dict['Hour']
         three_hour = self.separate_hour_from_class(real_hour)
-        real_color = self.get_professor_color()
+        # real_color = self.get_professor_color()
         for hour in three_hour:
-            self.find_hour_replace_data(hour, day, real_color, status)
+            self.find_hour_replace_data(hour, day, status)
         return 'Class of three hours'
 
     def separate_hour_from_class(self, hour):
@@ -331,14 +300,14 @@ class IntroScreen(QWidget):
         spot.removeWidget(oldest_label_1)
         spot.removeWidget(oldest_label_2)
 
-    def find_hour_replace_data(self, hour:str, day:str, color, state):
+    def find_hour_replace_data(self, hour:str, day:str, state):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
         if spot.count() >= 2 and state is False:
             self.clean_labels_from_no_repeated_class(spot)
         else:
             old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
-        label = self.set_label_in_schedule(color)
+        label = self.set_label_in_schedule()
         spot.addWidget(label)
 
     def clean_data_from_schedule(self):
