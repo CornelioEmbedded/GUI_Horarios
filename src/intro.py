@@ -217,6 +217,7 @@ class IntroScreen(QWidget):
         count_LMV = 0
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
+            print(self.dict)
             if self.dict['Day'] == '135':
                 if self.not_in_previous_hour(index, list_dict) is not True:
                     continue

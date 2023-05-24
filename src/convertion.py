@@ -30,7 +30,7 @@ def parse_classes(classes):
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
-    pattern = r'(?P<professor>\d\d\d\d\d\d\D\w\D+)'
+    pattern = r'(?P<professor>\w\w\d\d\d\d\D\w\D+)'
     try:
         professor_names = re.findall(pattern, new_subject_str)
     except AttributeError:
@@ -83,7 +83,7 @@ def clean_list_of_classes(list_of_classes):
     return new_subject_list
 
 def get_classes_data(class_items):
-    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
     class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
     list_dict = []
     try:
@@ -98,4 +98,3 @@ def get_classes_data(class_items):
     except TypeError:
         pass
     return list_dict
-
