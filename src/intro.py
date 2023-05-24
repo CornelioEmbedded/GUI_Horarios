@@ -5,7 +5,8 @@ from PyQt5.QtCore import *
 import sys
 import pandas as pd
 import convertion
-from time import sleep
+import random
+import configparser
 
 
 class IntroScreen(QWidget):
@@ -22,11 +23,17 @@ class IntroScreen(QWidget):
         self.biomedica_button = self.findChild(QPushButton, 'biomedica_button')
         self.open_file_button = self.findChild(QPushButton, 'open_file_button_button')
 
-        ## Combo Box
+        ## Combo Box Subjects
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
-        self.subject_menu.addItems(self.get_previous_data())
+        self.subject_menu.addItems(self.get_previous_data()[0])
         self.subject_menu.currentIndexChanged.connect(self._selection_change)
         self.count_selections_classes = [0] * self.subject_menu.count()
+
+        ## Combo Box Professors
+        self.subject_menu_prof = self.findChild(QComboBox, 'subject_menu_2')
+        self.subject_menu_prof.addItems(self.get_previous_data()[1])
+        self.subject_menu_prof.currentIndexChanged.connect(self._selection_change)
+        self.count_selections_classes_prof = [0] * self.subject_menu_prof.count()
 
         ## Button actions
         self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
@@ -64,12 +71,22 @@ class IntroScreen(QWidget):
         self.set_grid_dimmensions()
 
         ## Schedule colors
-        self.colors = ['#98F5FF','#8EE5EE','#7AC5CD','#ADD8E6','#B2DFEE','#97FFFF','#8DEEEE', '#79CDCD', '#7FFF00', ]
-
+        self.colors = ['#98F5FF','#EEC591','#7AC5CD','#FFF8DC','#B2DFEE','#BCEE68','#8DEEEE', '#C1FFC1', '#ADFF2F']
         ## Initialize functions
         self.show()
 
 ################# SETUP METHODS ##########################
+
+    def set_default_colors(self):
+        config = configparser.ConfigParser()
+        config.add_section('professors_colors')
+        _, professors_names = self._make_professor_items()
+        for item in professors_names:
+            color = f'#{random.randint(0, 0xFFFFFF):06x}'  # Assigning random colors
+            config.set('professors_colors',  item, color)
+
+            with open(r'parameters\config.ini', 'w') as configfile:
+                config.write(configfile)
 
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
@@ -77,7 +94,8 @@ class IntroScreen(QWidget):
             csv_file_read = pd.read_csv('csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             self.items_list = self._make_subject_items()
-            return self.items_list
+            self.items_list_prof, _ = self._make_professor_items()
+            return self.items_list, self.items_list_prof
         except FileNotFoundError:
             self.items_list = []
             return self.items_list
@@ -94,12 +112,19 @@ class IntroScreen(QWidget):
         csv_file = convertion.from_excel_to_csv(file)
         self._parsing_csv_file(csv_file)
         self.new_item_list = self._make_subject_items()
+        self.new_item_list_prof, _ = self._make_professor_items()
+        self.set_default_colors()
         self.subject_menu.addItems(self.new_item_list)
+        self.subject_menu_prof.addItems(self.new_item_list_prof)
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
+
+    def _make_professor_items(self):
+        self.professor_list, professor_list_ini = convertion.get_professors_list(self.string_classes)
+        return self.professor_list, professor_list_ini
     
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
@@ -115,6 +140,7 @@ class IntroScreen(QWidget):
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
             new_ordered_list = self.order_classes(self.list_dict)
+            self.professors_list = self.get_professor_list(new_ordered_list)
             self.display_classes(new_ordered_list)
         except IndexError:
             pass
@@ -132,19 +158,44 @@ class IntroScreen(QWidget):
         professor_list = self.dict['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
-        self.set_color_class(index)
+        self.set_color_class(professor_list)
         return self.label
 
-    def set_repeated_label_in_schedule(self, index, list_dict):
+    def set_repeated_label_in_schedule(self, index, color, list_dict):
         professor_list = list_dict[index]['Professor'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
-        self.set_color_class(index)
+        self.set_color_class(professor_list)
         return self.label
 
-    def set_color_class(self, index):
+    def set_color_class(self, name):
         """Set a color in label"""
-        return self.label.setStyleSheet(f"background-color: {self.colors[index]};")
+        config = configparser.ConfigParser()
+        config.read(r'parameters\config.ini')
+        new_name = ' '.join(name)
+        lower_new_name = new_name.replace(' ', '_').lower()
+        color = config.get('professors_colors', f'{lower_new_name}')
+        return self.label.setStyleSheet(f"background-color: {color};")
+
+    def get_professor_color_list(self):
+        professor_color = {}
+        for index in range(len(self.professors_list)):
+            professor_color[self.professors_list[index]] = self.colors[index]
+        return professor_color
+
+    def get_professor_color(self):
+        professor = self.dict['Professor']
+        color_dict = self.get_professor_color_list()
+        if professor in color_dict:
+            real_color = color_dict.get(professor)
+        return real_color
+
+    def give_professor_color(self):
+        colors = {}
+        for item in self._make_professor_items():
+            random_colors = f'#{random.randint(0, 0xFFFFFF):06x}'
+            colors[item] = random_colors
+            print(f'Profesor: {item} Color: {colors[item]}')
 
     def times_class_appears(self, list_dict, hour):
         count = 0
@@ -152,6 +203,13 @@ class IntroScreen(QWidget):
             if item.get('Hour') == hour:
                 count += 1
         return f'{hour} appears {count} times'
+
+    def get_professor_list(self, list_dict):
+        professor_list = []
+        for item in list_dict:
+            professor_list.append(item['Professor'])
+        not_repeating_professor = list(set(professor_list))
+        return not_repeating_professor
 
     def display_classes(self, list_dict):
         """Display classes in schedule"""
@@ -224,18 +282,20 @@ class IntroScreen(QWidget):
         if first_hour == next_hour and day == list_dict[next]['Day']:
             if list_days == 'Class of three hours':
                 three_hour = self.separate_hour_from_class(next_hour)
+                real_color = self.get_professor_color()
                 for hour in three_hour:
-                    self.find_replace_repeated_data(hour, day, next, list_dict)
+                    self.find_replace_repeated_data(hour, day, next, real_color, list_dict)
             elif type(list_days) == list:
+                real_color = self.get_professor_color()
                 for day in list_days:
-                    self.find_replace_repeated_data(next_hour, day, next, list_dict)
+                    self.find_replace_repeated_data(next_hour, day, next, real_color, list_dict)
 
-    def find_replace_repeated_data(self, hour, day, index, list_dict):
+    def find_replace_repeated_data(self, hour, day, index, color, list_dict):
         spot = self.findChild(QHBoxLayout, f'{hour}_{day}')
         if self.changes_classes_in_comboBox > 1 and spot.count() >= 2:
             old_label = spot.itemAt(0).widget()
             spot.removeWidget(old_label)
-        label = self.set_repeated_label_in_schedule(index, list_dict)
+        label = self.set_repeated_label_in_schedule(index, color, list_dict)
         spot.addWidget(label)
 
     def set_LMV_classes(self, color, state):
@@ -243,8 +303,9 @@ class IntroScreen(QWidget):
         days = self.dict['Day']
         hour = self.dict['Hour']
         days_list = [int(days[0]), int(days[1]), int(days[2])]
+        real_color = self.get_professor_color()
         for day in days_list:
-            self.find_hour_replace_data(hour, day, color, state)
+            self.find_hour_replace_data(hour, day, real_color, state)
         return days_list
 
     def set_MJ_classes(self, color, status):
@@ -252,8 +313,9 @@ class IntroScreen(QWidget):
         day = self.dict['Day']
         real_hour = self.dict['Hour']
         three_hour = self.separate_hour_from_class(real_hour)
+        real_color = self.get_professor_color()
         for hour in three_hour:
-            self.find_hour_replace_data(hour, day, color, status)
+            self.find_hour_replace_data(hour, day, real_color, status)
         return 'Class of three hours'
 
     def separate_hour_from_class(self, hour):

@@ -28,6 +28,32 @@ def parse_classes(classes):
     string_classes = ''.join(class_list).replace('_','').split('&')
     return string_classes
 
+def get_professors_list(subject):
+    new_subject_str = ''.join(subject)
+    pattern = r'(?P<professor>\w\w\d\d\d\d\D\w\D+)'
+    try:
+        professor_names = re.findall(pattern, new_subject_str)
+    except AttributeError:
+        professor_names = re.findall(pattern, new_subject_str)
+    professor_names_ini, professor_names_gui = _make_professor_list_readable(professor_names)
+    og_professor_names = list(set(professor_names_gui))
+    og_professor_names_ini = list(set(professor_names_ini))
+    return og_professor_names, og_professor_names_ini
+
+def _make_professor_list_readable(professor_list):
+    new_list_underscore = []
+    new_list_normal = []
+    for item in professor_list:
+        new_item = unidecode(item)
+        cleaned_string = ' '.join(new_item.split())
+        cleaned_list = cleaned_string.split(' ')
+        del cleaned_list[0]
+        recleaned_string = ' '.join(cleaned_list)
+        recleaned_string_underscore = '_'.join(cleaned_list)
+        new_list_normal.append(recleaned_string)
+        new_list_underscore.append(recleaned_string_underscore)
+    return new_list_underscore, new_list_normal
+
 def _get_subject_name(subject):
     pattern = r'(?P<suject>\D\w\D+)'
     try:
@@ -57,7 +83,7 @@ def clean_list_of_classes(list_of_classes):
     return new_subject_list
 
 def get_classes_data(class_items):
-    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
     class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
     list_dict = []
     try:
@@ -72,4 +98,3 @@ def get_classes_data(class_items):
     except TypeError:
         pass
     return list_dict
-
