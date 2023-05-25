@@ -70,8 +70,6 @@ class IntroScreen(QWidget):
 
         self.set_grid_dimmensions()
 
-        ## Schedule colors
-        self.colors = ['#98F5FF','#EEC591','#7AC5CD','#FFF8DC','#B2DFEE','#BCEE68','#8DEEEE', '#C1FFC1', '#ADFF2F']
         ## Initialize functions
         self.show()
 
@@ -196,6 +194,9 @@ class IntroScreen(QWidget):
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
             if self.dict['Day'] == '135':
+                if list_dict[index] == list_dict[-1]:
+                    repeated = None
+                    self.set_LMV_classes(repeated)
                 if self.not_in_previous_hour(index, list_dict) is not True:
                     continue
                 else:
