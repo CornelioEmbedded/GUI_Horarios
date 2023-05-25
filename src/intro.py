@@ -12,7 +12,7 @@ import configparser
 class IntroScreen(QWidget):
     def __init__(self):
         super(IntroScreen, self).__init__()
-        uic.loadUi('intro.ui', self)
+        uic.loadUi(r'ui_files\intro.ui', self)
 
         ## variables
         self.subject = None
