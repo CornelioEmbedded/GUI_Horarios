@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 import pandas as pd
-from intro import IntroScreen
+from subjects import SubjectsScreen
 
 
 class MainScreen(QMainWindow):
@@ -32,7 +32,8 @@ class MainScreen(QMainWindow):
     def subjects_button_click(self):
         spot = self.findChild(QFrame, 'frame_4')
         new_spot = QVBoxLayout(spot)
-        new_spot.addWidget(IntroScreen())
+        new_spot.addWidget(SubjectsScreen())
+        self.subjects_button.setEnabled(False)
     
     def professors_button_click(self):
         print('professors')

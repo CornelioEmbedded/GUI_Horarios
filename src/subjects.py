@@ -9,10 +9,10 @@ import random
 import configparser
 
 
-class IntroScreen(QWidget):
+class SubjectsScreen(QWidget):
     def __init__(self):
-        super(IntroScreen, self).__init__()
-        uic.loadUi(r'ui_files\intro.ui', self)
+        super(SubjectsScreen, self).__init__()
+        uic.loadUi(r'ui_files\subjects.ui', self)
 
         ## variables
         self.subject = None
@@ -358,9 +358,3 @@ class IntroScreen(QWidget):
             self.schedule_grid.setColumnStretch(column, factor)
         for row in self.rows.values():
             self.schedule_grid.setRowStretch(row, factor)
-
-
-
-app = QApplication(sys.argv) 
-window = IntroScreen() 
-app.exec_() 
