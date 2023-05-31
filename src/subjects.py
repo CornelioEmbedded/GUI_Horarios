@@ -19,25 +19,15 @@ class SubjectsScreen(QWidget):
         self.string_classes= None
 
         ## Buttons
-        self.mecatronica_button = self.findChild(QPushButton, 'mecatronica_button')
-        self.biomedica_button = self.findChild(QPushButton, 'biomedica_button')
         self.open_file_button = self.findChild(QPushButton, 'open_file_button_button')
 
         ## Combo Box Subjects
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
-        self.subject_menu.addItems(self.get_previous_data()[0])
+        self.subject_menu.addItems(self.get_previous_data())
         self.subject_menu.currentIndexChanged.connect(self._selection_change)
         self.count_selections_classes = [0] * self.subject_menu.count()
 
-        ## Combo Box Professors
-        self.subject_menu_prof = self.findChild(QComboBox, 'subject_menu_2')
-        self.subject_menu_prof.addItems(self.get_previous_data()[1])
-        self.subject_menu_prof.currentIndexChanged.connect(self._selection_change)
-        self.count_selections_classes_prof = [0] * self.subject_menu_prof.count()
-
         ## Button actions
-        self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
-        self.biomedica_button.clicked.connect(self.biomedica_button_click)
         self.open_file_button.clicked.connect(self.open_file)
 
         ## Schedule grid
@@ -92,17 +82,10 @@ class SubjectsScreen(QWidget):
             csv_file_read = pd.read_csv('csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             self.items_list = self._make_subject_items()
-            self.items_list_prof, _ = self._make_professor_items()
-            return self.items_list, self.items_list_prof
+            return self.items_list
         except FileNotFoundError:
             self.items_list = []
             return self.items_list
-
-    def mecatronica_button_click(self):
-        print('mecatronica')
-
-    def biomedica_button_click(self):
-        print('biomedica')
 
     def open_file(self):
         """Open excel file, and return a new items list from excel"""
@@ -140,6 +123,7 @@ class SubjectsScreen(QWidget):
             new_ordered_list = self.order_classes(self.list_dict)
             self.professors_list = self.get_professor_list(new_ordered_list)
             self.display_classes(new_ordered_list)
+            print('   ')
         except IndexError:
             pass
 
@@ -193,6 +177,7 @@ class SubjectsScreen(QWidget):
         """Display classes in schedule"""
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
+            print(self.dict)
             if self.dict['Day'] == '135':
                 if list_dict[index] == list_dict[-1]:
                     repeated = None
