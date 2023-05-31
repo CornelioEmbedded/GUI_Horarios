@@ -187,13 +187,17 @@ class SubjectsScreen(QWidget):
                 else:
                     self.LMV_display_labels(index, list_dict)
             else:
-                if list_dict[index] == list_dict[-1]:
+                if list_dict[index] == list_dict[-1] and len(list_dict) == 1:
                     repeated = None
                     self.set_MJ_classes(repeated)
                 if self.not_in_previous_hour(index, list_dict) is not True:
                     continue
                 else:
-                    self.MJ_display_labels(index, list_dict)
+                    if list_dict[index] == list_dict[-1]:
+                        repeated = None
+                        self.set_MJ_classes(repeated)
+                    else:
+                        self.MJ_display_labels(index, list_dict)
 
     def LMV_display_labels(self, index, list_dict):
         if self.not_repeated_hour(index, list_dict) is not True:
@@ -320,14 +324,17 @@ class SubjectsScreen(QWidget):
 
     def order_classes_by_day(self, list_dict):
         list_135 = []
-        list_24 = []
+        list_2 = []
+        list_4 = []
 
         for dict in list_dict:
             if '135' in dict['Day']:
                 list_135.append(dict)
-            elif '2' in dict['Day'] or '4' in dict['Day']:
-                list_24.append(dict)
-        new_order = list_135 + list_24
+            elif '2' in dict['Day']:
+                list_2.append(dict)
+            elif '4' in dict['Day']:
+                list_4.append(dict)
+        new_order = list_135 + list_2 + list_4
         return new_order
 
     def order_classes(self, list_dict):
