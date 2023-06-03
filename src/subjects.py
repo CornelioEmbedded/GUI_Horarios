@@ -60,9 +60,6 @@ class SubjectsScreen(QWidget):
 
         self.set_grid_dimmensions()
 
-        ## Initialize functions
-        self.show()
-
 ################# SETUP METHODS ##########################
 
     def set_default_colors(self):
