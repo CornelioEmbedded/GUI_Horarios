@@ -123,7 +123,6 @@ class SubjectsScreen(QWidget):
             new_ordered_list = self.order_classes(self.list_dict)
             self.professors_list = self.get_professor_list(new_ordered_list)
             self.display_classes(new_ordered_list)
-            print('   ')
         except IndexError:
             pass
 
@@ -177,7 +176,6 @@ class SubjectsScreen(QWidget):
         """Display classes in schedule"""
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
-            print(self.dict)
             if self.dict['Day'] == '135':
                 if list_dict[index] == list_dict[-1]:
                     repeated = None
@@ -187,17 +185,16 @@ class SubjectsScreen(QWidget):
                 else:
                     self.LMV_display_labels(index, list_dict)
             else:
-                if list_dict[index] == list_dict[-1] and len(list_dict) == 1:
-                    repeated = None
-                    self.set_MJ_classes(repeated)
-                if self.not_in_previous_hour(index, list_dict) is not True:
-                    continue
-                else:
-                    if list_dict[index] == list_dict[-1]:
+                if list_dict[index] == list_dict[-1]:
+                    if index > 1 and self.not_previous_hour_day(index, list_dict):
+                        pass
+                    else:
                         repeated = None
                         self.set_MJ_classes(repeated)
-                    else:
-                        self.MJ_display_labels(index, list_dict)
+                if self.not_previous_hour_day(index, list_dict):
+                    continue
+                else:
+                    self.MJ_display_labels(index, list_dict)
 
     def LMV_display_labels(self, index, list_dict):
         if self.not_repeated_hour(index, list_dict) is not True:
@@ -217,6 +214,12 @@ class SubjectsScreen(QWidget):
             repeated = False
             list_days = self.set_MJ_classes(repeated)
 
+    def not_previous_hour_day(self, index, list_dict):
+        state = False
+        if self.not_in_previous_hour(index, list_dict) is not True and self.not_in_previous_day(index, list_dict) is not True:
+            state = True
+        return state
+
     def not_repeated_hour(self, index, list_dict):
         next = index + 1
         first_hour = self.dict['Hour']
@@ -232,6 +235,15 @@ class SubjectsScreen(QWidget):
         previous_hour = list_dict[previous]['Hour']
         state = False
         if actual_hour != previous_hour:
+            state = True
+        return state
+
+    def not_in_previous_day(self, index, list_dict):
+        previous = index - 1
+        actual_day = self.dict['Day']
+        previous_day = list_dict[previous]['Day']
+        state = False
+        if actual_day != previous_day:
             state = True
         return state
 
