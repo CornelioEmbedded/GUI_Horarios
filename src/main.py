@@ -37,7 +37,7 @@ class MainScreen(QMainWindow):
         self.clean_button.clicked.connect(self.clean_gui)
         
         ## Initialize functions
-        self.items_list = self.get_previous_data()
+        self.items_list, self.professors_list = self.get_previous_data()
         self.show()
     
     def subjects_button_click(self):
@@ -78,14 +78,15 @@ class MainScreen(QMainWindow):
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
         try:
-            csv_file_read = pd.read_csv('csv_file.csv')
+            csv_file_read = pd.read_csv(r'..\csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
             professors_item_list, _ = self._make_professor_items()
             return items_list, professors_item_list
         except FileNotFoundError:
             items_list = []
-            return items_list
+            professors_item_list = []
+            return items_list, professors_item_list
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
