@@ -42,7 +42,8 @@ class MainScreen(QMainWindow):
     def subjects_button_click(self):
         spot = self.findChild(QFrame, 'frame_4')
         new_spot = QVBoxLayout(spot)
-        new_spot.addWidget(SubjectsScreen(self.items_list, self.string_classes))
+        new_items_list = self.get_previous_data()
+        new_spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
         self.subjects_button.setEnabled(False)
     
     def professors_button_click(self):
@@ -73,7 +74,7 @@ class MainScreen(QMainWindow):
         """"Gets previous data from past csv_file"""
         try:
             csv_file_read = pd.read_csv('csv_file.csv')
-            self.string_classes = self._parsing_csv_file(csv_file_read)
+            self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
             return items_list
         except FileNotFoundError:
@@ -83,8 +84,7 @@ class MainScreen(QMainWindow):
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
-        string_classes = convertion.parse_classes(csv_dict)
-        return string_classes
+        self.string_classes = convertion.parse_classes(csv_dict)
 
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
