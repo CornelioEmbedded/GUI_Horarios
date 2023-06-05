@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 import sys
 import pandas as pd
 from subjects import SubjectsScreen
+from professors import ProfessorsScreen
 import convertion
 import configparser
 import random
@@ -42,12 +43,16 @@ class MainScreen(QMainWindow):
     def subjects_button_click(self):
         spot = self.findChild(QFrame, 'frame_4')
         new_spot = QVBoxLayout(spot)
-        new_items_list = self.get_previous_data()
+        new_items_list, _ = self.get_previous_data()
         new_spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
         self.subjects_button.setEnabled(False)
     
     def professors_button_click(self):
-        print('professors')
+        spot = self.findChild(QFrame, 'frame_4')
+        new_spot = QVBoxLayout(spot)
+        _, new_items_list = self.get_previous_data()
+        new_spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
+        self.subjects_button.setEnabled(False)
     
     def modifying_button_click(self):
         print('modifying')
@@ -76,7 +81,8 @@ class MainScreen(QMainWindow):
             csv_file_read = pd.read_csv('csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
-            return items_list
+            professors_item_list, _ = self._make_professor_items()
+            return items_list, professors_item_list
         except FileNotFoundError:
             items_list = []
             return items_list
