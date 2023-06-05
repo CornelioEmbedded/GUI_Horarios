@@ -9,36 +9,23 @@ import random
 import configparser
 
 
-class IntroScreen(QWidget):
-    def __init__(self):
-        super(IntroScreen, self).__init__()
-        uic.loadUi('intro.ui', self)
+class SubjectsScreen(QWidget):
+    def __init__(self, comboBox_items, string_classes):
+        super(SubjectsScreen, self).__init__()
+        uic.loadUi(r'ui_files\subjects.ui', self)
+
+        ##inputs
+        self.comboBox_items = comboBox_items
+        self.string_classes= string_classes
 
         ## variables
         self.subject = None
-        self.string_classes= None
-
-        ## Buttons
-        self.mecatronica_button = self.findChild(QPushButton, 'mecatronica_button')
-        self.biomedica_button = self.findChild(QPushButton, 'biomedica_button')
-        self.open_file_button = self.findChild(QPushButton, 'open_file_button_button')
 
         ## Combo Box Subjects
         self.subject_menu = self.findChild(QComboBox, 'subject_menu')
-        self.subject_menu.addItems(self.get_previous_data()[0])
+        self.subject_menu.addItems(self.comboBox_items)
         self.subject_menu.currentIndexChanged.connect(self._selection_change)
         self.count_selections_classes = [0] * self.subject_menu.count()
-
-        ## Combo Box Professors
-        self.subject_menu_prof = self.findChild(QComboBox, 'subject_menu_2')
-        self.subject_menu_prof.addItems(self.get_previous_data()[1])
-        self.subject_menu_prof.currentIndexChanged.connect(self._selection_change)
-        self.count_selections_classes_prof = [0] * self.subject_menu_prof.count()
-
-        ## Button actions
-        self.mecatronica_button.clicked.connect(self.mecatronica_button_click)
-        self.biomedica_button.clicked.connect(self.biomedica_button_click)
-        self.open_file_button.clicked.connect(self.open_file)
 
         ## Schedule grid
         self.schedule_grid = self.findChild(QGridLayout, 'grid_schedule')
@@ -70,65 +57,8 @@ class IntroScreen(QWidget):
 
         self.set_grid_dimmensions()
 
-        ## Initialize functions
-        self.show()
-
 ################# SETUP METHODS ##########################
 
-    def set_default_colors(self):
-        config = configparser.ConfigParser()
-        config.add_section('professors_colors')
-        _, professors_names = self._make_professor_items()
-        for item in professors_names:
-            color = f'#{random.randint(0, 0xFFFFFF):06x}'  # Assigning random colors
-            config.set('professors_colors',  item, color)
-
-            with open(r'parameters\config.ini', 'w') as configfile:
-                config.write(configfile)
-
-    def get_previous_data(self):
-        """"Gets previous data from past csv_file"""
-        try:
-            csv_file_read = pd.read_csv('csv_file.csv')
-            self._parsing_csv_file(csv_file_read)
-            self.items_list = self._make_subject_items()
-            self.items_list_prof, _ = self._make_professor_items()
-            return self.items_list, self.items_list_prof
-        except FileNotFoundError:
-            self.items_list = []
-            return self.items_list
-
-    def mecatronica_button_click(self):
-        print('mecatronica')
-
-    def biomedica_button_click(self):
-        print('biomedica')
-
-    def open_file(self):
-        """Open excel file, and return a new items list from excel"""
-        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        csv_file = convertion.from_excel_to_csv(file)
-        self._parsing_csv_file(csv_file)
-        self.new_item_list = self._make_subject_items()
-        self.new_item_list_prof, _ = self._make_professor_items()
-        self.set_default_colors()
-        self.subject_menu.addItems(self.new_item_list)
-        self.subject_menu_prof.addItems(self.new_item_list_prof)
-
-    def _parsing_csv_file(self, csv_file):
-        """Parse in csv file to return string of classes"""
-        csv_dict = convertion.get_dict_from_csv(csv_file)
-        self.string_classes = convertion.parse_classes(csv_dict)
-
-    def _make_professor_items(self):
-        self.professor_list, professor_list_ini = convertion.get_professors_list(self.string_classes)
-        return self.professor_list, professor_list_ini
-    
-    def _make_subject_items(self):
-        """Convert string classes into a list to use in items"""
-        self.subject_list = convertion.get_subject_list(self.string_classes)
-        return self.subject_list
-    
     def _selection_change(self, index):
         """Select from items combo box a subject and print it in GUI"""
         self.changes_classes_in_comboBox = self.times_selection_changed(index)
@@ -203,9 +133,12 @@ class IntroScreen(QWidget):
                     self.LMV_display_labels(index, list_dict)
             else:
                 if list_dict[index] == list_dict[-1]:
-                    repeated = None
-                    self.set_MJ_classes(repeated)
-                if self.not_in_previous_hour(index, list_dict) is not True:
+                    if index > 1 and self.not_previous_hour_day(index, list_dict):
+                        pass
+                    else:
+                        repeated = None
+                        self.set_MJ_classes(repeated)
+                if self.not_previous_hour_day(index, list_dict):
                     continue
                 else:
                     self.MJ_display_labels(index, list_dict)
@@ -228,6 +161,12 @@ class IntroScreen(QWidget):
             repeated = False
             list_days = self.set_MJ_classes(repeated)
 
+    def not_previous_hour_day(self, index, list_dict):
+        state = False
+        if self.not_in_previous_hour(index, list_dict) is not True and self.not_in_previous_day(index, list_dict) is not True:
+            state = True
+        return state
+
     def not_repeated_hour(self, index, list_dict):
         next = index + 1
         first_hour = self.dict['Hour']
@@ -243,6 +182,15 @@ class IntroScreen(QWidget):
         previous_hour = list_dict[previous]['Hour']
         state = False
         if actual_hour != previous_hour:
+            state = True
+        return state
+
+    def not_in_previous_day(self, index, list_dict):
+        previous = index - 1
+        actual_day = self.dict['Day']
+        previous_day = list_dict[previous]['Day']
+        state = False
+        if actual_day != previous_day:
             state = True
         return state
 
@@ -335,14 +283,17 @@ class IntroScreen(QWidget):
 
     def order_classes_by_day(self, list_dict):
         list_135 = []
-        list_24 = []
+        list_2 = []
+        list_4 = []
 
         for dict in list_dict:
             if '135' in dict['Day']:
                 list_135.append(dict)
-            elif '2' in dict['Day'] or '4' in dict['Day']:
-                list_24.append(dict)
-        new_order = list_135 + list_24
+            elif '2' in dict['Day']:
+                list_2.append(dict)
+            elif '4' in dict['Day']:
+                list_4.append(dict)
+        new_order = list_135 + list_2 + list_4
         return new_order
 
     def order_classes(self, list_dict):
@@ -358,9 +309,3 @@ class IntroScreen(QWidget):
             self.schedule_grid.setColumnStretch(column, factor)
         for row in self.rows.values():
             self.schedule_grid.setRowStretch(row, factor)
-
-
-
-app = QApplication(sys.argv) 
-window = IntroScreen() 
-app.exec_() 
