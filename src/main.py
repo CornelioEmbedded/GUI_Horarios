@@ -38,6 +38,7 @@ class MainScreen(QMainWindow):
         
         ## Initialize functions
         self.items_list, self.professors_list = self.get_previous_data()
+        convertion._get_professors_dict(self.professors_list, self.string_classes)
         self.show()
     
     def subjects_button_click(self):
@@ -100,6 +101,8 @@ class MainScreen(QMainWindow):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
+        
+        # print(convertion.parse_professors(csv_dict))
 
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""
