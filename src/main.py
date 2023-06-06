@@ -41,18 +41,16 @@ class MainScreen(QMainWindow):
         self.show()
     
     def subjects_button_click(self):
-        spot = self.findChild(QFrame, 'frame_4')
-        new_spot = QVBoxLayout(spot)
+        spot = self.findChild(QVBoxLayout, 'main_spot')
         new_items_list, _ = self.get_previous_data()
-        new_spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
+        spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
         self.subjects_button.setEnabled(False)
     
     def professors_button_click(self):
-        spot = self.findChild(QFrame, 'frame_4')
-        new_spot = QVBoxLayout(spot)
+        spot = self.findChild(QVBoxLayout, 'main_spot')
         _, new_items_list = self.get_previous_data()
-        new_spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
-        self.subjects_button.setEnabled(False)
+        spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
+        self.professor_button.setEnabled(False)
     
     def modifying_button_click(self):
         print('modifying')
@@ -64,7 +62,17 @@ class MainScreen(QMainWindow):
         print('configuration')
 
     def clean_gui(self):
-        pass
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        old_label = spot.itemAt(0).widget()
+        spot.removeWidget(old_label)
+        self._enable_all_buttons()
+
+    def _enable_all_buttons(self):
+        self.subjects_button.setEnabled(True)
+        self.professor_button.setEnabled(True)
+        self.modifying_button.setEnabled(True)
+        self.information_button.setEnabled(True)
+        self.configuration_button.setEnabled(True)
 
     def open_file(self):
         """Open excel file, and return a new items list from excel"""
