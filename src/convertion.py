@@ -26,7 +26,38 @@ def parse_classes(classes):
                 class_list.append(items)
                 class_list.append('\n')
     string_classes = ''.join(class_list).replace('_','').split('&')
+    # for i in string_classes:
+    #     print(i)
     return string_classes
+
+def _get_subject_name(subject):
+    pattern = r'(?P<suject>\D\w\D+)'
+    try:
+        subject_name = re.search(pattern, subject).group()
+    except AttributeError:
+        subject_name = re.search(pattern, subject)
+    return subject_name
+
+def get_subject_list(subjects):
+    subject_list = []
+    for subject in subjects:
+        subject_list.append(_get_subject_name(subject))
+    return subject_list
+
+def find_class(subject, string_classes):
+    for string in string_classes:
+        if subject in string:
+            ordered_string = string.split(_get_subject_name(subject))[1]
+            list_of_classes = ordered_string.split('\n')
+            return list_of_classes, ordered_string
+
+def parse_professors(classes):
+    professors_list = []
+    for item in classes.values():
+        if type(item) == str:
+            if '420' in item or '401' in item:
+                if 'ESPAÑOL'in item or 'INGLES' in item:
+                    print(item)
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
@@ -54,27 +85,19 @@ def _make_professor_list_readable(professor_list):
         new_list_underscore.append(recleaned_string_underscore)
     return new_list_underscore, new_list_normal
 
-def _get_subject_name(subject):
-    pattern = r'(?P<suject>\D\w\D+)'
-    try:
-        subject_name = re.search(pattern, subject).group()
-    except AttributeError:
-        subject_name = re.search(pattern, subject)
-    return subject_name
-
-def get_subject_list(subjects):
-    subject_list = []
-    for subject in subjects:
-        subject_list.append(_get_subject_name(subject))
-    return subject_list
-
-def find_class(subject, string_classes):
+def find_professor_classes(professor, string_classes):
+    pattern_professor = r' (?P<professor>\w\w\d\d\d\d\D\w\D+)'
+    pattern_subject = r'(?P<subject>\D\w\D+)'
     for string in string_classes:
-        if subject in string:
-            ordered_string = string.split(_get_subject_name(subject))[1]
-            # new_ordered_str = " ".join(ordered_string.split())
-            list_of_classes = ordered_string.split('\n')
-            return list_of_classes, ordered_string
+        " ".join(string.split())
+        # print('----------------------')
+        try:
+            subject_name = re.search(pattern_subject, string).group()
+            professor_name = re.findall(pattern_professor, string)
+        except AttributeError:
+            subject_name = re.search(pattern_subject, string)
+            professor_name = re.findall(pattern_professor, string)
+        print(f'{subject_name} and {professor_name}')
 
 def clean_list_of_classes(list_of_classes):
     new_subject_list = []
@@ -98,3 +121,13 @@ def get_classes_data(class_items):
     except TypeError:
         pass
     return list_dict
+
+
+
+# def _get_professors_dict(professors_list, string_classes):
+#     dict = {}
+#     for item in professors_list:
+#         dict[item] = ''
+    
+#     for item in string_classes:
+#         if dict

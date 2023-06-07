@@ -38,7 +38,7 @@ class MainScreen(QMainWindow):
         
         ## Initialize functions
         self.items_list, self.professors_list = self.get_previous_data()
-        convertion._get_professors_dict(self.professors_list, self.string_classes)
+        # convertion._get_professors_dict(self.professors_list, self.string_classes)
         self.show()
     
     def subjects_button_click(self):

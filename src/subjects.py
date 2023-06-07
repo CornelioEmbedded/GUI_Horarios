@@ -12,7 +12,7 @@ import configparser
 class SubjectsScreen(QWidget):
     def __init__(self, comboBox_items, string_classes):
         super(SubjectsScreen, self).__init__()
-        uic.loadUi(r'ui_files\subjects.ui', self)
+        uic.loadUi(r'ui_files\schedule_grid.ui', self)
 
         ##inputs
         self.comboBox_items = comboBox_items
@@ -67,6 +67,7 @@ class SubjectsScreen(QWidget):
             list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
             self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
             self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
+            # print(self.list_dict)
             new_ordered_list = self.order_classes(self.list_dict)
             self.professors_list = self.get_professor_list(new_ordered_list)
             self.display_classes(new_ordered_list)
