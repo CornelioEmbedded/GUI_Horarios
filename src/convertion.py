@@ -32,8 +32,6 @@ def parse_classes(classes):
     #     print(i)
     return string_classes
 
-<<<<<<< HEAD
-=======
 # Main functions for getting data from SUBJECTS
 
 def find_class(subject, string_classes):
@@ -68,7 +66,6 @@ def get_classes_data(class_items):
 
 # Support functions for SUBJECTS
 
->>>>>>> 878abe12820fe1942ab6d49494ad8d15b39fff23
 def _get_subject_name(subject):
     pattern = r'(?P<suject>\D\w\D+)'
     try:
