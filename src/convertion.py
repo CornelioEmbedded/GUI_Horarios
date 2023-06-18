@@ -4,6 +4,8 @@ from unidecode import unidecode
 
 NAME_COLUMN = '        09/01/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
 
+# Main Function for Parsing Data
+
 def from_excel_to_csv(excel_file):
     read_excel = pd.read_excel(excel_file)
     read_excel.to_csv(r'..\csv_file.csv', index=None, header=True)
@@ -30,6 +32,43 @@ def parse_classes(classes):
     #     print(i)
     return string_classes
 
+<<<<<<< HEAD
+=======
+# Main functions for getting data from SUBJECTS
+
+def find_class(subject, string_classes):
+    for string in string_classes:
+        if subject in string:
+            ordered_string = string.split(_get_subject_name(subject))[1]
+            list_of_classes = ordered_string.split('\n')
+            return list_of_classes, ordered_string
+
+def clean_list_of_classes(list_of_classes):
+    new_subject_list = []
+    for subject in list_of_classes:
+        new_subject_list.append(" ".join(subject.split()))
+    return new_subject_list
+
+def get_classes_data(class_items):
+    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
+    list_dict = []
+    try:
+        for class_item in class_items:
+            subject = unidecode(class_item)
+            try:
+                parsed_class_data = list(re.search(pattern, subject).groups())
+            except AttributeError:
+                parsed_class_data = list(re.search(pattern,  subject))        
+            class_dict = dict(zip(class_data, parsed_class_data))
+            list_dict.append(class_dict)
+    except TypeError:
+        pass
+    return list_dict
+
+# Support functions for SUBJECTS
+
+>>>>>>> 878abe12820fe1942ab6d49494ad8d15b39fff23
 def _get_subject_name(subject):
     pattern = r'(?P<suject>\D\w\D+)'
     try:
@@ -44,20 +83,7 @@ def get_subject_list(subjects):
         subject_list.append(_get_subject_name(subject))
     return subject_list
 
-def find_class(subject, string_classes):
-    for string in string_classes:
-        if subject in string:
-            ordered_string = string.split(_get_subject_name(subject))[1]
-            list_of_classes = ordered_string.split('\n')
-            return list_of_classes, ordered_string
-
-def parse_professors(classes):
-    professors_list = []
-    for item in classes.values():
-        if type(item) == str:
-            if '420' in item or '401' in item:
-                if 'ESPAÑOL'in item or 'INGLES' in item:
-                    print(item)
+# Main functions for getting data from SUBJECTS
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
@@ -84,6 +110,7 @@ def _make_professor_list_readable(professor_list):
         new_list_normal.append(recleaned_string)
         new_list_underscore.append(recleaned_string_underscore)
     return new_list_underscore, new_list_normal
+<<<<<<< HEAD
 
 def find_professor_classes(professor, string_classes):
     pattern_professor = r' (?P<professor>\w\w\d\d\d\d\D\w\D+)'
@@ -131,3 +158,5 @@ def get_classes_data(class_items):
     
 #     for item in string_classes:
 #         if dict
+=======
+>>>>>>> 878abe12820fe1942ab6d49494ad8d15b39fff23
