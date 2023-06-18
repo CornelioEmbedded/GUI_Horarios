@@ -80,7 +80,7 @@ def get_subject_list(subjects):
         subject_list.append(_get_subject_name(subject))
     return subject_list
 
-# Main functions for getting data from SUBJECTS
+# Main functions for getting data from PROFESSORS
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
@@ -90,8 +90,9 @@ def get_professors_list(subject):
     except AttributeError:
         professor_names = re.findall(pattern, new_subject_str)
     professor_names_ini, professor_names_gui = _make_professor_list_readable(professor_names)
-    og_professor_names = list(set(professor_names_gui))
-    og_professor_names_ini = list(set(professor_names_ini))
+    og_professor_names = sorted(list(set(professor_names_gui)))
+    og_professor_names_ini = sorted(list(set(professor_names_ini)))
+    print(og_professor_names_ini)
     return og_professor_names, og_professor_names_ini
 
 def _make_professor_list_readable(professor_list):
