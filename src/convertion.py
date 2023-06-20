@@ -3,6 +3,7 @@ import re
 from unidecode import unidecode
 
 NAME_COLUMN = '        09/01/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
+MAIN_PATTERN = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
 
 # Main Function for Parsing Data
 
@@ -47,7 +48,7 @@ def clean_list_of_classes(list_of_classes):
     return new_subject_list
 
 def get_classes_data(class_items):
-    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    pattern = MAIN_PATTERN
     class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
     list_dict = []
     try:
@@ -87,7 +88,7 @@ def get_subject_list(subjects):
 # Main functions for getting data from PROFESSORS
 
 def find_professors(professor, string_classes):
-    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    pattern = MAIN_PATTERN
     class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
     list_dict = []
     for string in string_classes:
@@ -99,20 +100,19 @@ def find_professors(professor, string_classes):
                 parsed_class_data = list(re.findall(pattern, cleaned_string).groups())
             except AttributeError:
                 parsed_class_data = list(re.findall(pattern, cleaned_string))
-            # print(parsed_class_data)
             for i in parsed_class_data:
                 class_dict = dict(zip(class_data, i))
                 list_dict.append(class_dict)
-    for i in list_dict:
-        print(i)
-    #         # class_dict = dict(zip(class_data, parsed_class_data))
-    #         list_dict.append(class_dict)
+    _get_professors_hours(professor, list_dict)
+            
     # for i in list_dict:
     #     print(i)
-    # print(list_dict)
-            # print(cleaned_string)
-            # print(cleaned_string)
-            # print('________')
+
+def _get_professors_hours(professor, list_dict):
+    for item in list_dict:
+        if professor in item['Professor']:
+            print(item)
+
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
