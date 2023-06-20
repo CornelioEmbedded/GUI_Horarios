@@ -28,8 +28,6 @@ def parse_classes(classes):
                 class_list.append(items)
                 class_list.append('\n')
     string_classes = ''.join(class_list).replace('_','').split('&')
-    # for i in string_classes:
-    #     print(i)
     return string_classes
 
 # Main functions for getting data from SUBJECTS
@@ -37,6 +35,7 @@ def parse_classes(classes):
 def find_class(subject, string_classes):
     for string in string_classes:
         if subject in string:
+            print(string)
             ordered_string = string.split(_get_subject_name(subject))[1]
             list_of_classes = ordered_string.split('\n')
             return list_of_classes, ordered_string
@@ -86,6 +85,34 @@ def get_subject_list(subjects):
     return sorted_list
 
 # Main functions for getting data from PROFESSORS
+
+def find_professors(professor, string_classes):
+    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+    class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
+    list_dict = []
+    for string in string_classes:
+        cleaned_string = unidecode(string)
+        if professor in cleaned_string:
+            cleaned_string = ' '.join(cleaned_string.split())
+            subject = _get_subject_name(cleaned_string)
+            try:
+                parsed_class_data = list(re.findall(pattern, cleaned_string).groups())
+            except AttributeError:
+                parsed_class_data = list(re.findall(pattern, cleaned_string))
+            # print(parsed_class_data)
+            for i in parsed_class_data:
+                class_dict = dict(zip(class_data, i))
+                list_dict.append(class_dict)
+    for i in list_dict:
+        print(i)
+    #         # class_dict = dict(zip(class_data, parsed_class_data))
+    #         list_dict.append(class_dict)
+    # for i in list_dict:
+    #     print(i)
+    # print(list_dict)
+            # print(cleaned_string)
+            # print(cleaned_string)
+            # print('________')
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
