@@ -100,24 +100,21 @@ def find_professors(professor, string_classes):
                 parsed_class_data = list(re.findall(pattern, cleaned_string).groups())
             except AttributeError:
                 parsed_class_data = list(re.findall(pattern, cleaned_string))
-            # print(parsed_class_data)
             for i in parsed_class_data:
                 new_parsed = list(i)
                 new_parsed.insert(0, subject)
                 new_parsed = tuple(new_parsed)
-                # print(new_parsed)
                 class_dict = dict(zip(class_data, tuple(new_parsed)))
                 list_dict.append(class_dict)
-    _get_professors_hours(professor, list_dict)
-            
-    # for i in list_dict:
-    #     print(i)
+    professor_list = _get_professors_hours(professor, list_dict)
+    return professor_list
 
 def _get_professors_hours(professor, list_dict):
+    professor_hours = []
     for item in list_dict:
         if professor in item['Professor']:
-            print(item)
-
+            professor_hours.append(item)
+    return professor_hours        
 
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
