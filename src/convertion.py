@@ -77,8 +77,13 @@ def _get_subject_name(subject):
 def get_subject_list(subjects):
     subject_list = []
     for subject in subjects:
-        subject_list.append(_get_subject_name(subject))
-    return subject_list
+        if subject == '':
+            pass
+        else:
+            subject_list.append(_get_subject_name(subject))
+    sorted_list = sorted(subject_list)
+    sorted_list.insert(0, '')
+    return sorted_list
 
 # Main functions for getting data from PROFESSORS
 
@@ -92,7 +97,7 @@ def get_professors_list(subject):
     professor_names_ini, professor_names_gui = _make_professor_list_readable(professor_names)
     og_professor_names = sorted(list(set(professor_names_gui)))
     og_professor_names_ini = sorted(list(set(professor_names_ini)))
-    print(og_professor_names_ini)
+    og_professor_names.insert(0, '')
     return og_professor_names, og_professor_names_ini
 
 def _make_professor_list_readable(professor_list):
