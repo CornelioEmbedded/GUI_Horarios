@@ -89,7 +89,7 @@ def get_subject_list(subjects):
 
 def find_professors(professor, string_classes):
     pattern = MAIN_PATTERN
-    class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
+    class_data = ('Subject','Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
     list_dict = []
     for string in string_classes:
         cleaned_string = unidecode(string)
@@ -100,8 +100,13 @@ def find_professors(professor, string_classes):
                 parsed_class_data = list(re.findall(pattern, cleaned_string).groups())
             except AttributeError:
                 parsed_class_data = list(re.findall(pattern, cleaned_string))
+            # print(parsed_class_data)
             for i in parsed_class_data:
-                class_dict = dict(zip(class_data, i))
+                new_parsed = list(i)
+                new_parsed.insert(0, subject)
+                new_parsed = tuple(new_parsed)
+                # print(new_parsed)
+                class_dict = dict(zip(class_data, tuple(new_parsed)))
                 list_dict.append(class_dict)
     _get_professors_hours(professor, list_dict)
             
