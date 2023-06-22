@@ -160,6 +160,11 @@
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="main_spot"/>
+          </item>
+         </layout>
         </widget>
        </item>
       </layout>

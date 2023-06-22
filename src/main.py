@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 import sys
 import pandas as pd
 from subjects import SubjectsScreen
+from professors import ProfessorsScreen
 import convertion
 import configparser
 import random
@@ -36,18 +37,23 @@ class MainScreen(QMainWindow):
         self.clean_button.clicked.connect(self.clean_gui)
         
         ## Initialize functions
-        self.items_list = self.get_previous_data()
+        self.items_list, self.professors_list = self.get_previous_data()
+        # convertion._get_professors_dict(self.professors_list, self.string_classes)
         self.show()
     
     def subjects_button_click(self):
-        spot = self.findChild(QFrame, 'frame_4')
-        new_spot = QVBoxLayout(spot)
-        new_items_list = self.get_previous_data()
-        new_spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        new_items_list, _ = self.get_previous_data()
+        spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
         self.subjects_button.setEnabled(False)
+        self.professor_button.setEnabled(False)
     
     def professors_button_click(self):
-        print('professors')
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        _, new_items_list = self.get_previous_data()
+        spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
+        self.professor_button.setEnabled(False)
+        self.subjects_button.setEnabled(False)
     
     def modifying_button_click(self):
         print('modifying')
@@ -59,7 +65,17 @@ class MainScreen(QMainWindow):
         print('configuration')
 
     def clean_gui(self):
-        pass
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        old_label = spot.itemAt(0).widget()
+        spot.removeWidget(old_label)
+        self._enable_all_buttons()
+
+    def _enable_all_buttons(self):
+        self.subjects_button.setEnabled(True)
+        self.professor_button.setEnabled(True)
+        self.modifying_button.setEnabled(True)
+        self.information_button.setEnabled(True)
+        self.configuration_button.setEnabled(True)
 
     def open_file(self):
         """Open excel file, and return a new items list from excel"""
@@ -73,18 +89,22 @@ class MainScreen(QMainWindow):
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
         try:
-            csv_file_read = pd.read_csv('csv_file.csv')
+            csv_file_read = pd.read_csv(r'..\csv_file.csv')
             self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
-            return items_list
+            professors_item_list, _ = self._make_professor_items()
+            return items_list, professors_item_list
         except FileNotFoundError:
             items_list = []
-            return items_list
+            professors_item_list = []
+            return items_list, professors_item_list
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
+        
+        # print(convertion.parse_professors(csv_dict))
 
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""

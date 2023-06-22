@@ -9,9 +9,9 @@ import random
 import configparser
 
 
-class SubjectsScreen(QWidget):
+class ProfessorsScreen(QWidget):
     def __init__(self, comboBox_items, string_classes):
-        super(SubjectsScreen, self).__init__()
+        super(ProfessorsScreen, self).__init__()
         uic.loadUi(r'ui_files\schedule_grid.ui', self)
 
         ##inputs
@@ -64,13 +64,8 @@ class SubjectsScreen(QWidget):
         self.changes_classes_in_comboBox = self.times_selection_changed(index)
         try:
             self.clean_data_from_schedule()
-            list_of_classes, current_text = convertion.find_class(self.subject_menu.currentText(), self.string_classes)
-            self.cleaned_list_of_classes = convertion.clean_list_of_classes(list_of_classes)
-            self.list_dict = convertion.get_classes_data(self.cleaned_list_of_classes)
-            # print(self.list_dict)
-            new_ordered_list = self.order_classes(self.list_dict)
-            self.professors_list = self.get_professor_list(new_ordered_list)
-            self.display_classes(new_ordered_list)
+            self.list_dict = convertion.find_professors(self.subject_menu.currentText(), self.string_classes)
+            self.display_classes(self.list_dict)
         except IndexError:
             pass
 
@@ -84,14 +79,14 @@ class SubjectsScreen(QWidget):
 
     def set_label_in_schedule(self):
         """"Set Professor name in schedule"""
-        professor_list = self.dict['Professor'].split(' ')
-        short_name = ' '.join(professor_list[0:3:2])
-        self.label = QLabel(short_name)
-        self.set_color_class(professor_list)
+        subject = self.dict['Subject']
+        professor = self.dict['Professor'].split(' ')
+        self.label = QLabel(subject)
+        self.set_color_class(professor)
         return self.label
 
     def set_repeated_label_in_schedule(self, index, list_dict):
-        professor_list = list_dict[index]['Professor'].split(' ')
+        professor_list = list_dict[index]['Subject'].split(' ')
         short_name = ' '.join(professor_list[0:3:2])
         self.label = QLabel(short_name)
         self.set_color_class(professor_list)

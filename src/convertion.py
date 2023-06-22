@@ -3,10 +3,13 @@ import re
 from unidecode import unidecode
 
 NAME_COLUMN = '        09/01/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
+MAIN_PATTERN = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
+
+# Main Function for Parsing Data
 
 def from_excel_to_csv(excel_file):
     read_excel = pd.read_excel(excel_file)
-    read_excel.to_csv('csv_file.csv', index=None, header=True)
+    read_excel.to_csv(r'..\csv_file.csv', index=None, header=True)
     csv_file = pd.DataFrame(pd.read_csv('csv_file.csv'))
     return csv_file
 
@@ -28,6 +31,90 @@ def parse_classes(classes):
     string_classes = ''.join(class_list).replace('_','').split('&')
     return string_classes
 
+# Main functions for getting data from SUBJECTS
+
+def find_class(subject, string_classes):
+    for string in string_classes:
+        if subject in string:
+            ordered_string = string.split(_get_subject_name(subject))[1]
+            list_of_classes = ordered_string.split('\n')
+            return list_of_classes, ordered_string
+
+def clean_list_of_classes(list_of_classes):
+    new_subject_list = []
+    for subject in list_of_classes:
+        new_subject_list.append(" ".join(subject.split()))
+    return new_subject_list
+
+def get_classes_data(class_items):
+    pattern = MAIN_PATTERN
+    class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
+    list_dict = []
+    try:
+        for class_item in class_items:
+            subject = unidecode(class_item)
+            try:
+                parsed_class_data = list(re.search(pattern, subject).groups())
+            except AttributeError:
+                parsed_class_data = list(re.search(pattern,  subject))        
+            class_dict = dict(zip(class_data, parsed_class_data))
+            list_dict.append(class_dict)
+    except TypeError:
+        pass
+    return list_dict
+
+# Support functions for SUBJECTS
+
+def _get_subject_name(subject):
+    pattern = r'(?P<suject>\D\w\D+)'
+    try:
+        subject_name = re.search(pattern, subject).group()
+    except AttributeError:
+        subject_name = re.search(pattern, subject)
+    return subject_name
+
+def get_subject_list(subjects):
+    subject_list = []
+    for subject in subjects:
+        if subject == '':
+            pass
+        else:
+            subject_list.append(_get_subject_name(subject))
+    sorted_list = sorted(subject_list)
+    sorted_list.insert(0, '')
+    return sorted_list
+
+# Main functions for getting data from PROFESSORS
+
+def find_professors(professor, string_classes):
+    pattern = MAIN_PATTERN
+    class_data = ('Subject','Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
+    list_dict = []
+    for string in string_classes:
+        cleaned_string = unidecode(string)
+        if professor in cleaned_string:
+            cleaned_string = ' '.join(cleaned_string.split())
+            subject = _get_subject_name(cleaned_string)
+            try:
+                parsed_class_data = list(re.findall(pattern, cleaned_string).groups())
+            except AttributeError:
+                parsed_class_data = list(re.findall(pattern, cleaned_string))
+            for i in parsed_class_data:
+                new_parsed = list(i)
+                new_parsed.insert(0, subject)
+                new_parsed = tuple(new_parsed)
+                class_dict = dict(zip(class_data, tuple(new_parsed)))
+                list_dict.append(class_dict)
+    professor_list = _get_professors_hours(professor, list_dict)
+    return professor_list
+
+def _get_professors_hours(professor, list_dict):
+    professor_hours = []
+    for item in list_dict:
+        if professor in item['Professor']:
+            professor_hours.append(item)
+    return professor_hours        
+
 def get_professors_list(subject):
     new_subject_str = ''.join(subject)
     pattern = r'(?P<professor>\w\w\d\d\d\d\D\w\D+)'
@@ -36,8 +123,9 @@ def get_professors_list(subject):
     except AttributeError:
         professor_names = re.findall(pattern, new_subject_str)
     professor_names_ini, professor_names_gui = _make_professor_list_readable(professor_names)
-    og_professor_names = list(set(professor_names_gui))
-    og_professor_names_ini = list(set(professor_names_ini))
+    og_professor_names = sorted(list(set(professor_names_gui)))
+    og_professor_names_ini = sorted(list(set(professor_names_ini)))
+    og_professor_names.insert(0, '')
     return og_professor_names, og_professor_names_ini
 
 def _make_professor_list_readable(professor_list):
@@ -53,48 +141,3 @@ def _make_professor_list_readable(professor_list):
         new_list_normal.append(recleaned_string)
         new_list_underscore.append(recleaned_string_underscore)
     return new_list_underscore, new_list_normal
-
-def _get_subject_name(subject):
-    pattern = r'(?P<suject>\D\w\D+)'
-    try:
-        subject_name = re.search(pattern, subject).group()
-    except AttributeError:
-        subject_name = re.search(pattern, subject)
-    return subject_name
-
-def get_subject_list(subjects):
-    subject_list = []
-    for subject in subjects:
-        subject_list.append(_get_subject_name(subject))
-    return subject_list
-
-def find_class(subject, string_classes):
-    for string in string_classes:
-        if subject in string:
-            ordered_string = string.split(_get_subject_name(subject))[1]
-            # new_ordered_str = " ".join(ordered_string.split())
-            list_of_classes = ordered_string.split('\n')
-            return list_of_classes, ordered_string
-
-def clean_list_of_classes(list_of_classes):
-    new_subject_list = []
-    for subject in list_of_classes:
-        new_subject_list.append(" ".join(subject.split()))
-    return new_subject_list
-
-def get_classes_data(class_items):
-    pattern = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
-    class_data = ('Hour', 'Amount of hours', 'Day', 'Classroom', 'Professor ID', 'Professor')
-    list_dict = []
-    try:
-        for class_item in class_items:
-            subject = unidecode(class_item)
-            try:
-                parsed_class_data = list(re.search(pattern, subject).groups())
-            except AttributeError:
-                parsed_class_data = list(re.search(pattern,  subject))        
-            class_dict = dict(zip(class_data, parsed_class_data))
-            list_dict.append(class_dict)
-    except TypeError:
-        pass
-    return list_dict
