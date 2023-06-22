@@ -46,12 +46,14 @@ class MainScreen(QMainWindow):
         new_items_list, _ = self.get_previous_data()
         spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
         self.subjects_button.setEnabled(False)
+        self.professor_button.setEnabled(False)
     
     def professors_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         _, new_items_list = self.get_previous_data()
         spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
         self.professor_button.setEnabled(False)
+        self.subjects_button.setEnabled(False)
     
     def modifying_button_click(self):
         print('modifying')
