@@ -6,6 +6,7 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
+from add_class import AddClassScreen
 import convertion
 import configparser
 import random
@@ -33,7 +34,11 @@ class ModifyScreen(QWidget):
         self.show()
     
     def add_button_click(self):
-        pass
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        spot.addWidget(AddClassScreen())
+        self.add_button.setEnabled(False)
+        self.visualize_button.setEnabled(False)
+        self.modifying_button.setEnabled(False)
     
     def professors_button_click(self):
         pass
