@@ -6,7 +6,7 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
-from add_files import AddFilesScreen
+from main_modify import ModifyScreen
 import convertion
 import configparser
 import random
@@ -59,6 +59,7 @@ class MainScreen(QMainWindow):
         spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
         self.subjects_button.setEnabled(False)
         self.professor_button.setEnabled(False)
+        self.modifying_button.setEnabled(False)
     
     def professors_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
@@ -66,9 +67,14 @@ class MainScreen(QMainWindow):
         spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
         self.professor_button.setEnabled(False)
         self.subjects_button.setEnabled(False)
+        self.modifying_button.setEnabled(False)
     
     def modifying_button_click(self):
-        print('modifying')
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        spot.addWidget(ModifyScreen())
+        self.professor_button.setEnabled(False)
+        self.subjects_button.setEnabled(False)
+        self.modifying_button.setEnabled(False)
     
     def information_button_click(self):
         print('information')
