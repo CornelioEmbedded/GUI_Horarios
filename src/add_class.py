@@ -38,7 +38,11 @@ class AddClassScreen(QWidget):
                      'N4',
                      'N5',
                      'N6']
-        self.days = ['','1','2','3','4','5','6']
+        self.days = ['',
+                     'L-M-V',
+                     'M',
+                     'J',
+                     'Sab']
         self.offer = ['','Escolarizada', 'No Escolar']
         self.platform = ['','N/A','NEXUS']
         self.modality = ['','ESPANOL', 'INGLES']
@@ -91,7 +95,31 @@ class AddClassScreen(QWidget):
         self.modality_menu.currentIndexChanged.connect(self._selection_change)
         self.count_selections_professors = [0] * self.offer_menu.count()
 
+        ## Line Text
+        self.group = self.findChild(QLineEdit, 'group')
+        self.room = self.findChild(QLineEdit, 'room')
+
+        ## Buttons
+        self.accept_button = self.findChild(QPushButton, 'accept')
+
+        ## Buttons actions
+        self.accept_button.clicked.connect(self.accept_button_click)
+
         ## Initialize functions
 
     def _selection_change(self):
         pass
+
+    def accept_button_click(self):
+        self.added_data = {'Hour':self.hour_menu.currentText(), 
+                      'Day':self.day_menu.currentText(),
+                      'Professor':self.professor_menu.currentText(),
+                      'Subject':self.subject_menu.currentText(),
+                      'Plan':self.plan_menu.currentText(),
+                      'Offer':self.offer_menu.currentText(),
+                      'Platform':self.platform_menu.currentText(),
+                      'Modality':self.modality_menu.currentText(),
+                      'Group':self.group.text(),
+                      'Room':self.room.text()}
+
+        print(f'{self.added_data}')

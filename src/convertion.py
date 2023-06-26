@@ -69,6 +69,7 @@ def _get_subject_name(subject):
         subject_name = re.search(pattern, subject).group()
     except AttributeError:
         subject_name = re.search(pattern, subject)
+    subject_name = " ".join(subject_name.split())
     return subject_name
 
 def get_subject_list(subjects):

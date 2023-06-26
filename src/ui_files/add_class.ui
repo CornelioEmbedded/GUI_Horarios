@@ -161,7 +161,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit">
+               <widget class="QLineEdit" name="group">
                 <property name="font">
                  <font>
                   <family>Century Gothic</family>
@@ -182,7 +182,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_7">
+               <widget class="QLineEdit" name="room">
                 <property name="font">
                  <font>
                   <family>Century Gothic</family>
@@ -302,6 +302,19 @@
        <property name="frameShadow">
         <enum>QFrame::Raised</enum>
        </property>
+       <widget class="QPushButton" name="accept">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>50</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>ACEPTAR</string>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>
