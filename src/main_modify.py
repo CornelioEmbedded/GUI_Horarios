@@ -31,8 +31,6 @@ class ModifyScreen(QWidget):
         
         ## Initialize functions
 
-        self.show()
-    
     def add_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         spot.addWidget(AddClassScreen())

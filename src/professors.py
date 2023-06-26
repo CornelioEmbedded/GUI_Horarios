@@ -79,9 +79,30 @@ class ProfessorsScreen(QWidget):
 
     def set_label_in_schedule(self):
         """"Set Professor name in schedule"""
-        subject = self.dict['Subject']
+        subject = self.dict['Subject'].split(' ')
+        abreviations = {'INTRODUCCION':'INT.',
+                        'DISENO':'DIS.',
+                        'LABORATORIO':'LAB.',
+                        'SISTEMAS':'SIST.',
+                        'INSTRUMENTACION':'INST.',
+                        'TOPICOS': 'TOP.',
+                        'ARQUITECTURA':'ARQ.',
+                        'DE': ' ',
+                        'A': ' ',
+                        'Topicos':'TOP.',
+                        'RECONOCIMIENTO':'REC.',
+                        'INTERFASES':'INTER.',
+                        'MODELADO':'MOD',
+                        'NEURONALES':'NEU.',
+                        'ANATOMIA':'ANA.',
+                        'FISIOLOGIA':'FIS.'
+                        }
+        for i in range(len(subject)):
+            if subject[i] in abreviations.keys():
+                subject[i] = abreviations[subject[i]]
+        new_subject = ' '.join(subject)
         professor = self.dict['Professor'].split(' ')
-        self.label = QLabel(subject)
+        self.label = QLabel(" ".join(new_subject.split()))
         self.set_color_class(professor)
         return self.label
 

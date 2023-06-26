@@ -17,6 +17,4 @@ class AddClassScreen(QWidget):
         uic.loadUi(r'ui_files\add_class.ui', self)
 
         ## Initialize functions
-
-        self.show()
     
