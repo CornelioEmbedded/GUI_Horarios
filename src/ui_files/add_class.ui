@@ -30,6 +30,22 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
             <item>
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
                <widget class="QLabel" name="label_2">
@@ -39,14 +55,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_4">
-                <property name="font">
-                 <font>
-                  <family>Century Gothic</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="subject"/>
               </item>
              </layout>
             </item>
@@ -60,21 +69,46 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_5">
-                <property name="font">
-                 <font>
-                  <family>Century Gothic</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="professor"/>
               </item>
              </layout>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout">
               <item>
@@ -85,14 +119,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_3">
-                <property name="font">
-                 <font>
-                  <family>Century Gothic</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="plan"/>
               </item>
              </layout>
             </item>
@@ -106,14 +133,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit">
-                <property name="font">
-                 <font>
-                  <family>Century Gothic</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="hour"/>
               </item>
              </layout>
             </item>
@@ -127,14 +147,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_2">
-                <property name="font">
-                 <font>
-                  <family>Century Gothic</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-               </widget>
+               <widget class="QComboBox" name="day"/>
               </item>
              </layout>
             </item>
@@ -148,7 +161,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="lineEdit_6">
+               <widget class="QLineEdit" name="lineEdit">
                 <property name="font">
                  <font>
                   <family>Century Gothic</family>
@@ -180,10 +193,42 @@
               </item>
              </layout>
             </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_8">
               <item>
@@ -194,7 +239,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox"/>
+               <widget class="QComboBox" name="offer"/>
               </item>
              </layout>
             </item>
@@ -208,7 +253,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_2"/>
+               <widget class="QComboBox" name="platform"/>
               </item>
              </layout>
             </item>
@@ -222,9 +267,25 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_3"/>
+               <widget class="QComboBox" name="modality"/>
               </item>
              </layout>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>150</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>

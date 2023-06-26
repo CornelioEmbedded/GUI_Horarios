@@ -71,7 +71,8 @@ class MainScreen(QMainWindow):
     
     def modifying_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
-        spot.addWidget(ModifyScreen())
+        subject_list, professor_list = self.get_previous_data()
+        spot.addWidget(ModifyScreen(subject_list, professor_list))
         self.professor_button.setEnabled(False)
         self.subjects_button.setEnabled(False)
         self.modifying_button.setEnabled(False)

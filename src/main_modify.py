@@ -13,11 +13,13 @@ import random
 
 
 class ModifyScreen(QWidget):
-    def __init__(self):
+    def __init__(self, subjects, professors):
         super(ModifyScreen, self).__init__()
         uic.loadUi(r'ui_files\main_modify.ui', self)
 
         self.string_classes = None
+        self.subjects = subjects
+        self.professors = professors
 
         ## Buttons
         self.add_button = self.findChild(QPushButton, 'add')
@@ -33,7 +35,7 @@ class ModifyScreen(QWidget):
 
     def add_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
-        spot.addWidget(AddClassScreen())
+        spot.addWidget(AddClassScreen(self.subjects, self.professors))
         self.add_button.setEnabled(False)
         self.visualize_button.setEnabled(False)
         self.modifying_button.setEnabled(False)
