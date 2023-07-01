@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 import pandas as pd
-import convertion
+import tools.convertion
 import random
 import configparser
 
@@ -64,7 +64,7 @@ class ProfessorsScreen(QWidget):
         self.changes_classes_in_comboBox = self.times_selection_changed(index)
         try:
             self.clean_data_from_schedule()
-            self.list_dict = convertion.find_professors(self.subject_menu.currentText(), self.string_classes)
+            self.list_dict = tools.convertion.find_professors(self.subject_menu.currentText(), self.string_classes)
             self.display_classes(self.list_dict)
         except IndexError:
             pass

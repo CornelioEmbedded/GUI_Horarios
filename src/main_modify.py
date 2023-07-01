@@ -6,8 +6,8 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
-from add_class import AddClassScreen
-import convertion
+from modify_screens.add_class import AddClassScreen
+import tools.convertion
 import configparser
 import random
 

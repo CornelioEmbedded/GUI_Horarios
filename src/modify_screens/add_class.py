@@ -6,7 +6,7 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
-import convertion
+import tools.convertion
 import configparser
 import random
 import json
