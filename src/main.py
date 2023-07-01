@@ -6,7 +6,7 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
-from main_modify import ModifyScreen
+from modify import ModifyScreen
 import tools.convertion
 import configparser
 import random

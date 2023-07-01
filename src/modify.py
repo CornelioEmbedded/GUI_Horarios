@@ -7,6 +7,7 @@ import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
 from modify_screens.add_class import AddClassScreen
+from modify_screens.visualize import VisualizeScreen
 import tools.convertion
 import configparser
 import random
@@ -28,7 +29,7 @@ class ModifyScreen(QWidget):
 
         ##Buttons actions
         self.add_button.clicked.connect(self.add_button_click)
-        self.visualize_button.clicked.connect(self.professors_button_click)
+        self.visualize_button.clicked.connect(self.visualize_button_click)
         self.modifying_button.clicked.connect(self.modifying_button_click)
         
         ## Initialize functions
@@ -40,8 +41,12 @@ class ModifyScreen(QWidget):
         self.visualize_button.setEnabled(False)
         self.modifying_button.setEnabled(False)
     
-    def professors_button_click(self):
-        pass
+    def visualize_button_click(self):
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        spot.addWidget(VisualizeScreen())
+        self.add_button.setEnabled(False)
+        self.visualize_button.setEnabled(False)
+        self.modifying_button.setEnabled(False)
     
     def modifying_button_click(self):
         pass
