@@ -9,6 +9,7 @@ from professors import ProfessorsScreen
 import convertion
 import configparser
 import random
+import json
 
 
 class AddClassScreen(QWidget):
@@ -121,5 +122,10 @@ class AddClassScreen(QWidget):
                       'Modality':self.modality_menu.currentText(),
                       'Group':self.group.text(),
                       'Room':self.room.text()}
+        
+        # Store the dictionary as JSON
+        with open("data\data.json", "a") as file:
+            json.dump(self.added_data, file, indent=2, separators=(",\n", ": "))
+            file.write("\n")
 
         print(f'{self.added_data}')
