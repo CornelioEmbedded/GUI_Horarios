@@ -7,6 +7,7 @@ import pandas as pd
 import convertion
 import random
 import configparser
+from functools import partial
 
 
 class AddFilesScreen(QWidget):
@@ -18,14 +19,13 @@ class AddFilesScreen(QWidget):
         ## Buttons
         self.ordinary_class_button = self.findChild(QPushButton, 'add_ordinary_class')
         self.labs_button = self.findChild(QPushButton, 'add_labs')
-        self.saturdays_button = self.findChild(QPushButton, 'add_saturdays_class')
+        self.saturdays_button = self.findChild(QPushButton, 'add_saturday_class')
 
-        self.ordinary_class_button.clicked.connect(self.ordinary_class_click)
-        # self.labs_button.clicked.connect()
-        # self.saturdays_button.clicked.connect()
+        self.ordinary_class_button.clicked.connect(lambda _, param="ordinario": self.generate_csv_from_excel(param))
+        self.labs_button.clicked.connect(lambda _, param="labs": self.generate_csv_from_excel(param))
+        self.saturdays_button.clicked.connect(lambda _, param="sabatino": self.generate_csv_from_excel(param))
     
-    def ordinary_class_click(self):
+    def generate_csv_from_excel(self, name):
         """Open excel file, and return a new items list from excel"""
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        convertion.from_excel_to_csv(file, "ordinario")
-
+        convertion.from_excel_to_csv(file, name)

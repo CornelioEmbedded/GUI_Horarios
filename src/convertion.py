@@ -11,10 +11,6 @@ def from_excel_to_csv(excel_file, name:str):
     read_excel = pd.read_excel(excel_file)
     read_excel.to_csv(f'..\csv_{name}.csv', index=None, header=True)
 
-def read_csv_file():
-    csv_file = pd.DataFrame(pd.read_csv('csv_file.csv'))
-    return csv_file
-
 def get_dict_from_csv(csv_file):
     info_list = {}
     for index, rows in csv_file.iterrows():
