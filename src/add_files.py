@@ -27,5 +27,5 @@ class AddFilesScreen(QWidget):
     def ordinary_class_click(self):
         """Open excel file, and return a new items list from excel"""
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        print(convertion.from_excel_to_csv(file))
+        convertion.from_excel_to_csv(file, "ordinario")
 
