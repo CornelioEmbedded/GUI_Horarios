@@ -7,11 +7,9 @@ import pandas as pd
 import convertion
 import random
 import configparser
-from functools import partial
 
 
 class AddFilesScreen(QWidget):
-    csv_file = None
     def __init__(self):
         super(AddFilesScreen, self).__init__()
         uic.loadUi(r'ui_files\add_files.ui', self)
@@ -21,11 +19,21 @@ class AddFilesScreen(QWidget):
         self.labs_button = self.findChild(QPushButton, 'add_labs')
         self.saturdays_button = self.findChild(QPushButton, 'add_saturday_class')
 
-        self.ordinary_class_button.clicked.connect(lambda _, param="ordinario": self.generate_csv_from_excel(param))
-        self.labs_button.clicked.connect(lambda _, param="labs": self.generate_csv_from_excel(param))
-        self.saturdays_button.clicked.connect(lambda _, param="sabatino": self.generate_csv_from_excel(param))
+        self.ordinary_class_button.clicked.connect(self.generate_csv_from_excel_ordinary)
+        self.labs_button.clicked.connect(self.generate_csv_from_excel_labs)
+        self.saturdays_button.clicked.connect(self.generate_csv_from_excel_saturdays)
     
-    def generate_csv_from_excel(self, name):
+    def generate_csv_from_excel_ordinary(self):
         """Open excel file, and return a new items list from excel"""
         file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        convertion.from_excel_to_csv(file, name)
+        convertion.from_excel_to_csv(file, "ordinarios")
+
+    def generate_csv_from_excel_labs(self):
+        """Open excel file, and return a new items list from excel"""
+        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
+        convertion.from_excel_to_csv(file, "labs")
+
+    def generate_csv_from_excel_saturdays(self):
+        """Open excel file, and return a new items list from excel"""
+        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
+        convertion.from_excel_to_csv(file, "sabatinos")
