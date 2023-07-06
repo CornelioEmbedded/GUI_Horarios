@@ -25,15 +25,24 @@ class AddFilesScreen(QWidget):
     
     def generate_csv_from_excel_ordinary(self):
         """Open excel file, and return a new items list from excel"""
-        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        convertion.from_excel_to_csv(file, "ordinarios")
+        try:
+            file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
+            convertion.from_excel_to_csv(file, "ordinarios")
+        except FileNotFoundError:
+            pass
 
     def generate_csv_from_excel_labs(self):
         """Open excel file, and return a new items list from excel"""
-        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        convertion.from_excel_to_csv(file, "labs")
+        try:
+            file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
+            convertion.from_excel_to_csv(file, "labs")
+        except FileNotFoundError:
+            pass
 
     def generate_csv_from_excel_saturdays(self):
         """Open excel file, and return a new items list from excel"""
-        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        convertion.from_excel_to_csv(file, "sabatinos")
+        try:
+            file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
+            convertion.from_excel_to_csv(file, "sabatinos")
+        except FileNotFoundError:
+            pass
