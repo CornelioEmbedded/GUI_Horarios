@@ -87,7 +87,7 @@ class MainScreen(QMainWindow):
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
         try:
-            csv_file_read = pd.read_csv(r'..\csv_ordinario.csv')
+            csv_file_read = pd.read_csv(r'generated\csv_ordinarios.csv')
             self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
             professors_item_list, _ = self._make_professor_items()

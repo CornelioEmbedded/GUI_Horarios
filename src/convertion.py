@@ -9,7 +9,7 @@ MAIN_PATTERN = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+)
 
 def from_excel_to_csv(excel_file, name:str):
     read_excel = pd.read_excel(excel_file)
-    read_excel.to_csv(f'..\csv_{name}.csv', index=None, header=True)
+    read_excel.to_csv(f'..\src\generated\csv_{name}.csv', index=None, header=True)
 
 def get_dict_from_csv(csv_file):
     info_list = {}
