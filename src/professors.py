@@ -65,7 +65,8 @@ class ProfessorsScreen(QWidget):
         try:
             self.clean_data_from_schedule()
             self.list_dict = tools.convertion.find_professors(self.subject_menu.currentText(), self.string_classes)
-            self.display_classes(self.list_dict)
+            new_ordered_list = self.order_classes(self.list_dict)
+            self.display_classes(new_ordered_list)
         except IndexError:
             pass
 
@@ -140,6 +141,7 @@ class ProfessorsScreen(QWidget):
         """Display classes in schedule"""
         for index in range(len(list_dict)):
             self.dict = list_dict[index]
+            print(self.dict)
             if self.dict['Day'] == '135':
                 if list_dict[index] == list_dict[-1]:
                     repeated = None
