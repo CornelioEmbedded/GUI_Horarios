@@ -2,7 +2,6 @@ import pandas as pd
 import re
 from unidecode import unidecode
 
-NAME_COLUMN = '        01/07/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
 MAIN_PATTERN = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
 
 # Main Function for Parsing Data
@@ -13,8 +12,9 @@ def from_excel_to_csv(excel_file, name:str):
 
 def get_dict_from_csv(csv_file):
     info_list = {}
+    column_name = list(csv_file.columns)
     for index, rows in csv_file.iterrows():
-        info_list[index] = rows[NAME_COLUMN]
+        info_list[index] = rows[column_name[0]]
     return info_list
 
 def parse_classes(classes):
