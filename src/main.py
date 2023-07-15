@@ -6,6 +6,7 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
+from add_files import AddFilesScreen
 import convertion
 import configparser
 import random
@@ -33,13 +34,24 @@ class MainScreen(QMainWindow):
         self.modifying_button.clicked.connect(self.modifying_button_click)
         self.information_button.clicked.connect(self.information_button_click)
         self.configuration_button.clicked.connect(self.configuration_button_click)
-        self.open_file_button.clicked.connect(self.open_file)
+        self.open_file_button.clicked.connect(self.open_file_click)
         self.clean_button.clicked.connect(self.clean_gui)
         
         ## Initialize functions
         self.items_list, self.professors_list = self.get_previous_data()
-        # convertion._get_professors_dict(self.professors_list, self.string_classes)
+        self.check_all_data_ini()
+
         self.show()
+
+    def check_all_data_ini(self):
+        config = configparser.ConfigParser()
+        config.read('parameters/config.ini')
+        keys = []
+        for section in config.sections():
+            keys.extend(config[section].keys())
+
+        if len(self.professor_list) - 1 != len(keys):
+            self.set_default_colors()
     
     def subjects_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
@@ -77,34 +89,28 @@ class MainScreen(QMainWindow):
         self.information_button.setEnabled(True)
         self.configuration_button.setEnabled(True)
 
-    def open_file(self):
-        """Open excel file, and return a new items list from excel"""
-        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        csv_file = convertion.from_excel_to_csv(file)
-        self._parsing_csv_file(csv_file)
-        self.new_item_list = self._make_subject_items()
-        self.new_item_list_prof, _ = self._make_professor_items()
-        self.set_default_colors()
+    def open_file_click(self):
+        spot = self.findChild(QVBoxLayout, 'main_spot')
+        spot.addWidget(AddFilesScreen())
+        self.professor_button.setEnabled(False)
+        self.subjects_button.setEnabled(False)
 
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
         try:
-            csv_file_read = pd.read_csv(r'..\csv_file.csv')
+            csv_file_read = pd.read_csv(r'generated\csv_ordinarios.csv')
             self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
             professors_item_list, _ = self._make_professor_items()
-            return items_list, professors_item_list
         except FileNotFoundError:
             items_list = []
             professors_item_list = []
-            return items_list, professors_item_list
+        return items_list, professors_item_list
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
         self.string_classes = convertion.parse_classes(csv_dict)
-        
-        # print(convertion.parse_professors(csv_dict))
 
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""

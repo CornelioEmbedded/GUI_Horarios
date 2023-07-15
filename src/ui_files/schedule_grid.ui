@@ -22,7 +22,7 @@
      <height>601</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <layout class="QVBoxLayout" name="main_spot">
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
