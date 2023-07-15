@@ -39,8 +39,19 @@ class MainScreen(QMainWindow):
         
         ## Initialize functions
         self.items_list, self.professors_list = self.get_previous_data()
-        # convertion._get_professors_dict(self.professors_list, self.string_classes)
+        self.check_all_data_ini()
+
         self.show()
+
+    def check_all_data_ini(self):
+        config = configparser.ConfigParser()
+        config.read('parameters/config.ini')
+        keys = []
+        for section in config.sections():
+            keys.extend(config[section].keys())
+
+        if len(self.professor_list) - 1 != len(keys):
+            self.set_default_colors()
     
     def subjects_button_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
@@ -91,11 +102,10 @@ class MainScreen(QMainWindow):
             self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
             professors_item_list, _ = self._make_professor_items()
-            return items_list, professors_item_list
         except FileNotFoundError:
             items_list = []
             professors_item_list = []
-            return items_list, professors_item_list
+        return items_list, professors_item_list
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
