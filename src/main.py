@@ -99,7 +99,7 @@ class MainScreen(QMainWindow):
         """"Gets previous data from past csv_file"""
         try:
             csv_file_read = pd.read_csv(r'generated\csv_ordinarios.csv')
-            self._parsing_csv_file(csv_file_read)
+            self.string_classes = self._parsing_csv_file(csv_file_read)
             items_list = self._make_subject_items()
             professors_item_list, _ = self._make_professor_items()
         except FileNotFoundError:
@@ -110,7 +110,8 @@ class MainScreen(QMainWindow):
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
         csv_dict = convertion.get_dict_from_csv(csv_file)
-        self.string_classes = convertion.parse_classes(csv_dict)
+        string_classes = convertion.parse_classes(csv_dict)
+        return string_classes
 
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""

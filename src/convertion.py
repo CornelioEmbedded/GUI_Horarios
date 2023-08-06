@@ -36,7 +36,7 @@ def find_class(subject, string_classes):
         if subject in string:
             ordered_string = string.split(_get_subject_name(subject))[1]
             list_of_classes = ordered_string.split('\n')
-            return list_of_classes, ordered_string
+    return list_of_classes, ordered_string
 
 def clean_list_of_classes(list_of_classes):
     new_subject_list = []
