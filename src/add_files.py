@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 import sys
 import pandas as pd
-import convertion
+import tools.convertion
 import random
 import configparser
 import os
@@ -30,7 +30,7 @@ class AddFilesScreen(QWidget):
         """Open excel file, and return a new items list from excel"""
         try:
             file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-            convertion.from_excel_to_csv(file, "ordinarios")
+            tools.convertion.from_excel_to_csv(file, "ordinarios")
         except FileNotFoundError:
             pass
 
@@ -38,7 +38,7 @@ class AddFilesScreen(QWidget):
         """Open excel file, and return a new items list from excel"""
         try:
             file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-            convertion.from_excel_to_csv(file, "labs")
+            tools.convertion.from_excel_to_csv(file, "labs")
         except FileNotFoundError:
             pass
 
@@ -46,7 +46,7 @@ class AddFilesScreen(QWidget):
         """Open excel file, and return a new items list from excel"""
         try:
             file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-            convertion.from_excel_to_csv(file, "sabatinos")
+            tools.convertion.from_excel_to_csv(file, "sabatinos")
         except FileNotFoundError:
             pass
 

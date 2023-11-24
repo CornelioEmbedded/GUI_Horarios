@@ -6,6 +6,7 @@ import sys
 import pandas as pd
 from subjects import SubjectsScreen
 from professors import ProfessorsScreen
+from add_files import AddFilesScreen
 from modify import ModifyScreen
 import tools.convertion
 import configparser
@@ -39,12 +40,7 @@ class MainScreen(QMainWindow):
         
         ## Initialize functions
         self.items_list, self.professors_list = self.get_previous_data()
-<<<<<<< HEAD
-        self.check_all_data_ini()
-
-=======
-        # tools.convertion._get_professors_dict(self.professors_list, self.string_classes)
->>>>>>> 69c1f62 (change files locations)
+        self.clean_button.setEnabled(False)
         self.show()
 
     def check_all_data_ini(self):
@@ -61,6 +57,7 @@ class MainScreen(QMainWindow):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         new_items_list, _ = self.get_previous_data()
         spot.addWidget(SubjectsScreen(new_items_list, self.string_classes))
+        self.clean_button.setEnabled(True)
         self.subjects_button.setEnabled(False)
         self.professor_button.setEnabled(False)
         self.modifying_button.setEnabled(False)
@@ -69,6 +66,7 @@ class MainScreen(QMainWindow):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         _, new_items_list = self.get_previous_data()
         spot.addWidget(ProfessorsScreen(new_items_list, self.string_classes))
+        self.clean_button.setEnabled(True)
         self.professor_button.setEnabled(False)
         self.subjects_button.setEnabled(False)
         self.modifying_button.setEnabled(False)
@@ -77,6 +75,7 @@ class MainScreen(QMainWindow):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         subject_list, professor_list = self.get_previous_data()
         spot.addWidget(ModifyScreen(subject_list, professor_list))
+        self.clean_button.setEnabled(True)
         self.professor_button.setEnabled(False)
         self.subjects_button.setEnabled(False)
         self.modifying_button.setEnabled(False)
@@ -91,6 +90,7 @@ class MainScreen(QMainWindow):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         old_label = spot.itemAt(0).widget()
         spot.removeWidget(old_label)
+        self.clean_button.setEnabled(False)
         self._enable_all_buttons()
 
     def _enable_all_buttons(self):
@@ -99,23 +99,14 @@ class MainScreen(QMainWindow):
         self.modifying_button.setEnabled(True)
         self.information_button.setEnabled(True)
         self.configuration_button.setEnabled(True)
+        # self.clean_button.setEnabled(True)
 
-<<<<<<< HEAD
     def open_file_click(self):
         spot = self.findChild(QVBoxLayout, 'main_spot')
         spot.addWidget(AddFilesScreen())
+        self.clean_button.setEnabled(True)
         self.professor_button.setEnabled(False)
         self.subjects_button.setEnabled(False)
-=======
-    def open_file(self):
-        """Open excel file, and return a new items list from excel"""
-        file, _ = QFileDialog.getOpenFileName(self, 'Open File', 'c:\\', 'Excel Files (*.xlsx)')
-        csv_file = tools.convertion.from_excel_to_csv(file)
-        self._parsing_csv_file(csv_file)
-        self.new_item_list = self._make_subject_items()
-        self.new_item_list_prof, _ = self._make_professor_items()
-        self.set_default_colors()
->>>>>>> 69c1f62 (change files locations)
 
     def get_previous_data(self):
         """"Gets previous data from past csv_file"""
@@ -131,15 +122,8 @@ class MainScreen(QMainWindow):
 
     def _parsing_csv_file(self, csv_file):
         """Parse in csv file to return string of classes"""
-<<<<<<< HEAD
-        csv_dict = convertion.get_dict_from_csv(csv_file)
-        self.string_classes = convertion.parse_classes(csv_dict)
-=======
         csv_dict = tools.convertion.get_dict_from_csv(csv_file)
         self.string_classes = tools.convertion.parse_classes(csv_dict)
-        
-        # print(tools.convertion.parse_professors(csv_dict))
->>>>>>> 69c1f62 (change files locations)
 
     def _make_subject_items(self):
         """Convert string classes into a list to use in items"""

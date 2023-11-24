@@ -2,10 +2,6 @@ import pandas as pd
 import re
 from unidecode import unidecode
 
-<<<<<<< HEAD
-=======
-NAME_COLUMN = '        01/07/23                             UNIVERSIDAD AUTONOMA DE NUEVO LEON                                Pag  1'
->>>>>>> 0210b55 (make it work for new csv add spec)
 MAIN_PATTERN = r'(?P<hour>[0-9A-Za-z]+),(?P<amount_hours>[0-9]+) (?P<day>[0-9]+) (?P<room>[0-9A-Za-z-]+) (?P<id>[0-9A-Za-z]+) (?P<professor>([A-Za-z]+( [A-Za-z]+)+))'
 
 # Main Function for Parsing Data
